@@ -21,11 +21,11 @@
 - When utilizing the Search Head, the user of the SIEM must be mindful that Splunk is case sensitive   
     
 
- ![[index.png]]
+ 
 
 **1. How many events are presented in the log file?**  
     
- ![[source.png]]
+![image alt] (https://github.com/DJackson-BlueTeam/Portfolio/blob/3ee5c1b9a10eaf447908e03bc7c36a2dd464de04/SOC/SOC%20Write-Ups/SOC%20Write%20Up/index.png)
 Answer: 2,862 
 - By uploading the .json file into the Splunk indexer and accessing the log file by typing source=”VPNlogs.json” or source=”VPNlogs.json” | stats count.  
 - Once the search query is completed, the results will be displayed.  
