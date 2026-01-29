@@ -32,7 +32,7 @@ Answer: 2,862 
 
  **2. How many log events are captured by the user Maleena?**  
     
- ![[Username.png]]
+ ![image alt](https://github.com/DJackson-BlueTeam/Portfolio/blob/4956670f9550b07c143e2c1d66df6b33973bb4c8/SOC/SOC%20Write-Ups/SOC%20Write%20Up/Username.png)
 Answer: 60 
 - In the question, we are looking for a specific user that has generated events in the network or servers.  
 - You would simply make a search using source=”VPNlogs.json” UserName=”Maleena” 
