@@ -1,9 +1,9 @@
+**ICMP and DNS Tunneling Traffic**
 - Traffic Tunneling (Port Forwarding) transfers data and resources to a network.  
 - Provide anonymity and traffic security.  
 - Adversary can use tunneling to bypass security parameters using trusted protocols that are used in everyday traffic (ICMP and DNS) 
     
 **ICMP (Internet Control Message Protocol) Analysis** 
-
 - Reports network communication issues.  
 - Can be used for DoS (Denial of Services)  
 - T1498.001: Network Denial of Service (https://attack.mitre.org/techniques/T1498/001/)
