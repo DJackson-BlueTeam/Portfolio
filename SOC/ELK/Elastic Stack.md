@@ -1,4 +1,4 @@
-![[Elastic Title.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/fca971f7cecd96eb9ac9413bf7f97bb4f50ecc7c/SOC/ELK/Elastic%20Stack%20Images/Elastic%20Title.png)
 
 **What is an Elastic Stack?**  
  Elastic Stack - Elastic Search, Logstash, Beats, Kibana 
