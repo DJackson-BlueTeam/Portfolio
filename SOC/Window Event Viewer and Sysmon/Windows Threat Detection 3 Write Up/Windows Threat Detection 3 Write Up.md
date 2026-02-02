@@ -10,32 +10,34 @@ Questions 
 - Downloaded file in Sysmon log will be associated with Event ID 15 ([Sysmon - Sysinternals | Microsoft Learn](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon)) 
 - Let access Sysmon log through Event Viewer (Should be able to navigate to it from “Windows Threat Detection 2”) or open file explore and click on the “Sysmon.evtx” 
 - Also, with the File Explore, there is a downloaded file named “URGENT!.zip”. That could be the answer, however, let's make sure this is the case.  
-    
 
-	![[178.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/e01ac022b89ddc94c9b95ecd931e46d004fd189a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%203%20Write%20Up/Windows%20Threat%20Detection%203%20Img/178.png) 
 
 - Filter to Event ID 15  
     
 
-	![[179.png]]Answer: URGENT!.zip 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/e01ac022b89ddc94c9b95ecd931e46d004fd189a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%203%20Write%20Up/Windows%20Threat%20Detection%203%20Img/179.png)
+
+Answer: URGENT!.zip 
 
 2. Where did the attacker hide the C2 malware file 
 - This is consisting of Process Creation (Event ID 1) 
 - Notice in the screenshot below, there is a PowerShell execution being implemented in the ParentCommandLine 
-    
-
-	![[180.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/e01ac022b89ddc94c9b95ecd931e46d004fd189a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%203%20Write%20Up/Windows%20Threat%20Detection%203%20Img/180.png) 
 
 - This indicates that the Child CommandLine should be the path where the malicious file is hidden. 
     
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/e01ac022b89ddc94c9b95ecd931e46d004fd189a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%203%20Write%20Up/Windows%20Threat%20Detection%203%20Img/181.png)
 
-	![[181.png]]Answer:  C:\Users\Administrator\AppData\Roaming\update.exe 
+Answer:  C:\Users\Administrator\AppData\Roaming\update.exe 
 
 3. What is the domain of the Command-and-Control server?  
 - To find the domain, filter to the Event ID: 22 ([Sysmon - Sysinternals | Microsoft Learn](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon)) DNS Query.  
     
 
-	![[182.png]]Answer: route.m365officesync.workers.dev 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/e01ac022b89ddc94c9b95ecd931e46d004fd189a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%203%20Write%20Up/Windows%20Threat%20Detection%203%20Img/182.png)
+
+Answer: route.m365officesync.workers.dev 
 
 Persistence Overview 
 - The method of maintaining reliable, long-term access to a targets machine that can survive reboots and passwords changes.  
@@ -64,24 +66,29 @@ Questions 
 - We first must go to security saved logs.  
     
 
-	![[183.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/e01ac022b89ddc94c9b95ecd931e46d004fd189a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%203%20Write%20Up/Windows%20Threat%20Detection%203%20Img/183.png) 
 
 - Revisiting “Windows Threat Detection 1”, we can filter this action with Event ID 4625 
     
 
-	![[184.png]]Answer: 6 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/e01ac022b89ddc94c9b95ecd931e46d004fd189a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%203%20Write%20Up/Windows%20Threat%20Detection%203%20Img/184.png)
+
+Answer: 6 
 
 2. After Successful login, which backdoor user did the attacker create?  
 - Let filter to Event ID: 4720 Creating User 
     
 
-	![[185.png]]Answer: support 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/e01ac022b89ddc94c9b95ecd931e46d004fd189a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%203%20Write%20Up/Windows%20Threat%20Detection%203%20Img/185.png)
+
+Answer: support 
 
 3. Which privileged group was the backdoor user added to?  
 - Let's filter to Event ID 4732 Privilege Group  
     
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/e01ac022b89ddc94c9b95ecd931e46d004fd189a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%203%20Write%20Up/Windows%20Threat%20Detection%203%20Img/186.png)
 
-	![[186.png]]Answer: Administrators 
+Answer: Administrators 
 
 Malware Persistence 
 - Maintaining persistence with malware requires an actively running malware that maintains a connection with their C2 server even after a system reboot.  
@@ -99,15 +106,17 @@ Questions 
 - Looking at the chart above, we can use Event ID 4697 Service Creation 
     
 
-	![[187.png]]Answer: Data Protection Service 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/e01ac022b89ddc94c9b95ecd931e46d004fd189a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%203%20Write%20Up/Windows%20Threat%20Detection%203%20Img/187.png)
+Answer: Data Protection Service 
 
 2. Which Scheduled task was created to persist in the Troy malware?  
 - Let filter to Event ID 4698 Schedule Task Creation 
 - Below, we can see the command for troy.exe 
     
 
-	![[188.png]]
-	![[189.png]]
+![[188.png]](https://github.com/DJackson-BlueTeam/Portfolio/blob/e01ac022b89ddc94c9b95ecd931e46d004fd189a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%203%20Write%20Up/Windows%20Threat%20Detection%203%20Img/188.png)
+![[189.png]](https://github.com/DJackson-BlueTeam/Portfolio/blob/e01ac022b89ddc94c9b95ecd931e46d004fd189a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%203%20Write%20Up/Windows%20Threat%20Detection%203%20Img/189.png)
+	
 	Answer: AmazonSync 
 
 3. What flag do you get after finding and running the Troy malware?  
@@ -117,13 +126,13 @@ Questions 
 - Second, once we find the Process, copy the Parent Command Line – Shown Below:  
     
 
-	![[190.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/e01ac022b89ddc94c9b95ecd931e46d004fd189a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%203%20Write%20Up/Windows%20Threat%20Detection%203%20Img/190.png) 
 
 - Third, after copying the parent command line, Open File Explore and navigate to the Troy File (Local Disk > Programs > Common Files > troy.exe). Double-click on the troy.exe.  
 - Fourth, a Command Prompt will open, copy and past the Parent Command Line to generate the flag.  
-    
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/e01ac022b89ddc94c9b95ecd931e46d004fd189a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%203%20Write%20Up/Windows%20Threat%20Detection%203%20Img/191.png)
 
-	![[191.png]]Answer: THM{c2_is_on_schedule!} 
+Answer: THM{c2_is_on_schedule!} 
 
 Run Keys and Startup 
 - Windows provides a few per-user persistence methods that are actively used by both legitimate tools and malware. 
@@ -138,20 +147,21 @@ Run Keys and Startup 
 Questions 
 
 1. What is the parent process image of the “Odin” malware?  
-    
 
-	![[192.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/e01ac022b89ddc94c9b95ecd931e46d004fd189a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%203%20Write%20Up/Windows%20Threat%20Detection%203%20Img/192.png) 
 
 - Let open task 5 Sysmon log and filter to Event ID 11 and search for the Odin malware to find the parent process.  
     
 
-	![[193.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/e01ac022b89ddc94c9b95ecd931e46d004fd189a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%203%20Write%20Up/Windows%20Threat%20Detection%203%20Img/193.png) 
 
 - We can see the path above to the odin.cmd. This indicates that the file was downloaded after the Process Creations in the User Administrator Directory. 
 - Let filter to Event ID 1 Process Creation 
     
 
-	![[194.png]]Answer: C:\Windows\explorer.exe 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/e01ac022b89ddc94c9b95ecd931e46d004fd189a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%203%20Write%20Up/Windows%20Threat%20Detection%203%20Img/194.png)
+
+Answer: C:\Windows\explorer.exe 
 
 - Here, we see the same User Administrator with the full Child CommandLine showing there was a download executed through chrome browser.  
 - Both Event ID 11 and Event ID 1 is associated with the same User  
@@ -159,30 +169,29 @@ Questions 
 
 2. What is the last line that the “Odin” malware outputs?  
 - Let's open the Sysmon.evtx after the execution file 
-	![[195.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/e01ac022b89ddc94c9b95ecd931e46d004fd189a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%203%20Write%20Up/Windows%20Threat%20Detection%203%20Img/195.png) 
 - Filter to Event ID 1 Process Creation 
 - We want to look for any suspicious commandline associated with the User “Administrator” 
     
 
-	![[196.png]]Answer: Done doing bad stuff! 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/e01ac022b89ddc94c9b95ecd931e46d004fd189a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%203%20Write%20Up/Windows%20Threat%20Detection%203%20Img/196.png)
+
+Answer: Done doing bad stuff! 
 
 3. What flag do you get after finding and running the Kitten malware 
 - This will be in Event ID 1 Process Creation.  
 - Look for a Process with “Kitten” 
     
-
-	![[197.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/e01ac022b89ddc94c9b95ecd931e46d004fd189a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%203%20Write%20Up/Windows%20Threat%20Detection%203%20Img/197.png) 
 
 - Next copy the command line then navigate to the executable file in File Explore (Users>Public>kitten.exe) click on kitten.exe 
     
-
-	![[198.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/e01ac022b89ddc94c9b95ecd931e46d004fd189a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%203%20Write%20Up/Windows%20Threat%20Detection%203%20Img/198.png) 
 
 - It is asking for the name of the run key. Let filter Event 13 New Registry in the “Before execution Sysmon.evtx”.  
     
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/e01ac022b89ddc94c9b95ecd931e46d004fd189a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%203%20Write%20Up/Windows%20Threat%20Detection%203%20Img/199.png) 
 
-	![[199.png]] 
-
-	![[200.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/e01ac022b89ddc94c9b95ecd931e46d004fd189a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%203%20Write%20Up/Windows%20Threat%20Detection%203%20Img/200.png) 
 
 Answer: THM{persisting_in_basket!}
