@@ -197,7 +197,7 @@ Answer: C:\Users\sarah.miller\Downloads\ckjg.exe 
 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/128.png) 
 
-Answer: [hxxp://gettsveriff[.]com/bgj3/ckjg[.]exe](http://gettsveriff.com/bgj3/ckjg.exe) 
+Answer: [hxxp://gettsveriff[.]com/bgj3/ckjg[.]exe] <--- DO NOT CLICK ON THIS LINK
 
 Sysmon: Files and Network 
 
