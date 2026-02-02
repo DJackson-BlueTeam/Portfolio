@@ -10,7 +10,8 @@ Every file that is creates, logging in or out, creating users, permissions etc,
 	- Event ID (we will discuss later): Is a unique number identifier for action of an event. 
 3. Log Details: This is the details of the event that has occurred within the logs in plain text or in "XML" format 
 4. Filters Menu: Used for filtering logs.  
-    ![[114.png]] 
+
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/114.png) 
     
 
 |   |   |   |   |
@@ -21,7 +22,7 @@ Every file that is creates, logging in or out, creating users, permissions etc,
 
 Structure of 4624/4625 
 
-![[115.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/115.png) 
 
 Detecting RDP (Remote Desktop Protocol) Brute Force 
 
@@ -49,20 +50,20 @@ Questions 
 1. Which IP performed a brute force of the THM-PC? 
 - To determine which IP conducted a brute force attack, we need to filter to the Event ID: 4625 (failed logon attempts) 
 
-	![[116.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/116.png)
 
 - Once we filter the Event, we will see multiple failed logon attempts associated with the Event ID: 4625 
 - To observe what IP conducted the brute force attempt we will go to the detail tab of any of the Event ID: 4625 to observe the output 
     
 
-	![[117.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/117.png) 
 
 Answer: 10.10.53.248 
 
 2. Which user has been breached because of the attack? 
 - If the user was breached that indicates that the adversary successfully logon to the account (Event ID: 4624)
 - We will need to filter the logon ID 4624 and observe the output with the IP associated with the brute force attack.  
-    ![[118.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/118.png)
 
 Answer: Administrator 
 
@@ -108,27 +109,26 @@ Questions  
 - This should still be associated with the administrator account that was breached. 
     
 
-![[119.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/119.png) 
 
 Answer: svc_sysrestore 
 
 2. Which two privileged groups were the backdoor user added to? 
 - To identify the privilege that was added to the breached user, we will use the Event ID: 4732 
 
-    ![[120.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/120.png)
 
 - Review the “TargetUserName”  that is associated with the “SubjectUserName” 
 
-	![[121.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/121.png)
 
 Answer: Backup Operators, Remote Desktop Users 
 - By groups are associated with the "Administrator” user that was breached  
     
 3. Does the Logon ID field match what you saw in the previous task?  
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/122.png)
 
-	![[122.png]]
-
-	![[123.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/123.png)
 
 Answer: Yes 
 
@@ -173,18 +173,19 @@ Questions 
 - To determine which web browser Sarah uses, we will open the Sysmon Event Viewer and filter to Event ID 1 and filter the user to Sarah to reduce the amount of source information.  
     
 
-	![[124.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/124.png) 
 
 - Next, we will comb the files and determine which browsers were used.  
     
 
-	![[125.png]] 
-	![[126.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/125.png) 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/126.png)
+
 Answer: Google Chrome 
 
 2. Which file did Sarah download from the browser? 
 - Since we already in the filter from question 1, we can observe what file Sarah had downloaded.  
-    ![[127.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/127.png)
 
 	 
 
@@ -194,7 +195,7 @@ Answer: C:\Users\sarah.miller\Downloads\ckjg.exe 
 - To determine which URL was the file downloaded from, we will use Sysmon Event ID 15. 
 - Event ID 15 is associated with file stream creation [Sysmon - Sysinternals | Microsoft Learn](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon) 
 
-	![[128.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/128.png) 
 
 Answer: [hxxp://gettsveriff[.]com/bgj3/ckjg[.]exe](http://gettsveriff.com/bgj3/ckjg.exe) 
 
@@ -212,23 +213,23 @@ Sysmon: Files and Network 
 - We already know that the file was created by sarah.miller, so a file path will be associated with that user.  
     
 
-	![[129.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/129.png) 
 
 - In the screenshot below, we can see the file download (ckjg[.]exe), below must be the path to the file created by the malware 
     
 
-![[130.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/130.png)
 
 2. What is the Command & Control server malware connected to?  
 - This is concerning a network connection when it is involving a C2, so we will filter to Event 3 
     
 
-	![[131.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/131.png) 
 
 - We can see the malware file again, let scroll to find the IP and Port number.  
     
 
-	![[132.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/132.png) 
 
 Answer: 193[.]46[.]217:7777 
 
@@ -236,7 +237,7 @@ Answer: 193[.]46[.]217:7777 
 - This will consist of filter to Event ID 22 (DNS) 
     
 
-![[133.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/133.png) 
 
 Answer: hkfasfsafg.click 
 
@@ -244,22 +245,23 @@ PowerShell: Logging Commands 
 
 1. Which PowerShell command was executed first?  
 - Let's navigate to the PowerShell file history to review the commands that were executed.  
-    ![[134.png]]
-    Answer: Get-ComputerInfo 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/134.png)
+
+  Answer: Get-ComputerInfo 
 
 1. When did the Administrator run the first PS command?  
 - To see when the first command was executed, we can view the properties of the file Right-Click on the history files, select properties, and the answer should be available.  
-    ![[135.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/135.png) 
 
-  ![[136.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/136.png)
 
 Answer: May 18, 2025 
 
 3. Find the flag that is stored in PowerShell history.  
 - To find the flag, we must go through the files of other users as well to review their PowerShell command line. 
-    ![[137.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/137.png)
 
 - after looking through “thm.alex” and “thm.bob” PowerShell Commands line history, I found the flag in “thm.bob” PS file history.  
-	![[138.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/138.png)
 
 Answer: THM{it_was_me!}
