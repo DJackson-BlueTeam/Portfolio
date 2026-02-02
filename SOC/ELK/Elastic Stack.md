@@ -10,7 +10,7 @@
     
 
 **1. Select the index vpn_connection and filter from 31st December to 2nd February 2022. How many hits are returned?**  
-    ![[Returned Hits.png]]
+    ![Alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/dab46127139b2662cad5cb3b86b3390972526722/SOC/ELK/Elastic%20Stack%20Images/Returned%20Hits.png)
 
 - Before we can identify how many hits were returned, we must set the dates to determine the number of hits returned.  
     ![[Returned Hits1.png]]
