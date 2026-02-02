@@ -42,7 +42,7 @@
 - Therefore, an analyst needs to use filters to view the initial anomaly patterns. 
 - *tcp.flags.syn== 1 && tcp.flags.ack== 0 && tcp.window_size > 1024* 
 
-	![[1..png]]
+	![alt](https://github.com/DJackson-BlueTeam/Portfolio/blob/c6548c780d629def6f78e92550cd732b8a35e1d0/SOC/Wireshark/2.%20Wireshark%20Traffic%20Analysis/Traffic%20Analysis%20Img/1..png)
 - tcp.flags.syn== 1 <--- This filter for packets where the SYN (synchronize) flag is set. 
 - tcp.flags.ack== 0 <--- This filter packets where the ACK (Acknowledgment) flag is set.  
     
@@ -65,12 +65,14 @@ TCP SYN Scans  
 |---|---|
 |Open TCP Port|Close TCP Port|
 |- SYN --> <br>    <br><br>- <-- SYN,ACK <br>    <br><br>- RST-->|- SYN --> <br>    <br><br>- <-- RST,ACK|
-![[2..png]]
+
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c6548c780d629def6f78e92550cd732b8a35e1d0/SOC/Wireshark/2.%20Wireshark%20Traffic%20Analysis/Traffic%20Analysis%20Img/2..png)
+
 This filter below shows TCP SYN patterns in a capture file.  
 
 tcp.flags.syn== 1 && tcp.flags.ack== 0 && tcp.window_size <=1024 <--- filters out suspicious or automated TCP connection attempts. 
 
-![[3..png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c6548c780d629def6f78e92550cd732b8a35e1d0/SOC/Wireshark/2.%20Wireshark%20Traffic%20Analysis/Traffic%20Analysis%20Img/3..png)
 
 - *tcp.flags.syn== 1* and *tcp.flgs.ack== 0* <--- This is the initial handshake: Together, these two flags isolate “pure” SYN packets. The first packet sent by the client has the SYN flag set ”SYN== 1” and the ACK flag unset “ACK== 0”  
 - By filtering for *ack == 0*, we are excluding the “SYN/ACK” response from the server, focusing only on the initial connection request.   
@@ -101,12 +103,12 @@ WHY THIS FILTER IS USEFUL  
 | - UDP packet --> | - UDP packet --> <br>    <br><br>- ICMP Type 3, Code 3 message. (Destination unreachable, port unreachable) |
 |                  |                                                                                                             |
 
-![[4.-2.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c6548c780d629def6f78e92550cd732b8a35e1d0/SOC/Wireshark/2.%20Wireshark%20Traffic%20Analysis/Traffic%20Analysis%20Img/4..png)
 
 - this is showing a close port returns an ICMP error packet. The ICMP error message uses the original request as enacapulated data to show the source/reason of the packet. 
 
 - By expanding the the ICMP packet in the pane, we will see the encapsulated data and the original requests.  
-     ![[5.-1.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c6548c780d629def6f78e92550cd732b8a35e1d0/SOC/Wireshark/2.%20Wireshark%20Traffic%20Analysis/Traffic%20Analysis%20Img/5.-1.png)
 
 - Let view the UDP scan patterns in the capture file using the filter below:  
 	- *icmp.type== 3 && icmp.code == 3* <--- this is identifying ICMP Port Unreachable Message (one of the most important ICMP filter to monitor) 
