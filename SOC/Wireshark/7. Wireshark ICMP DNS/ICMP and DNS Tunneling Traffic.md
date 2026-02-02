@@ -48,7 +48,8 @@
 |Notes|Wireshark filters|
 |Global search|- icmp|
 |"ICMP" options for grabbing the low-hanging fruits: <br><br>- Packet length. <br>    <br><br>- ICMP destination addresses. <br>    <br><br>- Encapsulated protocol signs in ICMP payload.|- data.len > 64 and|
-![[80.png]]
+
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/89f8f4d6320a43626bf6c94cc5ee1c4777a42c7d/SOC/Wireshark/7.%20Wireshark%20ICMP%20DNS/ICMP%20and%20DNS/80.png)
  
 
 DNS (Domain Name System) Analysis 
@@ -73,7 +74,7 @@ DNS (Domain Name System) Analysis 
 |Global search|- dns|
 |"DNS" options for grabbing the low-hanging fruits: <br><br>- Query length. <br>    <br><br>- Anomalous and non-regular names in DNS addresses. <br>    <br><br>- Long DNS addresses with encoded subdomain addresses. <br>    <br><br>- Known patterns like dnscat and dns2tcp. <br>    <br><br>- Statistical analysis like the anomalous volume of DNS requests for a particular target. <br>    <br><br>!mdns: Disable local link device queries.|- dns contains "dnscat" <br>    <br><br>- dns.qry.name.len > 15 and !mdns|
 
- ![[81.png]]
+ ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/89f8f4d6320a43626bf6c94cc5ee1c4777a42c7d/SOC/Wireshark/7.%20Wireshark%20ICMP%20DNS/ICMP%20and%20DNS/81.png)
 
 1. Which protocol is used in ICMP tunneling? 
     
@@ -85,7 +86,7 @@ DNS (Domain Name System) Analysis 
     
 
 - (data.len > 64) and (icmp contains “ftp” or icmp contains “ssh” or icmp contains “http” or icmp contains “tcp”) <--- this is filtering traffic with packets that have more than 64 bytes of data.  Since ICMP echo request uses small payloads, payloads larger than 64 bytes is a sign of unauthorized data being carried. And we are looking for protocols that can be used for tunneling exfiltration.  
-    ![[82.png]]
+    ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/89f8f4d6320a43626bf6c94cc5ee1c4777a42c7d/SOC/Wireshark/7.%20Wireshark%20ICMP%20DNS/ICMP%20and%20DNS/82.png)
 
  
 
@@ -93,12 +94,12 @@ DNS (Domain Name System) Analysis 
     
 
 - From the first traffic, using cyber chef to decode the hex dump, we see multiple ssh protocols being executed. 
-    ![[83.png]]
+    ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/89f8f4d6320a43626bf6c94cc5ee1c4777a42c7d/SOC/Wireshark/7.%20Wireshark%20ICMP%20DNS/ICMP%20and%20DNS/83.png)
 
  
 
 - Let's look at the second hex dump to be sure that protocol ssh is still being used.  
-    ![[84.png]]
+    ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/89f8f4d6320a43626bf6c94cc5ee1c4777a42c7d/SOC/Wireshark/7.%20Wireshark%20ICMP%20DNS/ICMP%20and%20DNS/84.png)
 
  
 
@@ -119,7 +120,8 @@ Answer: ssh 
     
 
 - Now let's decode the hex dump using cyber chef to determine what is the domain name of the adversary  
-    ![[85.png]] ![[86.png]]
+  ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/89f8f4d6320a43626bf6c94cc5ee1c4777a42c7d/SOC/Wireshark/7.%20Wireshark%20ICMP%20DNS/ICMP%20and%20DNS/85.png)
+  ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/89f8f4d6320a43626bf6c94cc5ee1c4777a42c7d/SOC/Wireshark/7.%20Wireshark%20ICMP%20DNS/ICMP%20and%20DNS/86.png)
     
 
 Answer: dataexfil[.]com
