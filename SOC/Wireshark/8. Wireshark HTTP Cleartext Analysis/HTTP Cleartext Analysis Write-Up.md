@@ -57,7 +57,7 @@
 1. **Investigate the user agents. What is the number of anomalous “user-agent” types?** 
 - To determine the number of user agents in the traffic, we can use the filter *http.user_agent* <--- this will filter out the user_agents only. 
 - Next, we need to manually go through the packets to determine how many user agents there are in total. 
-    ![[87.png]] 
+    ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/19b1c427871fa1e0e2a8c89a7306f41f0dfae191/SOC/Wireshark/8.%20Wireshark%20HTTP%20Cleartext%20Analysis/HTTP%20imge/87.png) 
 
 Answer: 6  
 
@@ -70,16 +70,16 @@ Answer: 6  
     
 2. **What is the packet number with a subtle spelling difference in the user agent field?**  
 - This requires us to comb through the packets to identify the spelling difference.  
-    ![[88.png]]
+    ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/19b1c427871fa1e0e2a8c89a7306f41f0dfae191/SOC/Wireshark/8.%20Wireshark%20HTTP%20Cleartext%20Analysis/HTTP%20imge/88.png)
 
 3. **Locate the “Log4j” attack starting phase. What is the packet number?**
 - Attacks from adversary usually starts with a POST  
 - We could use the filter *“http.request.method == POST*”, however that will most likely generate a lot of POST traffic 
 - Instead of using the POST filter we can use a user_agent filter such as * $ * or *http.user_agent contains “== “* <--- this is filter for traffic with user agent that contains the dollar sign “$” which signals for command injections or double equal sign “ == ” which are typically at the end of a based64 encoded string.  
-    ![[89.png]]
+    ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/19b1c427871fa1e0e2a8c89a7306f41f0dfae191/SOC/Wireshark/8.%20Wireshark%20HTTP%20Cleartext%20Analysis/HTTP%20imge/89.png)
 
 4. Locate the Log4j attack starting phase and decode the base64 command. What is the IP address contacted by the adversary? (Defang the IP Address)
 - Since we already identified the starting point in question 3, we just must decode the base64 encoded characters.  
 -  We can use cyberchef or copy the base64 and save it as a file and use the ubuntu terminal to decode the base64 and save the file.  
-	![[90.png]]
+	![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/19b1c427871fa1e0e2a8c89a7306f41f0dfae191/SOC/Wireshark/8.%20Wireshark%20HTTP%20Cleartext%20Analysis/HTTP%20imge/90.png)
 	Answer: 62[.]210[.]130[.]250
