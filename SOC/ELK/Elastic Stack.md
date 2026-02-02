@@ -21,6 +21,7 @@ Answer: 2,861 
     
 **2.Which IP address has the maximum number of connections?**  
     ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/6093d5c5d235a70a67aa35deada67cb17b68725e/SOC/ELK/Elastic%20Stack%20Images/Max%20Connections.png)
+
 Answer: 238.163.231.224  
 - Since Elastic automatically fine filters events, we can simply go to Source_ip icon and click to view the IP addresses.  
 - We can see that IP address 238.163.231.224 has more events occurred within the network.  
@@ -28,6 +29,7 @@ Answer: 238.163.231.224  
 **3. Which user is responsible for the overall maximum traffic?**  
 
  ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/6093d5c5d235a70a67aa35deada67cb17b68725e/SOC/ELK/Elastic%20Stack%20Images/ELK%20User.png)
+
 Answer: James 
 
 - By reviewing the information in the “UserName”, we can see that James had 4.0% of traffic compared to the rest of the users.  
@@ -40,6 +42,7 @@ Answer: James 
 
 - After the filter is applied, we can then go to the Source_ip to see which IP had the most traffic.  
     ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/6093d5c5d235a70a67aa35deada67cb17b68725e/SOC/ELK/Elastic%20Stack%20Images/Emanda1.png)] 
+
 Answer: 107.14.1.247
 - We can see that IP 107.14.1.247 had 53.6% of traffic compared to Ip 107.14.4.82.  
     
