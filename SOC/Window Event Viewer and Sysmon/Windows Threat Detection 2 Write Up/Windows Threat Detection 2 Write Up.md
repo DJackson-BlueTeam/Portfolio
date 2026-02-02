@@ -4,9 +4,8 @@ Windows Threat Detection 2 Write Up 
 - TA007: Reconnaissance  ([Discovery, Tactic TA0007 - Enterprise | MITRE ATT&CK®](https://attack.mitre.org/tactics/TA0007/)). 
 	- Tactic: Discovery
 		- Discovery is a tactic that consist of technique that gain knowledge about the system and internal network. This helps adversaries to observe the enviornment and determine how to act on based on the information about the target.    
-    
 
-	![[153.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/153.png) 
 
 Windows Discovery Commands 
 
@@ -25,7 +24,7 @@ Windows Discovery Commands 
 - To determine the group, we must do the exact what is asked of us to do.  
     
 
-	![[154.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/154.png)
 
 2. What is the Image field of the net command you ran in Sysmon log?   
     
@@ -39,20 +38,22 @@ Windows Discovery Commands 
 1. We can simply “CRTL+F” and put “net.exe” since we know that we executed a net command in the Command Prompt.  
     
 
-	![[155.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/155.png) 
 
-	![[156.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/156.png) 
 
 2. We can filter out only Event ID 1 (Process Creation) 
 - By executing a net command, we are requesting information to determine which group the user Administrator is in.  
     
 
-	![[157.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/157.png) 
 
 - After we filter, we can go through the events and find the net.exe we created in the command prompt.  
     
 
-	![[158.png]]Answer: C:\Windows\System32\net.exe 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/158.png)
+
+Answer: C:\Windows\System32\net.exe 
 
 Detecting Discovery  
 
@@ -66,16 +67,16 @@ Questions  
 - Let's execute the invoice.pdf.exe first so it can be logged in the Sysmon logs to review the commands.  
     
 
-	![[159.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/159.png) 
 
 - Now let's take a look at the Sysmon logs and review.  
 - Previously we discussed 2 options we can use to find the process (a. CTRL+f or b. filter to Event 1) 
 - Let's use the CTRL+F since we know what file was executed to create a process.  
     
 
-	![[160.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/160.png) 
 
-	![[161.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/161.png) 
 
 Answer: whoami 
 
@@ -84,7 +85,7 @@ Answer: whoami 
 - We just need to comb through the processes to find what command that was used to check the presence of MS Defender EDR.  
     
 
-	![[162.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/162.png) 
 
 Answer: cmd /c "tasklist /v | findstr MsSense.exe || echo No MS Defender EDR" 
 
@@ -93,9 +94,9 @@ Answer: cmd /c "tasklist /v | findstr MsSense.exe || echo No MS Defender ED
 - To be sure what the domain the malware is sending the information to, we want to be sure all command execution is still linked to the invoice.pdf.exe. 
     
 
-	![[163.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/163.png) 
 
-	![[164.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/164.png) 
 
 Answer: exfil[.]beecz[.]cafe 
 
@@ -121,25 +122,31 @@ Questions 
 - We can follow this method (Chrome menu > Passwords and autofill > Password Manager) to get the user Facebook password.  
     
 
-	![[165.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/165.png) 
 
-	![[166.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/166.png) 
 
-	![[167.png]]- here, we will use the password associated with the machine 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/167.png)
 
-	![[168.png]]Answer: nsAghv51BBav90! 
+- here, we will use the password associated with the machine 
+
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/168.png)
+
+Answer: nsAghv51BBav90! 
 
 2. Which interesting SSH key does the user store on the disk?  
 - You can use PowerShell or navigate through “File Explore” 
     
 
-	![[169.png]]Answer: thm-access-database.key 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/169.png)
+
+Answer: thm-access-database.key 
 
 3. What is the secret PDF file explaining TryHackMe’s internal network?  
 - .pdf files are usually stored in the Downloads folder, check there first.  
     
 
-	![[170.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/170.png)
 
 Detecting Collection 
 
@@ -166,14 +173,16 @@ Data Stealers 
 - Automated data stealers rely on their own code, which makes it difficult to understand which data was accessed and stolen. 
     
 
-	![[171.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/171.png) 
 
 1. Looking at the Sysmon logs, what directory does the stealer create? 
 - Let take a look at Sysmon Logs and filter to stealer.exe to determine which directory was created. (Event Viewer > Application and Services Logs > Microsoft > Windows > Sysmon > Operational) 
 - Filter to Event ID 1 (Process Creation) 
     
 
-	![[172.png]]- we can see here a Directory was created  
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/172.png)
+
+- we can see here a Directory was created  
 
 Answer: staging_58f1 
 
@@ -181,28 +190,28 @@ Answer: staging_58f1 
 - Let's follow the execution staging of the stealer to determine the file extensions. 
     
 
-	![[173.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/173.png) 
 
-	![[174.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/174.png) 
 
-	![[175.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/175.png) 
 
 Answer: docx, pdf, xlsx 
 
 3. Which PowerShell cmdlet does the malware use to get clipboard content?  
 - We should still be in the Event ID 1 (Process Creation) 
-- Look for anything associated with cmdlet, clipboard, and cmdlet.  
-    
+- Look for anything associated with cmdlet, clipboard, and cmdlet.
 
-	![[176.png]]Answer: Get-ClipBoard 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/176.png)
+
+Answer: Get-ClipBoard 
 
 4. Which domain does the malware exfiltrate the data?  
-    
-
 - Here, we need to filter to Event ID 22 (DNS) 
-    
 
-	![[177.png]]Answer: collecteddata-storage-2025.s3.amazonaws.com 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/177.png)
+
+Answer: collecteddata-storage-2025.s3.amazonaws.com 
 
 Ingress Tool Transfer 
 
