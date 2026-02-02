@@ -15,43 +15,42 @@ T1567.002: Exfiltration Over Web Service: Exfiltration to Cloud Storage ([Exfilt
 |Notes|Wireshark Filter|
 |"HTTPS Parameters" for grabbing the low-hanging fruits: <br><br>- Request: Listing all requests <br>    <br><br>- TLS: Global TLS search <br>    <br><br>- TLS Client Request <br>    <br><br>- TLS Server response <br>    <br><br>- Local Simple Service Discovery Protocol (SSDP) <br>    <br><br>Note: SSDP is a network protocol that provides advertisement and discovery of network services.|- http.request <br>    <br><br>- tls <br>    <br><br>- tls.handshake.type == 1 <br>    <br><br>- tls.handshake.type == 2 <br>    <br><br>- ssdp|
 
-![[100.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/5824daf5f94ba6e27f8fa41fbe93921a8135fced/SOC/Wireshark/9.%20Wireshark%20HTTPS%20Encrypted%20Analysis/HTTPS%20Img/100.png) 
 
 - Like a TCP three-way-handshake, a TLS also has handshakes between the client and the server.  
 - Client Hello: (*http.request or tls.handshake.type == 1*) and !(*ssdp*) <--- this is to filter the start of the conversation between the client and the server for both unencrypted (http) and encrypted web traffic (https) and ignores the ssdp (Simple Service Discovery Protocol) that is used by devices such as smart tv’s, printers, routers , etc.  
 - Server Hello: (*http.request or tls.handshake.type == 2*) and !(*ssdp*) <--- this is to filter out responses from the server during an unencrypted or an encrypted connection. This allows us to see the communication of a connection by capturing the client's intent for http or the server response for the TLS. 
     
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/5824daf5f94ba6e27f8fa41fbe93921a8135fced/SOC/Wireshark/9.%20Wireshark%20HTTPS%20Encrypted%20Analysis/HTTPS%20Img/101.png) 
 
-![[101.png]] 
-
-![[102.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/5824daf5f94ba6e27f8fa41fbe93921a8135fced/SOC/Wireshark/9.%20Wireshark%20HTTPS%20Encrypted%20Analysis/HTTPS%20Img/102.png) 
 
 Encrypted Key Log Files  
 
 - It is a text file that has unique key pairs to decrypt the encrypted traffic session. 
 - These key pairs are automatically created when a connection is established with an SSL/TLS-enabled webpage.   
 
-![[103.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/5824daf5f94ba6e27f8fa41fbe93921a8135fced/SOC/Wireshark/9.%20Wireshark%20HTTPS%20Encrypted%20Analysis/HTTPS%20Img/103.png) 
 
-![[104.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/5824daf5f94ba6e27f8fa41fbe93921a8135fced/SOC/Wireshark/9.%20Wireshark%20HTTPS%20Encrypted%20Analysis/HTTPS%20Img/104.png) 
 
-![[105.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/5824daf5f94ba6e27f8fa41fbe93921a8135fced/SOC/Wireshark/9.%20Wireshark%20HTTPS%20Encrypted%20Analysis/HTTPS%20Img/105.png) 
 
 1. **What is the frame number of the “Client Hello” message sent to “account.google.com”?** 
 - We will input the filter associating with the client sending a request during a TLS handshake 
 - (***http.request or tls.handshake.type == 1***) *&&  !ssdp* <--- filtering the start of a web connection and isolating additional traffic.  
 
-	![[106.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/5824daf5f94ba6e27f8fa41fbe93921a8135fced/SOC/Wireshark/9.%20Wireshark%20HTTPS%20Encrypted%20Analysis/HTTPS%20Img/106.png)
 
 2. **Decrypt the Traffic with the “KeysLogFile.txt” file. What is the number of HTTP2 packets?**  
 - First, we need to add the KeyLogFile.txt 
-![[107.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/5824daf5f94ba6e27f8fa41fbe93921a8135fced/SOC/Wireshark/9.%20Wireshark%20HTTPS%20Encrypted%20Analysis/HTTPS%20Img/107.png) 
 
-![[108.png]] 
+![alt txt](https://github.com/DJackson-BlueTeam/Portfolio/blob/5824daf5f94ba6e27f8fa41fbe93921a8135fced/SOC/Wireshark/9.%20Wireshark%20HTTPS%20Encrypted%20Analysis/HTTPS%20Img/108.png) 
 
-![[109.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/5824daf5f94ba6e27f8fa41fbe93921a8135fced/SOC/Wireshark/9.%20Wireshark%20HTTPS%20Encrypted%20Analysis/HTTPS%20Img/109.png) 
 
-![[110.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/5824daf5f94ba6e27f8fa41fbe93921a8135fced/SOC/Wireshark/9.%20Wireshark%20HTTPS%20Encrypted%20Analysis/HTTPS%20Img/110.png) 
 
 Answer: 115 
 
@@ -60,16 +59,15 @@ Answer: 115 
 3. **Go to Frame 322. What is the authority header of the HTTP2 packet? (Defanged the address)*
 - On the same http2 traffic go to frame 322 – > Hypertext Transfer Protocol 2 -> Stream Headers -> Headers  
     
-
-![[111.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/5824daf5f94ba6e27f8fa41fbe93921a8135fced/SOC/Wireshark/9.%20Wireshark%20HTTPS%20Encrypted%20Analysis/HTTPS%20Img/111.png)
 
 4. **Investigate the decrypted packets and find the flag. What is the flag?**  
 - To find the flag, I filtered to http, since the file should be a readable file. I found a few results  
-![[112.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/5824daf5f94ba6e27f8fa41fbe93921a8135fced/SOC/Wireshark/9.%20Wireshark%20HTTPS%20Encrypted%20Analysis/HTTPS%20Img/112.png)
 
  
 
 - Here there is a text/plain file from packet 1644 
-![[113.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/5824daf5f94ba6e27f8fa41fbe93921a8135fced/SOC/Wireshark/9.%20Wireshark%20HTTPS%20Encrypted%20Analysis/HTTPS%20Img/113.png)
 
 Answer:  FLAG{THM-PACKETMASTER}
