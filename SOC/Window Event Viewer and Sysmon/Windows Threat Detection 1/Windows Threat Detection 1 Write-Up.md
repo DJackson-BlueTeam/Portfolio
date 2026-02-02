@@ -15,7 +15,8 @@ Initial Access 
 
 
 User Drive Method 
- ![[139.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ca822390450bfe9849a8bb26008200547fc4ca1a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%201/Windows%20Threat%20Detection%201%20Img/139.png)
+ 
 - The diagram above shows how social engineering helps adversaries persist in networks.  
 - This can happen by infected USB or by a phishing email (which are most common in corporate network exploitable)
 - T1566: Phishing0([Phishing, Technique T1566 - Enterprise | MITRE ATT&CK®](https://attack.mitre.org/techniques/T1566/))
@@ -48,7 +49,7 @@ Questions 
 - Let's open Event View and filter to Event ID 4625 (failed logins) 
     
 
-	![[140.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ca822390450bfe9849a8bb26008200547fc4ca1a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%201/Windows%20Threat%20Detection%201%20Img/140.png) 
 
 Answer: Administrator 
 
@@ -56,17 +57,13 @@ Answer: Administrator 
 - Let's filter to Event ID: 4624 to determine the successful logon  
 - Look for the user “Administrator” that has successfully login and the IP will be associated with the breach.  
 
-	![[141.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ca822390450bfe9849a8bb26008200547fc4ca1a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%201/Windows%20Threat%20Detection%201%20Img/141.png)
 
 Answer: 203[.]205[.]34[.]107 
 
 3. What is the real workstation name of the adversary?  
-    
-
 - The Real WorkStation Name is associated with Type 3 Logon (Network) with the Event ID 4624 under the user “Administrator” 
-    
-
-	![[142.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ca822390450bfe9849a8bb26008200547fc4ca1a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%201/Windows%20Threat%20Detection%201%20Img/142.png) 
 
 Answer: DESKTOP-QNBC4UU 
 
@@ -91,50 +88,46 @@ Binary Attachments 
 LNK Attachment 
 
 - To avoid AV (Anti-Virus Detection), adversaries may prefer using a PowerShell script instead of binaries.  
-    
-
-	![[143.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ca822390450bfe9849a8bb26008200547fc4ca1a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%201/Windows%20Threat%20Detection%201%20Img/143.png) 
 
 Questions 
 
 1. Run the www[.]skype[.]com file from the Phishing Case 1 folder, which flag do you get?  
 - This is a simple example of a malicious script that runs. 
 
-	![[144.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ca822390450bfe9849a8bb26008200547fc4ca1a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%201/Windows%20Threat%20Detection%201%20Img/144.png)
 
 Answer: THM{misleading_extension} 
 
 2. From Phishing Case 2, which URL does the malicious LNK download the next stage of malware?  
-    
-
 - Unzip the fold then right-click on the “Official Website” then view properties. You will find the link.  
-	![[145.png]]
+	![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ca822390450bfe9849a8bb26008200547fc4ca1a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%201/Windows%20Threat%20Detection%201%20Img/145.png)
 
 	Answer:  hxxp://wp16[.]hqywlqpa[.]thm:8000/cgi-bin/f 
 
 3. From the Phishing Case 3 folder, what is the name of the double-extension file? 
     
-	![[146.png]]
-	Answer: best-cat[.]jpg[.]exe 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ca822390450bfe9849a8bb26008200547fc4ca1a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%201/Windows%20Threat%20Detection%201%20Img/146.png)
+
+Answer: best-cat[.]jpg[.]exe 
 	
 4. Which file did the user download via the web browser?  
 - Downloaded file in Sysmon logs is associated with Event ID 15. 
-    
-	![[147.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ca822390450bfe9849a8bb26008200547fc4ca1a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%201/Windows%20Threat%20Detection%201%20Img/147.png) 
 
 Answer: C:\Users\Administrator\Downloads\top-cats.zip 
 
 5. In which folder did the user unarchive the suspicious file?  
 - In the same Event ID, we can find the folder.  
     
-	![[148.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ca822390450bfe9849a8bb26008200547fc4ca1a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%201/Windows%20Threat%20Detection%201%20Img/148.png) 
 
 Answer: C:\Users\Administrator\Pictures 
 
 6. What is the process ID of the launched phishing malware?  
 - Launching the malware corelates with the DNS query of the site the malware was launched from, so we will use the Event ID 22.  
     
-	![[149.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ca822390450bfe9849a8bb26008200547fc4ca1a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%201/Windows%20Threat%20Detection%201%20Img/149.png) 
 
 Answer: 5484 
 
@@ -145,16 +138,19 @@ Answer: rjj.store 
 8. Which USB file was launched by the user?  
 - Let open the USB Sysmon.evtx and review the events. 
 - We will filter to Event ID 13 since this is a registry event that is occurring.
-    ![[150.png]]
-	Answer: E:\Open Sandisk 4GB USB.exe
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ca822390450bfe9849a8bb26008200547fc4ca1a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%201/Windows%20Threat%20Detection%201%20Img/150.png)
+
+Answer: E:\Open Sandisk 4GB USB.exe
 9. Which suspicious file did the malware drop to the disk?
 	- The answer will be in the same registry event as the launch was initiated
-		![[151 1.png]]
-	Answer: C:\Users\Public\Documents\winupdate.exe
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ca822390450bfe9849a8bb26008200547fc4ca1a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%201/Windows%20Threat%20Detection%201%20Img/151%201.png)
+
+Answer: C:\Users\Public\Documents\winupdate.exe
 
 10. To which other USB did the malware propagate? 
 	- For a USB to propagate to another USB type, it creates a file within the system.
 	- We must filter to Event ID 11 (File Creation)
-	![[152.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ca822390450bfe9849a8bb26008200547fc4ca1a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%201/Windows%20Threat%20Detection%201%20Img/152.png)
+	
 	Answer: F:
 	
