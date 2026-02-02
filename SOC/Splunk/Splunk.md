@@ -1,4 +1,4 @@
-[alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/10819c3416769f7741acf375c4a5003273e0bba5/SOC/Splunk/Splunk%20Images/Splunk-E.png)
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/10819c3416769f7741acf375c4a5003273e0bba5/SOC/Splunk/Splunk%20Images/Splunk-E.png)
 
 **What is Splunk?** 
 
