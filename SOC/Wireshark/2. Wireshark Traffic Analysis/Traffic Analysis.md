@@ -32,9 +32,10 @@
 |---|---|---|
 |Open TCP Port|Open TCP Port|Closed TCP Port|
 |- SYN --> <br>    <br><br>- <-- SYN, ACK <br>    <br><br>- ACK -->|- SYN --> <br>    <br><br>- <-- SYN, ACK <br>    <br><br>- ACK --> <br>    <br><br>- RST, ACK -->|- SYN --> <br>    <br><br>- <-- RST, ACK|
-![[Open TCP.png]]
 
-![[Closed TCP.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/de1237b52bca628aea09247e4b821f2565e2db0a/SOC/Wireshark/2.%20Wireshark%20Traffic%20Analysis/Traffic%20Analysis%20Img/Open%20TCP.png)
+
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/de1237b52bca628aea09247e4b821f2565e2db0a/SOC/Wireshark/2.%20Wireshark%20Traffic%20Analysis/Traffic%20Analysis%20Img/Closed%20TCP.png)
 
 - the image above shows a pattern is an isolated traffic. It is not always easy to spot these patterns in a big capture file.  
 
