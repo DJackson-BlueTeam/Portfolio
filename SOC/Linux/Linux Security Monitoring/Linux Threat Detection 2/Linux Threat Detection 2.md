@@ -17,12 +17,12 @@ First Actions 
 1. Run systemd-detect-virt to detect the system’s cloud. What is the command output?  
 - We are executing the command above to discover which Cloud was detected.  
     
-	![[234.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/234.png) 
 
 2. Run ps aux and look for EDR or antivirus processes. What is the full path to detect antimalware binary?  
 - Since this EDR/antivirus is in the binary, we can grep for bin or scan to find the full path  
 - Ps aux | grep scan or ps aux | grep bin 
-	![[235.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/235.png)
  
 	Specialized Discovery  
 
@@ -43,25 +43,25 @@ Red Flags  
 1. What is the path of the script that initiated the “hostname” command? 
 - First we need to use ausearch to find the executed hostname command 
 - *ausearch –i –x hostname* 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/236.png)
 
-	![[236.png]] 
 - Second, we see a cwd=home/itsupport that is the path of the script that executed the hostname command. 
 - Lets use the reverse method of the process tree to determine the script that executed the hostname command starting with the ppid 3771 
 - Ausearch –i –pid 3771 
-    
-	![[237.png]]
+  ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/237.png)
+  
 - above we see a “debug.sh” script that is the ppid of the 3771 
 - We could also follow the path of home/itsupport to determine the script. 
 
-	![[238.png]]
-	![[239.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/238.png)
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/239.png)
 
-	Answer: home/itsupport/debug.sh 
+Answer: home/itsupport/debug.sh 
 
 2. What was the last Discovery command launched by the script?  
 - We already cat the debug.sh, so the answer will be in the results  
-	![[240.png]]
-	Answer: ps –eo, ppid,cmd,%cpu –sort=-%cp 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/240.png)
+Answer: ps –eo, ppid,cmd,%cpu –sort=-%cp 
 
 3. Looking at the script content, what is the email of the script author?  
 	Answer: [greg@tryhackme.thm](mailto:greg@tryhackme.thm) 
@@ -98,13 +98,12 @@ Red Flags  
 1. From which domain was the Elastic agent downloaded?  
 - We can use one on the command above and grep download 
 - *ausearch –i –x wget | grep download* 
-	![[241.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/241.png)
 	Answer: artifacts.elastic.co 
 2. What is the full path to the downloaded “helper.sh” script? 
 	- To simplify the search, we can use *ausearch –i | grep helper.sh* 
 	- The command above is making the daemons logs into human-readable files and we are greping helper.sh to reduce the amount of information that will be displayed as results. 
-    
-	![[242.png]]
+ ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/242.png)
 	Answer: /var/tmp/helper.sh 
 	
 3. Which of the downloaded files is more likely to be malicious: wget or curl?  
@@ -130,51 +129,55 @@ Detecting the Attack 
 |Auth Logs: cat /var/log/auth.log \| grep "Accepted"|Look for successful SSH logins by password from untrusted, external IP addresses|
 |Auditd Process Logs: ausearch -i -x [command]|Look for execution of Discovery commands (e.g. uname, lscpu) and trace their origin|
 
-![[243.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/243.png)
 
 1. Which IP address managed to brute-force the exposed SSH?  
 	- Even though it is directing us to the audit.logs, we are looking for the authorization of the brute force that breached the system.  
 	- Let's go to the directory and see what other files there are.  
     - cd /home/ubuntu/scenario/ 
-    
-	![[244.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/244.png)
+
 	- We can see there also a auth.log, we can grep for Accepted login to see which ip address conducted the brute-force attack. 
 	- cat auth.log | grep Accepted 
-	![[245.png]] Answer: 45.9.148.125
-2. Which command did the attacker use to list the last logged-in users?  
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/245.png)
+
+Answer: 45.9.148.125
+
+3. Which command did the attacker use to list the last logged-in users?  
 	- As I remember from Hack-The-Box challenges, we can use the *last* command to display results of login and logouts of users.  
 	- Let use *cat audit.log | grep last* to see if the adversary used that command to list the login users.   
-	![[246.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/246.png)
+	
 	- we can see there was an execution of usr/bin/last and the comm=”last” is stating that the command “last” was executed.  
 	Answer: last  
-3. Which three EDR processes did the attacker look for with “egrep” 
+4. Which three EDR processes did the attacker look for with “egrep” 
 	- Some EDR are associated with agent, so let look for an EDR with an agent as its name.  
 	- We are already in the directory of /home/ubuntu/scenario, and we see the file audit.log 
-	- We can cat audit.log | grep agent to see we grep can detect an agent somewhere in the file 
-    ![[247.png]]
+	- We can cat audit.log | grep agent to see we grep can detect an agent somewhere in the file
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/247.png)
+	
 	Answer: ds_agent, falcon,sentinel 
-4. What is the name of the malicious archive that was transferred via SCP?  
+5. What is the name of the malicious archive that was transferred via SCP?  
 	- Still in the same directory there is a md5 hash value of kernupd. 
 	- That may be the name of the malicious file. To be sure, let cat the audit.log and grep for kernupd to see what's the results are. 
-    ![[248.png]]
+ ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/248.png)
 	
-5. What is the full command line of the Cryptominer launch? 
+6. What is the full command line of the Cryptominer launch? 
 	- *Chmod* is to change privileges to an executable  
 	- *Nohup*  is a command that is used to run a command that will continue to execute even after a user logs out or closes the terminal.  
-	- We can see in the screen above there is a command line that uses nohup following the path of the kernupd executable.  
-    
-	![[249.png]]
-	![[250.png]]
+	- We can see in the screen above there is a command line that uses nohup following the path of the kernupd executable.   
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/249.png)
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/250.png)
 	Answer: nohup /tmp/.apt/kernupd/kernupd 
 
-6. Which Ip address range did the attacker scan for an exposed SSH?  
+7. Which Ip address range did the attacker scan for an exposed SSH?  
 	- Here I had to filter out alot of noise as I analyze the log.  
 	- Starting with cat audit.log | grep nc, there were numerous results that were displayed. 
 	- I had comb through to see if there was a nc command associated with an ip address and I found 1 shown below:  
-    ![[251.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/251.png)
 	 
 	- I re-executed the command, but this time, I filtered for a0=”nc” to see if there was more nc executing on other ip addresses.  
 	- The results are shown below:  
-    
-	![[252.png]]
+ ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/252.png)
+
 	Answer: 10.10.12.1-10.10.12.10
