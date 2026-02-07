@@ -65,6 +65,7 @@ Answer: ps –eo, ppid,cmd,%cpu –sort=-%cp 
 
 3. Looking at the script content, what is the email of the script author?  
 	Answer: [greg@tryhackme.thm]
+
 	Hack and Forget Attacks  
 	- These run at scale and focus on quick gains.  
 	- Install Cryptominer: Earn money by using the victim’s CPU/GPU to mine cryptocurrency 
