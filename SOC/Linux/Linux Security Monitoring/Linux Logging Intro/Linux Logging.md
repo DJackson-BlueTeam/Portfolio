@@ -169,6 +169,9 @@ Answer: naabu_2.3.5_linux_amd64.zip 
 3. Which network range was scanned using the downloaded tool?  
 - In linux logging, EXECVE record is generated whenever a process has started.  
 - We can see in the screenshot above type=EXECVE was logged, so we can ausearch it with –m (a message type). 
-- Then we can grep for naabu to reduce the amount of information that will be provided.  
+- Then we can grep for naabu to reduce the amount of information that will be provided.
 - *ausearch –m EXECVE | grep –i naabu*  
-    
+  
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/b5831a3d625f2a74baf763f34a9c7b9da469ddbc/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Logging%20Intro/Linux%20Logging%20Img/220.png)
+
+Answer: 192.168.50.0/24
