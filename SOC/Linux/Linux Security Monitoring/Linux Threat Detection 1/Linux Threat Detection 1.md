@@ -126,6 +126,8 @@ Auditd and Process Tree 
 	- The shell script (*pid 1018)* was started by the main application  
 	- Looking at the log for *pid 1018*, its parent process is *557* 
 	- Therefore, the TryPingMe application is *pid 577* 
-1. Which program did the attacker use to open a reverse shell? 
+1. Which program did the attacker use to open a reverse shell?
+
     Answer: Python 
+	
 	- In the last screen shot in question 2, we can see that python3 was used to open the reverse shell script.
