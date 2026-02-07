@@ -107,7 +107,8 @@ Answer: ps –eo, ppid,cmd,%cpu –sort=-%cp 
  ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/242.png)
 	Answer: /var/tmp/helper.sh 
 	
-3. Which of the downloaded files is more likely to be malicious: wget or curl?  
+3. Which of the downloaded files is more likely to be malicious: wget or curl?
+ 
 	Answer: curl  
 	- “.sh” is more likely to be a script that was downloaded from the website that have malicious intentions 
     
