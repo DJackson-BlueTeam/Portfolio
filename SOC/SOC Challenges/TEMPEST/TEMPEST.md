@@ -343,7 +343,8 @@ Questions 
 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/313.png)
 
-- Also, we can filter in the TimeExplorer “.exe” since we know this is another executable file that was downloaded. 
+- Also, we can filter in the TimeExplorer “.exe” since we know this is another executable file that was downloaded.
+
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/314.png)
 
 - After going through the processes, we can notice and related binary executables that is associated with final.exe.
