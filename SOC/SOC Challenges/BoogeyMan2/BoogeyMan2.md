@@ -18,7 +18,7 @@ Question: 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/631ded615d1855592f43cca1ad59e3e4bd73ad37/SOC/SOC%20Challenges/BoogeyMan2/BoogeyMan2%20Img/355.png)
 	 
 
-Answer: westaylor23@outlook.com 
+Answer: westaylor23@outlook[.]com 
 
 2. What is the email of the victim employee? 
     
@@ -26,7 +26,7 @@ Answer: westaylor23@outlook.com 
     
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/631ded615d1855592f43cca1ad59e3e4bd73ad37/SOC/SOC%20Challenges/BoogeyMan2/BoogeyMan2%20Img/356.png)
 	
-Answer: maxine.beck@quicklogisticsorg.onmiscrosoft.com 
+Answer: maxine.beck@quicklogisticsorg[.]onmiscrosoft[.]com 
 
 3. What is the name of the attached malicious document? 
     
