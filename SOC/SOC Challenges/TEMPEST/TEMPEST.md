@@ -82,6 +82,7 @@ Step 4: Open Sysmon Viewer and select File-Import Sysmon Log-Sysmon
 
 - In the report the SOC analysts stated there were a chrome.exe file, so let's select it in the Sysmon Viewer 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/278.png)
+
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/279.png)	 
 
 Questions 
