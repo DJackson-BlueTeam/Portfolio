@@ -57,7 +57,8 @@ Questions 
 - The file should be in the directory of Incident Files  
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/271.png)
 
-- We should be able to view the log in Timeline Explorer 
+- We should be able to view the log in Timeline Explorer
+
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/272.png)
 	 
 - Once opened, click on File-Open-sysmon.csv 
@@ -66,7 +67,8 @@ Questions 
 	 
 
 - Step 3: We will now need to save a XML file type of the Sysmon file for visual presentation. 
-	- Go to Event Viewer then click on open saved logs and select the Sysmon file 
+- Go to Event Viewer then click on open saved logs and select the Sysmon file
+ 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/274.png)
 
   - Navigate to the Saved Sysmon logs on Event Viewer 
@@ -74,13 +76,16 @@ Questions 
 	 
 
 - Right-Click and select save all events 
-- Save the file as a xml type 
+- Save the file as a xml type
+
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/276.png)
 	 
 Step 4: Open Sysmon Viewer and select File-Import Sysmon Log-Sysmon
+
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/277.png) 
 
-- In the report the SOC analysts stated there were a chrome.exe file, so let's select it in the Sysmon Viewer 
+- In the report the SOC analysts stated there were a chrome.exe file, so let's select it in the Sysmon Viewer
+
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/278.png)
 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/279.png)	 
@@ -88,12 +93,14 @@ Step 4: Open Sysmon Viewer and select File-Import Sysmon Log-Sysmon
 Questions 
 1. The user of this machine was compromised by a malicious document. What is the file name of the document? 
 - To answer this question, we can use either Sysmon Viewer or TimeLine Explorer. 
-- Sysmon Viewer 
+- Sysmon Viewer
+
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/280.png)
 
 - Timeline Explorer 
 - We can filter for “.doc” to reduce to output and scroll left to Payloads 1 – 6 
-- We can see a Download occurring in Payload Data 2  
+- We can see a Download occurring in Payload Data 2
+
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/281.png)
 	 
 - Clicking on Payload Data 4 on the 2nd column, we can send the file here also.  
@@ -102,13 +109,15 @@ Questions 
 	Answer: free_magicules.doc 
 2. What is the name of the compromised user and machine?  
 	- Sysmon Viewer 
-	- We can click on Process Create, and it will show the user and machine that the download occurred on.  
+	- We can click on Process Create, and it will show the user and machine that the download occurred on.
+ 
  ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/283.png)
 
   - Timeline Explorer  
     
 
-- We can scroll left and see the Username and the machine associated with the user.  
+- We can scroll left and see the Username and the machine associated with the user.
+
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/284.png)
 	 
 
@@ -116,17 +125,20 @@ Answer: TEMPEST\benimaru 
 
 3. What is the PID of the Microsoft Word process that opened the malicious document?  
 	- We will have to look at the Timeline of the occurance of the malicious activity occurring.  
-	- Still in the filter of “.doc”, we can scroll down since the timeline is in ascending order.  
+	- Still in the filter of “.doc”, we can scroll down since the timeline is in ascending order.
+
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/285.png)
-	
-	- We can see a Parent Command line executing the free_magicules.doc.  
+
+- We can see a Parent Command line executing the free_magicules.doc.
+
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/286.png)
 	
-	- the screenshot above indicated that the command line was executed automatically when the document was opened. 
-	- Scrolling back to Payload Data 1, we can see the Process ID showing 496  
+- the screenshot above indicated that the command line was executed automatically when the document was opened. 
+- Scrolling back to Payload Data 1, we can see the Process ID showing 496
+
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/287.png)
 	
-	- This is the start of PID 496 before the command line was executed.  
+- This is the start of PID 496 before the command line was executed.  
 
 Answer: 496 
 
