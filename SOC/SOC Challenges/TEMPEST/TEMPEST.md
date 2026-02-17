@@ -39,7 +39,8 @@ Questions 
 
 1. The use of this machine was compromised by a malicious document. What is the file name of the document?  
 - First, we need to set up the EZ Tool to investigate.  
-- Step 1: Open PowerShell and navigate to the Tools folder. 
+- Step 1: Open PowerShell and navigate to the Tools folder.
+
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/269.png)
 	  
 
