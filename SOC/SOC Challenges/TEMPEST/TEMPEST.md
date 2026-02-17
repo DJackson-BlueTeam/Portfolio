@@ -72,7 +72,8 @@ Questions 
  
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/274.png)
 
-  - Navigate to the Saved Sysmon logs on Event Viewer 
+  - Navigate to the Saved Sysmon logs on Event Viewer
+
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c4552c883490f1e603518ec1dbe8f349b33c5dec/SOC/SOC%20Challenges/TEMPEST/TEMPEST%20Img/275.png)
 	 
 
