@@ -1,1 +1,0 @@
-Soc Analyst Portfolio Webpage
