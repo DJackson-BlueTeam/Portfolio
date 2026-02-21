@@ -77,7 +77,7 @@ Dynamic-Link-Library Registry Server https://learn.microsoft.com/en-us/windows/w
     
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/a515384cb2146cabbd949753aadcfe3383f76099/SOC/SOC%20Challenges/BoogeyMan3/BoogeyMan3%20Img/385.png)
 
-- observing the events. “rundll32.exe” executed a scheduled task to establish persistence by forcing persistence on the machine.  
+- observing the events, “rundll32.exe” executed a scheduled task to establish persistence by forcing persistence on the machine.  
 
 - Highlighted below, we can see the name of the Registered-ScheduledTask 
     
@@ -86,17 +86,15 @@ Dynamic-Link-Library Registry Server https://learn.microsoft.com/en-us/windows/w
 Answer: Review 
 
 5. The execution of the implanted file inside the machine has initiated a potential C2 connection. What is the IP and port used for this connection?  
-- We know that his is a C2 connection (Command and Control), which indicates ther eis a remote ip that is performing the execution to the machine.  
+- We know that this is a C2 connection (Command and Control), which indicates there is a remote ip that is performing the execution to the machine.  
 - PowerShell execution usually consists of dns tunneling to retrive traffic. 
 - This means that information from the targets machine is being sent to a ip address that is remote.  
-    
-
-- First, we can wildcard powershell.exe since we know from the previous question that The Scheduled Task Review was executed through the powershell shown in the screen shot in question 4. 
+- First, we can wildcard powershell.exe since we know from the previous question that The Scheduled Task Review was executed through the powershell shown in the screenshot in question 4. 
     
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/a515384cb2146cabbd949753aadcfe3383f76099/SOC/SOC%20Challenges/BoogeyMan3/BoogeyMan3%20Img/387.png)
 	 
 
-- We can use a wild card to filter all “powershell.exe” executions and add a “destination.ip” and “destination.port ” row to see where the information is going to and where the executions are coming from.  
+- We can use a wild card to filter all “powershell.exe” executions and add a “destination.ip” and “destination.port ” row to see where the information is going to, and where the executions are coming from.  
     
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/a515384cb2146cabbd949753aadcfe3383f76099/SOC/SOC%20Challenges/BoogeyMan3/BoogeyMan3%20Img/388.png)
 	 
@@ -140,7 +138,6 @@ Answer: 165.232.170.151:80  
     
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/a515384cb2146cabbd949753aadcfe3383f76099/SOC/SOC%20Challenges/BoogeyMan3/BoogeyMan3%20Img/395.png)
 	 
-
 - We found a FodHelper.exe [Bypassing Defender the Easy Way – Fodhelper - TCM Security](https://tcm-sec.com/bypassing-defender-the-easy-way-fodhelper/) 
 - Fodhelp.exe is a trusted binary in windows operation systems that allows elevation without requiring a UAC (User Access Control) with most UAC settings.  
     
@@ -162,7 +159,7 @@ Answer: fodhelper.exe 
 Answer: https://github.com/gentilkiwi/mimikatz/releases/download/2.2.0-20220919/mimikatz_trunk.zip 
 
 8. After successfully dumping the credentials inside the machine, the attacker used the credentials to gain access to another machine. What is the username and hash of the new credential pair? 
-- Knowing that the attacker used mimikatz to dump the credentials from the machine, we can filter for mimikatz.exe to refine our results and scan through to see what user access was.  
+- Knowing that the attacker used mimikatz to dump the credentials from the machine, we can filter for mimikatz.exe to refine our results and scan through to see what user was exploited.  
     
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/a515384cb2146cabbd949753aadcfe3383f76099/SOC/SOC%20Challenges/BoogeyMan3/BoogeyMan3%20Img/399.png)
 	 
@@ -175,7 +172,7 @@ Answer: itadmin:F84769D250EB95EB2D7D8B4A1C5613F2 
 
 9. Using the new credentials, the attacker attempted to enumerate accessible file shares. What is the name of the file accessed by the attacker from a remote share?  
 - The attacker did all of the activity through remote access using poershell.exe. 
-- We could filter for powershell.exe and also filter for files, to see all the files the attacker was able to obtain after accessing itadmin with its credentials.  
+- We could filter for powershell.exe and also filter for files, to see all the executable files the attacker used to obtain access to itadmin with its credentials.  
     
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/a515384cb2146cabbd949753aadcfe3383f76099/SOC/SOC%20Challenges/BoogeyMan3/BoogeyMan3%20Img/401.png)
 	 
@@ -194,7 +191,7 @@ Answer: IT_Automation.ps1 
     
 10. After getting the content of the remote file, the attacker used the new credentials to move laterally. What is the new set of credentials discovered by the attacker?  
 - Following the time frame of the IT_Automation file being access, we can observe that the attacker obtain a new set of username with a password. 
-- We still in the “powershell.exe and file” filter. 
+- We still in the “powershell.exe and file*” filter. 
     
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/a515384cb2146cabbd949753aadcfe3383f76099/SOC/SOC%20Challenges/BoogeyMan3/BoogeyMan3%20Img/404.png)
 
@@ -209,7 +206,7 @@ Answer: QUICKLOGISTICS\allan.smith:Tr!ckyP@ssw0rd987 
 Answer: WKSTN-1327 
 
 12. Using the malicious command executed by the attacker from the first machine to move laterally, what is the process name of the malicious command executed on the second compromised machine?  
-- While remaining in the same filter, we can add rows parent.process.name and observe the parent process of the attack in the new machine the attacker had accessed. 
+- While remaining in the same filter "powershell.exe and files*", we can add rows parent.process.name and observe the parent process of the attack in the new machine the attacker had accessed. 
     
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/a515384cb2146cabbd949753aadcfe3383f76099/SOC/SOC%20Challenges/BoogeyMan3/BoogeyMan3%20Img/406.png)
 
@@ -231,7 +228,7 @@ Answer: administrator:00f80f2538dcb54e7adc715c0e7091ec 
     
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/a515384cb2146cabbd949753aadcfe3383f76099/SOC/SOC%20Challenges/BoogeyMan3/BoogeyMan3%20Img/409.png)
 	 
-- At around 1:47am, still in the spike activites, we can see the attacker dump another account, shown below: 
+- At around 1:47am, still in the spike activites, we can see the attacker dumping another account, shown below: 
     
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/a515384cb2146cabbd949753aadcfe3383f76099/SOC/SOC%20Challenges/BoogeyMan3/BoogeyMan3%20Img/410.png)
 
