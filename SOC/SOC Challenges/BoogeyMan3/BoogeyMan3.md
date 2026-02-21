@@ -64,8 +64,10 @@ Answer: 6392 
     
 3. The implanted file was eventually used and executed by stage 1 payload. What is the full command-line value of this execution?  
 - Remaining in the wildcard filter we are in “mshta.exe” we can continue to the next timeline event that occurred.  
-- As we know, xpoy.exe was executed to implant a file in another location “\AppData\Local\Temp\review.dat” 
-- Following that, another execution was made to initiate the stage 1 payload that is related to review.dat; which was targeting the DllRegisterServer (Dynamic-Link-Library Server) within the network. 
+- As we know, xcpoy.exe was executed to implant a file in another location “\AppData\Local\Temp\review.dat” 
+- Following that, another execution was made to initiate the stage 1 payload that is related to review.dat; which was targeting the DllRegisterServer (Dynamic-Link-Library Server) within the network.
+Dynamic-Link-Library Registry Server https://learn.microsoft.com/en-us/windows/win32/api/olectl/nf-olectl-dllregisterserver
+	- is a standard entry-point in COM (Component Object Model) that creates the necessary registry entries for all classes supported by the DLL.
     
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/a515384cb2146cabbd949753aadcfe3383f76099/SOC/SOC%20Challenges/BoogeyMan3/BoogeyMan3%20Img/384.png)
 	
