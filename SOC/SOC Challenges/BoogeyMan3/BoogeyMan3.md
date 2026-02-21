@@ -28,12 +28,12 @@ For this Triage, we will be using Kibana to further investigate the incident. �
     
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/a515384cb2146cabbd949753aadcfe3383f76099/SOC/SOC%20Challenges/BoogeyMan3/BoogeyMan3%20Img/378.png)
 	 
-- We can filter using a wildcard search to see what results will be returned and if we can file the attached document all well.  
+- We can filter using a wildcard search to see what results will be returned and if we can file the attached document as well.  
 	
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/a515384cb2146cabbd949753aadcfe3383f76099/SOC/SOC%20Challenges/BoogeyMan3/BoogeyMan3%20Img/379.png)
 	 
 
-- By typing html as a wildcard, we get 1 hit and notice (highlighted) the attached document as well. We can use a filter row by adding process.pid to see what the PID of the file is.  
+- By typing html as a wildcard, we get 1 hit and notice (highlighted), the attached document as well. We can use a filter row by adding process.pid to see what the PID of the file is.  
 - We can also see the ProcessId in the screenshot above as well.  
     
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/a515384cb2146cabbd949753aadcfe3383f76099/SOC/SOC%20Challenges/BoogeyMan3/BoogeyMan3%20Img/380.png)
