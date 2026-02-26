@@ -189,11 +189,11 @@ Answer: 1940
 Answer: WannaCry
 15. What DLL is loaded by the decryptor used for socket creation in Case 002? 
 - Windows Socket API is used for creating a socket which serves as the endpoint for communication. This is neede for network programming in Windows and allows developers to specify  teh transport protocol, address family and socket type. 
-- for the Dynamic Link Library socket it wi=ould present as WS2_32.dll [socket function (winsock2.h) - Win32 apps | Microsoft Learn](https://learn.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-socket)
+- for the Dynamic Link Library socket it would be presented as WS2_32.dll [socket function (winsock2.h) - Win32 apps | Microsoft Learn](https://learn.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-socket)
 - we can use plugin windows.dlllist  and grep for PID 740 to filter out only the @WanaDecryptor@ processor. Then, we can look for the Window Socket DLL. 
 	- commandline" vol -f Investigation-2.raw windows.dlllist | grep 740
  
-	or
+	- or
 
 	- commandline: vol -f Investigaiton-2.raw windows.dlllist | grep Ws2_32.dll
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ba53ebfec29bf66ff7be74764e9758224d0bbaad/SOC/Volatility/Volatility/Volatility%20Img/427.png)
