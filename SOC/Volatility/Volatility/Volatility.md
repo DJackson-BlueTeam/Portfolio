@@ -203,7 +203,7 @@ Answer: WannaCry
 Answer: WS2_32.dll
 
 16. What mutex can be found that is a known indicator of the malware in question in Case 002?
-- Mutex (Mutual Exclusion) ([What is mutual exclusion (mutex) in computer programming? | Definition from TechTarget](https://www.techtarget.com/searchnetworking/definition/mutex)): is  a program that prevents multiple threads from accessing the same share resource at the same time. It prevent multiple threads to not execute the same code simultaneously.
+- Mutex (Mutual Exclusion) ([What is mutual exclusion (mutex) in computer programming? | Definition from TechTarget](https://www.techtarget.com/searchnetworking/definition/mutex)): is  a program that prevents multiple threads from accessing the same shared resources at the same time. It prevent multiple threads to not execute the same code simultaneously.
 - we can use the plugin windows.handle to list open hadnles in the memory dump. WE can also grep for the PID 1940 since we know the parent process is the tasksche.exe with the PID 1940. 
 - commandline: vol -f Investigation-2.raw windows.handle | grep 1940
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ba53ebfec29bf66ff7be74764e9758224d0bbaad/SOC/Volatility/Volatility/Volatility%20Img/429.png)
