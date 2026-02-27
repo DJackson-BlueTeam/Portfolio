@@ -141,21 +141,19 @@
 	- Targeting SSL/TTL by continuously renegotiating handshakes or sending invalid packets, which can tie up stateful resources of SSL servers. 
     
 9. Volumetric Attacks 
-	-  Aims to consume bandwidth and saturate the network. The measure here is in bit per second(bps) which can cause attackes to scale to hundreds of gigabits or terabits per second. 
-    
-	      1. DNS Amplification 
-			- Adversaries send DNS queries with a spoofed source IP address to open DNS resolvers. 
-	      2.  UDP Flood 
-			- These resolvers reply to the target with large “ANY” response packets.
-          3. ICMP (Internet Control Message Protocol) 
-   			- Adversary Bombard the target wit ICMP echo-request to (“ping”) packets  
-			- The target attempts to reply with echo-reply, tying up resources.  
-			- This type can overwhelm both bandwidth and processing capacity. 
- 10. RST-FIN Flood 
-	- This is a TCP-based volumetric attack using RST (reset) and FIN (finish) packets  
-	-  Since FIN and RST packets are used to gracefully and forcefully shutdown connections, flooding of them can confuse TCP stacks on targeted system.   
-
-11. Smurf Attack 
+	-  Aims to consume bandwidth and saturate the network. The measure here is in bit per second(bps) which can cause attackes to scale to hundreds of gigabits or terabits per second.
+	a. DNS Amplification
+		- Adversaries send DNS queries with a spoofed source IP address to open DNS resolvers.
+	b. UDP Flood
+		- These resolvers reply to the target with large “ANY” response packets
+   	c. ICMP (Internet Control Message Protocol)
+   		- Adversary Bombard the target wit ICMP echo-request to (“ping”) packets
+       	- The target attempts to reply with echo-reply, tying up resources.
+      	- This type can overwhelm both bandwidth and processing capacity.
+11. RST-FIN Flood 
+		- This is a TCP-based volumetric attack using RST (reset) and FIN (finish) packets  
+		-  Since FIN and RST packets are used to gracefully and forcefully shutdown connections, flooding of them can confuse TCP stacks on targeted system.   
+12. Smurf Attack 
 		- Targets IP broadcast networks by sending spoofed ICMP echo requests.  
 		- Source IP is forged to be that of the target, so all broadcast devices reply to the victim 
 		- The reply flood can overwhelm the victim’s bandwidth and processing   
