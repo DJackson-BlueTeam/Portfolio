@@ -49,14 +49,14 @@
 7. **Application Layer**
 - Top layer of the OSI model that directly interacts with the end-user applications.
 - This layer provides interface protocol that enables software to communicate over the networks, making sure the data is presented in a useable way while also handling compression, encryption and error control.
-  - Data Representation: Ensure that transmitted data is in a format the receiving application can understand.
-  - Data Translation: Converts between formats (ASCII (American Standard Code for Information Interchange) - EBCDIC (Extended Binary Coded Decimal Interchange Code))
-  - Character Encoding/Decoding: Uses standards UTF-8 bits (Unicode  Transfer Format) or Unicode
-  - Data Compression: Reduces file size for faster transfer.
-  - Encryption/Decryption: Secure data.
+  - _Data Representation_: Ensure that transmitted data is in a format the receiving application can understand.
+  - _Data Translation_: Converts between formats (ASCII (American Standard Code for Information Interchange) - EBCDIC (Extended Binary Coded Decimal Interchange Code))
+  - _Character Encoding/Decoding_: Uses standards UTF-8 bits (Unicode  Transfer Format) or Unicode
+  - _Data Compression_: Reduces file size for faster transfer.
+  - _Encryption/Decryption_: Secure data.
 - Network Services Access – Provides applications with access to network-based functions.
-		- Email Services: SMTP (Simple Mail Transfer Protocol) /Port 587 sends  emails. POP3 (Post Office Protocol) /Port 995 or non-secure Port 110 and IMAP (Internet Message Access Protocol)/Port 993 incoming mails and  143 outgoing mails.
-  		- File Transfer: FTP (File Transfer Protocol) Port 21(sending commands/managing between client and server)/20(data transfer port for transferring files in active mode) TFTP (lightweight of FTP). 
+  - Email Services: SMTP (Simple Mail Transfer Protocol) /Port 587 sends  emails. POP3 (Post Office Protocol) /Port 995 or non-secure Port 110 and IMAP (Internet Message Access Protocol)/Port 993 incoming mails and  143 outgoing mails.
+ - File Transfer: FTP (File Transfer Protocol) Port 21(sending commands/managing between client and server)/20(data transfer port for transferring files in active mode) TFTP (lightweight of FTP). 
 			3. Web Servers: HTTP (HyperTextTransferProtocol) port 80, HTTPS(HyperTextTransferProtocolSecure) port 443. 
 		 	4. Remote Access: Telnet(basic) SSH (Secure Shell) port 22. 
 
