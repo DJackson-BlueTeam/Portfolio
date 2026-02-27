@@ -49,11 +49,11 @@
 7. **Application Layer**
    - Top layer of the OSI model that directly interacts with the end-user applications.
    - This layer provides interface protocol that enables software to communicate over the networks, making sure the data is presented in a useable way while also handling compression, encryption and error control.
-   	- Data Representation: Ensure that transmitted data is in a format the receiving application can understand. 
-		 	1. Data Translation: Converts between formats (ASCII (American Standard Code for Information Interchange) - EBCDIC (Extended Binary Coded Decimal Interchange Code)) 
-			2. Character Encoding/Decoding: Uses standards UTF-8 bits (Unicode  Transfer Format) or Unicode
-			3. Data Compression: Reduces file size for faster transfer 
-	     	4. Encryption/Decryption: Secure data 
+   	- Data Representation: Ensure that transmitted data is in a format the receiving application can understand.
+   	- Data Translation: Converts between formats (ASCII (American Standard Code for Information Interchange) - EBCDIC (Extended Binary Coded Decimal Interchange Code))
+   	- Character Encoding/Decoding: Uses standards UTF-8 bits (Unicode  Transfer Format) or Unicode
+   	- Data Compression: Reduces file size for faster transfer.
+   	- Encryption/Decryption: Secure data 
 
 		- Network Services Access – Provides applications with access to network-based functions. 
 	        1. Email Services: SMTP (Simple Mail Transfer Protocol) /Port 587 sends  emails. POP3 (Post Office Protocol) /Port 995 or non-secure Port 110 and IMAP (Internet Message Access Protocol)/Port 993 incoming mails and  143 outgoing mails.   
