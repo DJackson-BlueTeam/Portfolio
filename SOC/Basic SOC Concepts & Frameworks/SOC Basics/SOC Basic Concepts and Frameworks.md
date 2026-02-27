@@ -5,7 +5,7 @@ Network OSI Model (Open System Interconnection) 7 Layers 
 	- handles physical connections and transmissions of raw bit data. (cables, fiber wires, wireless) 
 2. Data and Link Layer  
 	- is a node-to-node (transfer of data between two connected devices) delivery with error detection, framing and MAC addressing. 
-	1. MAC (Media Access Control) Address (1A:2B:3C:4D:5E:6F) is a 48 bit that is in a group of 6 of 2 hexadecimal identifiers assigned to a NIC (Network Interface Controller) for network connection on a network. Can be used for ARP (Address Resolution Protocol) spoofing or MitM attacks by adversaries. 
+		- MAC (Media Access Control) Address (1A:2B:3C:4D:5E:6F) is a 48 bit that is in a group of 6 of 2 hexadecimal identifiers assigned to a NIC (Network Interface Controller) for network connection on a network. Can be used for ARP (Address Resolution Protocol) spoofing or MitM attacks by adversaries. 
 3. Network Layer  
 	- Manages routing and logical IP addresses (Internet Protocol Address) to deliver packets across the network.  
 		- IPv4 (123.456.7.8): is a 32bit address space that provides 4.3 billion unique addresses that is divided into 3 parts of the IPv4.  
