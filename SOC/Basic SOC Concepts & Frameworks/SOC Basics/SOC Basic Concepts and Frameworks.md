@@ -26,25 +26,25 @@
 	- Establishes, manages, and terminates sessions between end-user applications. Ensures that data streams are properly synchronized and managed to prevent data loss and ensure seamless communication.
 
 6. **Presentation Layer**  
-- Translates, encrypts, and compresses data for the application layer.
-- TLS (Transport Layer Security) - a cryptographic protocol, to provide secure communication over a computer network. Ensure privacy, data integrity, and authentication between two applications that are communicating. 
+	- Translates, encrypts, and compresses data for the application layer.
+	- TLS (Transport Layer Security) - a cryptographic protocol, to provide secure communication over a computer network. Ensure privacy, data integrity, and authentication between two applications that are communicating. 
 	
-- Steps: TLS Handshake: establishes a secure connection between the client and  the server.
-	- _Client Hello_: Client sends a message to the server with its supported  TLS versions, cipher suites with random numbers.
- 	- _Server Hello_: Server responds with it chosen TLS version, cipher suites  with randoms numbers.
-  	- _Certificate_: The server sends it digital certificate to the client for  authentication.
-  	- _Server Key Exchange_: The server sends it public key or other key  exchange information.
-  	- _Client Key Exchange_: The client generates a pre-master secret key,  encrypts it with the server's public key, and then sends it to the server.
-  	- _Change Cipher Spec_: Both the client and server send a message  indicating that future messages will be encrypted.
-  	- _Complete_: Both parties send a message to verify that the handshake  was successful, and the connection is secure.  
+	- Steps: TLS Handshake: establishes a secure connection between the client and  the server.
+		- _Client Hello_: Client sends a message to the server with its supported  TLS versions, cipher suites with random numbers.
+ 		- _Server Hello_: Server responds with it chosen TLS version, cipher suites  with randoms numbers.
+  		- _Certificate_: The server sends it digital certificate to the client for  authentication.
+  		- _Server Key Exchange_: The server sends it public key or other key  exchange information.
+  		- _Client Key Exchange_: The client generates a pre-master secret key,  encrypts it with the server's public key, and then sends it to the server.
+  		- _Change Cipher Spec_: Both the client and server send a message  indicating that future messages will be encrypted.
+  		- _Complete_: Both parties send a message to verify that the handshake  was successful, and the connection is secure.  
 
-- SSL (Secure Socket Layer) - provides privacy, authentication, and data integrit for internet communication. Designed to encrypt data transmitted between a web server and browser to protect attacks from adversaries.
-- Steps:
-	- _Encryption_: SSL encrypt data to ensure privacy. If someone intercepts  the data, they will see only the jumble characters.
- 	- _Authentication_: SSL initiates an authentication process called a handshake between two devices to confirm their identities.
-  	- _Data Integrity_: SSL digitally signs data to ensure it hasn’t been tampered with, verifying that the data received is exactly what was sent by  the sender.
-  		- JPEG (Joint Photographic Experts Group): a committee that develops and maintains various digital images standards, including the widely used JPEG image compress format.
-  	 	- MPEG (Moving Pictures Experts Group): an international organization that developed standards for compression, decompression and digital representation of audio and video data.  
+	- SSL (Secure Socket Layer) - provides privacy, authentication, and data integrit for internet communication. Designed to encrypt data transmitted between a web server and browser to protect attacks from adversaries.
+		- Steps:
+			- _Encryption_: SSL encrypt data to ensure privacy. If someone intercepts  the data, they will see only the jumble characters.
+ 			- _Authentication_: SSL initiates an authentication process called a handshake between two devices to confirm their identities.
+  			- _Data Integrity_: SSL digitally signs data to ensure it hasn’t been tampered with, verifying that the data received is exactly what was sent by  the sender.
+  			- JPEG (Joint Photographic Experts Group): a committee that develops and maintains various digital images standards, including the widely used JPEG image compress format.
+  	 		- MPEG (Moving Pictures Experts Group): an international organization that developed standards for compression, decompression and digital representation of audio and video data.  
 
 7. **Application Layer**
 - Top layer of the OSI model that directly interacts with the end-user applications.
