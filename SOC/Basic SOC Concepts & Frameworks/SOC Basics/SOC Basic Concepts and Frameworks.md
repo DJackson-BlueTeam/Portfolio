@@ -31,8 +31,7 @@
 	
 - Steps: TLS Handshake: establishes a secure connection between the client and  the server.
 	- Client Hello: Client sends a message to the server with its supported  TLS versions, cipher suites with random numbers.
-   
- 	- Server Hello: Server responds with it chosen TLS version, cipher suites  with randoms numbers
+ 	- Server Hello: Server responds with it chosen TLS version, cipher suites  with randoms numbers
    
   	- Certificate: The server sends it digital certificate to the client for  authentication.
      
