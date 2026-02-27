@@ -87,10 +87,10 @@
   - Authoritative Name Server  
 	- The Resolver queries the Authoritative Name Server, which holds the actual IP address of the domain. This server responds with the IP address.
   - Caching and Response 
-		- The recursive resolve caches the IP address for future queries and sends it back to the user’s device. The browser then uses this IP to establish a connection with the target server.   
-		- Recursive Query: The client requests the resolver to handle the entire lookup process and return the final IP address.  
-		- Iterative Query: The resolver queries each DNS server in the hierarchy step-by-step, recieving referrals until the IP address is found.  
-		- Caching: Is critical in improving DNS performance. DNs server and client temporarily store resolved queries to reduce lookup times for subsequent requests. Cached records have a TTL (Time-To-Live) value, after which they expire and must be refreshed.
+	- The recursive resolve caches the IP address for future queries and sends it back to the user’s device. The browser then uses this IP to establish a connection with the target server.   
+	- Recursive Query: The client requests the resolver to handle the entire lookup process and return the final IP address.  
+	- Iterative Query: The resolver queries each DNS server in the hierarchy step-by-step, recieving referrals until the IP address is found.  
+	- Caching: Is critical in improving DNS performance. DNs server and client temporarily store resolved queries to reduce lookup times for subsequent requests. Cached records have a TTL (Time-To-Live) value, after which they expire and must be refreshed.
  
 **Adversaries Abusing the DNS (Domain Name System) Look-up Processes** 
 1. DNS Spoofing and Cache Poisoning (ARP Spoofing/MitM Attacks) 
