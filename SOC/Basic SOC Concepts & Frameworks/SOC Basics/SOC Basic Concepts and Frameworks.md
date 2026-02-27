@@ -192,8 +192,8 @@
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/959b48439de5b291054466ef07c941673268cf3a/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/434.png)
 	 
 **Hash Values for Files and Attachments**  
-	- It is a unique alphanumeric string that is generated by a cryptographic hash function based on the file’s content.  
-	- Serves as a foot digital footprint that allows users to verify file integrity, detect corruption, and ensure authenticity. 
+- It is a unique alphanumeric string that is generated by a cryptographic hash function based on the file’s content.  
+- Serves as a foot digital footprint that allows users to verify file integrity, detect corruption, and ensure authenticity. 
     
 1. **MD5 (Message Digest Algorithm 5)**: is a 128-bit hash value from any input message. 
 	- Data Integrity: Verifying that data has not been altered during transmission by comparing hash values before and after transit
@@ -201,7 +201,7 @@
 	- Certificate Generation and Verification: Used in Public-key Infrastructure systems to generate and verify digital certificates. 
 	- Password Storage: Historically used to hash passwords before storing them in databases. 
 	- Checksums and File Integrity: Creating Checksum for files to detect errors introduced during transmission or storage    
-	MD5 Vulnerabilities 
+- MD5 Vulnerabilities 
 	- Insecure cryptographic due to collision and preimage attacks. (Integrity) 
 	- Allow attackers to generate the same hash for different input (Confidentiality) 
 2. **SHA-160 (Secure Hash Algorithm 1)**: is a 160-bit (20byte) hash value, commonly renders as a 40-digit hexadecimal 
@@ -232,7 +232,7 @@
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/959b48439de5b291054466ef07c941673268cf3a/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/437.png)
 	 
 3. **Caddy Web Server 2015** 
-	- Open Source, cross-platform web server written in Go, IT is known for it simplicity extensibility and automatic HTTPS features.  
+- Open Source, cross-platform web server written in Go, IT is known for it simplicity extensibility and automatic HTTPS features.  
 		1. Designed to be extensible platform for deploying long running services using a unified configuration that can be updated online with REST and API  
 		2. Ships with a set of standard modules, including http server, TLS, PKI, 
 		3. HTTP server module is primarily used for static file server and load-balancing reverse proxy 
@@ -240,8 +240,8 @@
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/959b48439de5b291054466ef07c941673268cf3a/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/438.png)
 	 
 4. **Lighttpd Web Serve**r 
-	- Designed to be secure, fast, and standard-compliant.  
-	- Optimized for environments where speed and low resource usage are critical. 
+- Designed to be secure, fast, and standard-compliant.  
+- Optimized for environments where speed and low resource usage are critical. 
 		1. Low Memory Footprint: Uses less memory, making it ideal for servers with limited resources. 
 		2. Fast CGI, SCGI, CGI Support: allow web applications written in various programming languages to be used with lighttpd.
 		3. Load Balancing and Proxy Support: Lightlpd can distribute incoming requests across mulitple backend servers, improving performance and reliability. 
@@ -250,7 +250,7 @@
 		6. Virtual Heading: Supports flexible virtual hosting configurations.  
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/959b48439de5b291054466ef07c941673268cf3a/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/439.png)
 	 
-******Security Concepts and Frameworks******  
+**Security Concepts and Frameworks**  
 EDR (Endpoint Detection and Response) 
 - EDR is a cybersecurity technology designed to continuously monitor endpoints (computers IoT (Internet of Things)) 
 - Help organizations protect against serious cyber threats by providing visibility into malicious activities and enable automated responses to mitigate the risk. 
@@ -272,23 +272,23 @@ AV (Anti-Virus)Software  
     
 Alert Triage 
 	
-![[440.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/d9fbe5941622bec1620594395511d90ac3248b10/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/440.png) 
 	
 1. Alert Time – Shows alert creation time.  
 2. Alert Name – Provide a summary of what happened, based on the detection rule’s name. 
 3. Alert Severity – Defines the urgency of the alert (set by detection engineers)  
     
-	![[441.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/d9fbe5941622bec1620594395511d90ac3248b10/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/441.png)
 	 
 
 4. Alert Status – Inform if somebody is working on the alert or i the triage is done. 
     
-	![[442.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/d9fbe5941622bec1620594395511d90ac3248b10/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/442.png)
 	 
 
 5. Alert Verdict – Also called alert classification, explains if the alert is a real threat or noise. 
     
-	![[443.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/d9fbe5941622bec1620594395511d90ac3248b10/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/443.png)
 	 
 
 6. Alert Assignee – Shows the analyst that was assigned or assigned themselves to review the alert  
@@ -299,31 +299,30 @@ Alert Triage 
 
 8. Alert Fields – Provides SOC analysts’ comments and values on which the alert was triggered  
     
-	![[444.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/d9fbe5941622bec1620594395511d90ac3248b10/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/444.png)
 	 
 
-Report Format  
-	![[445.png]]
+**Report Format**  
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/d9fbe5941622bec1620594395511d90ac3248b10/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/445.png)
 	 
 
-Workbook Example
-![[446.png]]
+**Workbook Example**
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/d9fbe5941622bec1620594395511d90ac3248b10/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/446.png)
 
-Response Time within a EDR (Endpoint Detection Response) 
-	![[447.png]]
+**Response Time within a EDR (Endpoint Detection Response)** 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/d9fbe5941622bec1620594395511d90ac3248b10/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/447.png)
 	 
 
-SIEM (Security Information and Event Management) Tools 
+**SIEM (Security Information and Event Management) Tools** 
 
 Splunk (Leading Tool in the Market) 
-
 -  Collect, Analyze and Correlate network and machine logs in real-time.  
 
-	1. Splunk Forwarder – intended to monitor and collect data and direct it to Splunk instances. 
+1. Splunk Forwarder – intended to monitor and collect data and direct it to Splunk instances. 
     
-	2. Splunk Indexer – processes the data it receives from the forwarder.  
+2. Splunk Indexer – processes the data it receives from the forwarder.  
     
-	3. Search Head in Splunk (Search and Reporting App) – users can search logs in 
+3. Search Head in Splunk (Search and Reporting App) – users can search logs in 
 		
 
 Examples
@@ -335,18 +334,11 @@ index=<log-file> Source_ip=<IPv4 ip address> 
 
 **Elastic Stack - Elastic Search, Logstash, Beats, Kibana** 
 	- A collection of different open-source tools that collect, store, search, and visualize data in real-time. 
-
-	1. Elastic Search – full text search and analytics for JSON-formatted documents. 
-    
-
-	2. Logstash – a data processing engine that takes data from different sources, filters or normalizes it and then sends it to a destination like Kibana or any other destination for deeper analysis. 
-    
-
-	3. Beats – host-based agent that ships/transfer data from the endpoint to Elastic Search. 
-    
-
-	4. Kibana – a web–based data tool that works with Elastic Search to analyze, investigate and visualize data streams in real-time. 
-![[448.png]] 
+1. Elastic Search – full text search and analytics for JSON-formatted documents. 
+2. Logstash – a data processing engine that takes data from different sources, filters or normalizes it and then sends it to a destination like Kibana or any other destination for deeper analysis. 
+3. Beats – host-based agent that ships/transfer data from the endpoint to Elastic Search. 
+4. Kibana – a web–based data tool that works with Elastic Search to analyze, investigate and visualize data streams in real-time. 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/d9fbe5941622bec1620594395511d90ac3248b10/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/448.png) 
 
 SOAR (Security Orchestration, Automation, and Response) 
 
@@ -375,22 +367,21 @@ These are the initial steps an adversary may take to attempt to get a foot h
 
 1. Hash-Values – it's critical to identify hashes to interpret rather is it a malicious activity or not.  The main hash values that can be identified are MD5 or a SHA256 using online tools – such as Virus Total.  
     
-
 How to find hash values? There are online tools that can be used to interpret what the hash values are, or you can manually interpret the hash values through Windows PowerShell or Ubuntu/Linux terminal.   
 
 Windows PowerShell Command – Once In Working Directory or  .\working \directory \path.doc\ 
 
-	Get-FileHash <space>–Algorithm MD5 <Doc> 
-	Get-FileHash <space>.\working \directory\ path.doc\ –Algorithm MD5 <Doc> 
-	Get-FileHash <space>–Algorithm SHA256<Doc> 
-	Get-FileHash <space>.\working \directory\ path.doc\ –Algorithm SHA256<Doc> 
+Get-FileHash <space>–Algorithm MD5 <Doc> 
+Get-FileHash <space>.\working \directory\ path.doc\ –Algorithm MD5 <Doc> 
+Get-FileHash <space>–Algorithm SHA256<Doc> 
+Get-FileHash <space>.\working \directory\ path.doc\ –Algorithm SHA256<Doc> 
 
-	Unix/Linux Terminal - Once in Working Directory or /working /directory /path.doc 
+Unix/Linux Terminal - Once in Working Directory or /working /directory /path.doc 
 
-	MD5sum<space>file.doc 
+MD5sum<space>file.doc 
 
-	SHA256sum<space>file.doc 
-	 MD5sum<space>/working/directory/path/file.doc SHA256sum <space>/working/directory/path/file.doc 
+SHA256sum<space>file.doc 
+MD5sum<space>/working/directory/path/file.doc SHA256sum <space>/working/directory/path/file.doc 
 
 2. IP Address (IPv4) – Used to identify any devices on the network rather it's a desktop, server or a remote machine  
     
@@ -406,7 +397,7 @@ Windows PowerShell Command – Once In Working Directory or  .\working \dir
 
 6. TTP (Tactic, Technique, Procedures) - includes an entire MITRE ATT&CK MATRIX. This is the rigorous phase an attacker may use.  
     
-	![[450.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/d9fbe5941622bec1620594395511d90ac3248b10/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/450.png)
 
 
 Kill Chain  
@@ -433,17 +424,17 @@ A military concept that was adopted to use to implement a Cyber Kill Chains by 
 
 7. Actions and objectives – this is when the attacker can achieve their goals and the attackers have access to the machine such as MitM (Man-in-the-Middle), steal credentials, have permanent back-door access, monitoring, conducting a ransomware, crypto mining attack, and many more.  
     
-	![[451.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/d9fbe5941622bec1620594395511d90ac3248b10/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/451.png)
 
 
 Unified Kill Chain – Theat Modeling  
 
 A Unified Kill Chain is a more thorough, high-level overview of the attacker procedure of attack. It encourages threat modeling and helps interpret potential attack methodologies. There is a total of 18 steps in the Unified Kill Chain. The screenshot from TryHackMe briefly explains below.  
 
-![[452.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/d9fbe5941622bec1620594395511d90ac3248b10/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/452.png)
 
 MITRE ATT&CK  
 
 MITRE ATT&CK framework is a globally accessible website that is the base knowledge of an attackers Tactic, Techniques and Procedures on is based on Real-World Scenarios.  This can be used as a SOC analyst to determine how an attacker occurred and what the additional measures taken the attacker uses to reach its goals.  
 
-![[453.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/d9fbe5941622bec1620594395511d90ac3248b10/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/453.png)
