@@ -55,22 +55,22 @@
   - _Data Compression_: Reduces file size for faster transfer.
   - _Encryption/Decryption_: Secure data.
 - Network Services Access – Provides applications with access to network-based functions.
-  - Email Services: SMTP (Simple Mail Transfer Protocol) /Port 587 sends  emails. POP3 (Post Office Protocol) /Port 995 or non-secure Port 110 and IMAP (Internet Message Access Protocol)/Port 993 incoming mails and  143 outgoing mails.
- - File Transfer: FTP (File Transfer Protocol) Port 21(sending commands/managing between client and server)/20(data transfer port for transferring files in active mode) TFTP (lightweight of FTP). 
-			3. Web Servers: HTTP (HyperTextTransferProtocol) port 80, HTTPS(HyperTextTransferProtocolSecure) port 443. 
-		 	4. Remote Access: Telnet(basic) SSH (Secure Shell) port 22. 
+  - _Email Services_: SMTP (Simple Mail Transfer Protocol) /Port 587 sends  emails. POP3 (Post Office Protocol) /Port 995 or non-secure Port 110 and IMAP (Internet Message Access Protocol)/Port 993 incoming mails and  143 outgoing mails.
+  - _File Transfer_: FTP (File Transfer Protocol) Port 21(sending commands/managing between client and server)/20(data transfer port for transferring files in active mode) TFTP (lightweight of FTP).
+  - _Web Servers_: HTTP (HyperTextTransferProtocol) port 80, HTTPS(HyperTextTransferProtocolSecure) port 443.
+  - _Remote Access_: Telnet(basic) SSH (Secure Shell) port 22. 
 
-- Application Protocols – Define rules for communication between applications 
-          	1. File Transfer: FTP, TFTP 
-         	2. Web Communication: HTTP, HTTPS 
-        	3. Domain Name Resolution: DNS converts domain names to IP addresses.  
-        	4. Messaging: XMPP (Extensible and Message Presence Protocol) Port 80/443 is good for supporting a wide range of applications including instant messaging and presence information and multipart chats. 
+- Application Protocols – Define rules for communication between applications
+  - _File Transfer_: FTP, TFTP
+  - _Web Communication_: HTTP, HTTPS 
+  - _Domain Name Resolution_: DNS converts domain names to IP addresses.  
+  - _XMPP (Extensible and Message Presence Protocol)_: Port 80/443 is good for supporting a wide range of applications including instant messaging and presence information and multipart chats. 
 
-- Session Management – Manages and synchronizes communication sessions 
-         	1. Session Establishment and Termination: Handles login/logout processes 
-        	2. Synchronization: Uses checkpoints for recovery in large transfers. 
-       		3. Token Management: Prevents data collisions in half-duplex systems. 
-       		4. Real-Time Communication: SIP (Session Setup), RTP (real-time media delivery) 
+- Session Management – Manages and synchronizes communication sessions.
+ - _Session Establishment and Termination_: Handles login/logout processes
+ - _Synchronization_: Uses checkpoints for recovery in large transfers.
+ - _Token Management_: Prevents data collisions in half-duplex systems.
+ - _Real-Time Communication_: SIP (Session Setup), RTP (real-time media delivery) 
 **DNS (Domain Name System) Look-up Processes** 
 	- The DNS lookup process translates human-readable domain names into IP addresses within the network for communication.  
 Steps: 
