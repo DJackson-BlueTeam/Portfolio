@@ -160,9 +160,9 @@
 
 **Cryptography**
 	- The practice of securing communication by converting plain text into ciphertext, ensuring that only authorized parties can access the information. Derive from Greek word “kryptos” meaning hidden 
-	- Confidentiality – Ensure that information can only be accessed by the intended recipient. 
-	- Integrity – Guarantees that information cannot be altered during storage or transmission without detection. 
-	- Authentication – Confirms the identity of the sender and receiver, as well as the origin and destination of the information.  
+		- Confidentiality: Ensure that information can only be accessed by the intended recipient. 
+		- Integrity: Guarantees that information cannot be altered during storage or transmission without detection. 
+		- Authentication: Confirms the identity of the sender and receiver, as well as the origin and destination of the information.  
 
 **Symmetric Encryption and Asymmetric Encryption**  
 1. Symmetric Encryption Algorithm (Shared-key or private-key encryption) 
