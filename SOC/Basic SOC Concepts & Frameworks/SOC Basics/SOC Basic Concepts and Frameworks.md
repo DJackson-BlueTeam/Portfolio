@@ -29,7 +29,7 @@
 	- Translates, encrypts, and compresses data for the application layer. 
 	1. TLS (Transport Layer Security) - a cryptographic protocol, to provide secure communication over a computer network. Ensure privacy, data integrity, and authentication between two applications that are communicating. 
 	      - Steps: TLS Handshake: establishes a secure connection between the client and  the server. 
-	  			1. Client Hello: Client sends a message to the server with its supported  TLS versions, cipher suites with random numbers.  
+	  			I. Client Hello: Client sends a message to the server with its supported  TLS versions, cipher suites with random numbers.  
        			2. Server Hello: Server responds with it chosen TLS version, cipher suites  with randoms numbers  
        			3. Certificate: The server sends it digital certificate to the client for  authentication.  
        			4. Server Key Exchange: The server sends it public key or other key  exchange information 
