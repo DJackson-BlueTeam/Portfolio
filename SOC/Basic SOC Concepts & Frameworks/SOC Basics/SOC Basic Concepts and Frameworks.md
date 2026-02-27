@@ -1,12 +1,12 @@
 
-Technical Fundamentals 
-Network OSI Model (Open System Interconnection) 7 Layers 
-1. Physical Layer  
+******Technical Fundamentals ******
+**Network OSI Model (Open System Interconnection) 7 Layers** 
+1. **Physical Layer**  
 	- handles physical connections and transmissions of raw bit data. (cables, fiber wires, wireless) 
-2. Data and Link Layer  
+2. **Data and Link Layer**  
 	- is a node-to-node (transfer of data between two connected devices) delivery with error detection, framing and MAC addressing. 
 		- MAC (Media Access Control) Address (1A:2B:3C:4D:5E:6F) is a 48 bit that is in a group of 6 of 2 hexadecimal identifiers assigned to a NIC (Network Interface Controller) for network connection on a network. Can be used for ARP (Address Resolution Protocol) spoofing or MitM attacks by adversaries. 
-3. Network Layer  
+3. **Network Layer**  
 	- Manages routing and logical IP addresses (Internet Protocol Address) to deliver packets across the network.  
 		- IPv4 (123.456.7.8): is a 32bit address space that provides 4.3 billion unique addresses that is divided into 3 parts of the IPv4.  
 			- Network: identifies the network 
@@ -15,91 +15,83 @@ Network OSI Model (Open System Interconnection) 7 Layers 
 		- IPv6 (2001:0db8:0000:0000:0000:8a2e:0370:7334) or (2001:db8::8a2e:370:7334) omitting zeros: is a 128-bit address that simplifies the headers address to reduce the process by routers.  
 			- Support SLAAC (Stateless Address Autoconfiguration Configuration) -  allows devices to configure their own IP address automatically without the  need of a DHCP.
   			- Domain Host Configuration Protocol: Automate the  process of configuring devices on IP networks. It allows devices to receive IP addresses and other network configurations dynamically. 
-4. Transport Layer  
+4. **Transport Layer**  
 	- Provides end-to-end delivery protocols utilizing TCP and UDP. 
     
-	1. TCP (Transmission Control Protocol) - ensuring reliability of delivering data between applications on host communications (IP Network). This is the transport layer of the OSI that is connection-oriented.  
+		- TCP (Transmission Control Protocol) - ensuring reliability of delivering data between applications on host communications (IP Network). This is the transport layer of the OSI that is connection-oriented.  
     
-	2. UDP (User Datagram Protocol) - use for time sensitive transmission (video playback or DNS lookup). This protocol is connectionless and does not guarantee delivery, order, or error checking. This is classified as a light-weight protocol.  
+		- UDP (User Datagram Protocol) - use for time sensitive transmission (video playback or DNS lookup). This protocol is connectionless and does not guarantee delivery, order, or error checking. This is classified as a light-weight protocol.  
     
-5. Session Layer  
+5. **Session Layer**  
 	- Establishes, manages, and terminates sessions between end-user applications. Ensures that data streams are properly synchronized and managed to prevent data loss and ensure seamless communication. 
-    
-6. Presentation Layer  
+
+6.** Presentation Layer**  
 	- Translates, encrypts, and compresses data for the application layer. 
-    
 	1. TLS (Transport Layer Security) - a cryptographic protocol, to provide secure communication over a computer network. Ensure privacy, data integrity, and authentication between two applications that are communicating. 
-    
-	      Steps: TLS Handshake: establishes a secure connection between the client and  the server. 
-	      I. Client Hello: Client sends a message to the server with its supported  TLS versions, cipher suites with random numbers.  
-       II. Server Hello: Server responds with it chosen TLS version, cipher suites  with randoms numbers  
-       III. Certificate: The server sends it digital certificate to the client for  authentication.  
-       IV. Server Key Exchange: The server sends it public key or other key  exchange information 
-       V. Client Key Exchange: The client generates a pre-master secret key,  encrypts it with the server's public key, and then sends it to the server.  
-       VI. Change Cipher Spec: Both the client and server send a message  indicating that future messages will be encrypted.  
-       VII. Complete: Both parties send a message to verify that the handshake  was successful, and the connection is secure.  
+	      - Steps: TLS Handshake: establishes a secure connection between the client and  the server. 
+	  			1. Client Hello: Client sends a message to the server with its supported  TLS versions, cipher suites with random numbers.  
+       			2. Server Hello: Server responds with it chosen TLS version, cipher suites  with randoms numbers  
+       			3. Certificate: The server sends it digital certificate to the client for  authentication.  
+       			4. Server Key Exchange: The server sends it public key or other key  exchange information 
+       			5. Client Key Exchange: The client generates a pre-master secret key,  encrypts it with the server's public key, and then sends it to the server.  
+       			6. Change Cipher Spec: Both the client and server send a message  indicating that future messages will be encrypted.  
+       			7. Complete: Both parties send a message to verify that the handshake  was successful, and the connection is secure.  
 
-	2. SSL (Secure Socket Layer) provides privacy, authentication, and data integrit for internet communication. Designed to encrypt data transmitted between a web server and browser to protect attacks from adversaries.      
-	Steps: 
-	 I. Encryption: SSL encrypt data to ensure privacy. If someone intercepts  the data, they will see only the jumble characters.  
-	II. Authentication: SSL initiates an authentication process called a     handshake between two devices to confirm their identities.  
-	III. Data Integrity: SSL digitally signs data to ensure it hasn’t been        tampered with, verifying that the data received is exactly what was sent by  the sender. 
-	3. JPEG (Joint Photographic Experts Group): a committee that develops and maintains various digital images standards, including the widely used JPEG image compress format.  
-	4. MPEG (Moving Pictures Experts Group) - an international organization that developed standards for compression, decompression and digital representation of audio and video data.  
-    
+2. SSL (Secure Socket Layer) provides privacy, authentication, and data integrit for internet communication. Designed to encrypt data transmitted between a web server and browser to protect attacks from adversaries.      
+			- Steps: 
+				1. Encryption: SSL encrypt data to ensure privacy. If someone intercepts  the data, they will see only the jumble characters.  
+				2.  Authentication: SSL initiates an authentication process called a handshake between two devices to confirm their identities.  
+				3. Data Integrity: SSL digitally signs data to ensure it hasn’t been tampered with, verifying that the data received is exactly what was sent by  the sender. 
+				4. JPEG (Joint Photographic Experts Group): a committee that develops and maintains various digital images standards, including the widely used JPEG image compress format.  
+				5. MPEG (Moving Pictures Experts Group): an international organization that developed standards for compression, decompression and digital representation of audio and video data.  
 
-7. Application Layer  
+7. **Application Layer**  
 	- Top layer of the OSI model that directly interacts with the end-user applications. This layer provides interface protocol that enables software to communicate over the networks, making sure the data is presented in a useable way while also handling compression, encryption and error control.  
-	1. Data Representation - Ensure that transmitted data is in a format the receiving application can understand. 
-	        I. Data Translation: Converts between formats (ASCII (American        Standard Code for Information Interchange) - EBCDIC (Extended Binary  Coded Decimal Interchange Code)) 
+		- Data Representation: Ensure that transmitted data is in a format the receiving application can understand. 
+		 	1. Data Translation: Converts between formats (ASCII (American Standard Code for Information Interchange) - EBCDIC (Extended Binary Coded Decimal Interchange Code)) 
+			2. Character Encoding/Decoding: Uses standards UTF-8 bits (Unicode  Transfer Format) or Unicode
+			3. Data Compression: Reduces file size for faster transfer 
+	     	4. Encryption/Decryption: Secure data 
 
-		 II. Character Encoding/Decoding: Uses standards UTF-8 bits (Unicode  Transfer Format) or Unicode
-		 III. Data Compression: Reduces file size for faster transfer 
-	     IV. Encryption/Decryption: Secure data 
+		- Network Services Access – Provides applications with access to network-based functions. 
+	        1. Email Services: SMTP (Simple Mail Transfer Protocol) /Port 587 sends  emails. POP3 (Post Office Protocol) /Port 995 or non-secure Port 110 and IMAP (Internet Message Access Protocol)/Port 993 incoming mails and  143 outgoing mails.   
+			2. File Transfer: FTP (File Transfer Protocol) Port 21(sending commands/managing between client and server)/20(data transfer port for transferring files in active mode) TFTP (lightweight of FTP). 
+			3. Web Servers: HTTP (HyperTextTransferProtocol) port 80, HTTPS(HyperTextTransferProtocolSecure) port 443. 
+		 	4. Remote Access: Telnet(basic) SSH (Secure Shell) port 22. 
 
-	2. Network Services Access – Provides applications with access to network-based functions. 
-	        I. Email Services: SMTP (Simple Mail Transfer Protocol) /Port 587 sends  emails. POP3 (Post Office Protocol) /Port 995 or non-secure Port 110 and  IMAP (Internet Message Access Protocol)/Port 993 incoming mails and  143 outgoing mails.   
-		II. File Transfer: FTP (File Transfer Protocol) Port 21(sending  commands/managing between client and server)/20(data transfer port for  transferring files in active mode) TFTP (lightweight of FTP). 
-		  III. Web Servers: HTTP (HyperTextTransferProtocol) port 80,        HTTPS(HyperTextTransferProtocolSecure) port 443. 
-		  IV. Remote Access: Telnet(basic) SSH (Secure Shell) port 22. 
+		- Application Protocols – Define rules for communication between applications 
+          	1. File Transfer: FTP, TFTP 
+         	2. Web Communication: HTTP, HTTPS 
+        	3. Domain Name Resolution: DNS converts domain names to IP addresses.  
+        	4. Messaging: XMPP (Extensible and Message Presence Protocol) Port 80/443 is good for supporting a wide range of applications including instant messaging and presence information and multipart chats. 
 
-	3. Application Protocols – Define rules for communication between applications 
-          I. File Transfer: FTP, TFTP 
-         II. Web Communication: HTTP, HTTPS 
-        III. Domain Name Resolution: DNS converts domain names to IP        addresses.  
-        IV. Messaging: XMPP (Extensible and Message Presence Protocol) Port  80/443 is good for supporting a wide range of applications including        instant messaging and presence information and multipart chats. 
-
-	4. Session Management – Manages and synchronizes communication sessions 
-         I. Session Establishment and Termination: Handles login/logout processes 
-        II. Synchronization: Uses checkpoints for recovery in large transfers. 
-       III. Token Management: Prevents data collisions in half-duplex systems. 
-       IV. Real-Time Communication: SIP (Session Setup), RTP (real-time        media delivery) 
-
-DNS (Domain Name System) Look-up Processes 
-- The DNS lookup process translates human-readable domain names into IP addresses within the network for communication.  
-
-	Steps: 
+		- Session Management – Manages and synchronizes communication sessions 
+         	1. Session Establishment and Termination: Handles login/logout processes 
+        	2. Synchronization: Uses checkpoints for recovery in large transfers. 
+       		3. Token Management: Prevents data collisions in half-duplex systems. 
+       		4. Real-Time Communication: SIP (Session Setup), RTP (real-time media delivery) 
+**DNS (Domain Name System) Look-up Processes** 
+	- The DNS lookup process translates human-readable domain names into IP addresses within the network for communication.  
+Steps: 
 	1. Local Cache Check 
-		- The system first checks its local DNS cache, or the host file for IP addresses. If found, the process ends. 
+				- The system first checks its local DNS cache, or the host file for IP addresses. If found, the process ends. 
 	2. Query to Recursive Resolver 
-		- If the IP is not cached locally, the query is sent to a Recursive DNS Resolver, which is provided by the user’s ISP (Internet Service Provider). This resolver i responsible for performing the full DNS resolution process.  
+				- If the IP is not cached locally, the query is sent to a Recursive DNS Resolver, which is provided by the user’s ISP (Internet Service Provider). This resolver i responsible for performing the full DNS resolution process.  
 	3. Root Name Server 
-		- The recursive resolver queries one of the 13 globally Root Name Servers. These Servers do not store the IP address but direct the resolver to the appropriate TLD (Top-Level-Domain) based on the domain extension (.com, .org etc.) 
-		    ![[431.png]]
+				- The recursive resolver queries one of the 13 globally Root Name Servers. These Servers do not store the IP address but direct the resolver to the appropriate TLD (Top-Level-Domain) based on the domain extension (.com, .org etc.) 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/959b48439de5b291054466ef07c941673268cf3a/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/431.png)
 		
-
 	4. TLD (Top-Level-Domain) Name Servers 
 		- Provides the address of the Authoritative Name Server for the domain  
-	5. Authoritative Name Server  
+		5. Authoritative Name Server  
 		- The Resolver queries the Authoritative Name Server, which holds the actual IP address of the domain. This server responds with the IP address.  
 	6. aching and Response 
 		- The recursive resolve caches the IP address for future queries and sends it back to the user’s device. The browser then uses this IP to establish a connection with the target server.   
-		I. Recursive Query: The client requests the resolver to handle the entire lookup process and return the final IP address.  
-		II. Iterative Query: The resolver queries each DNS server in the hierarchy step-by-step, recieving referrals until the IP address is found.  
-		III. Caching: Is critical in improving DNS performance. DNs server and client temporarily store resolved queries to reduce lookup times for subsequent requests. Cached records have a TTL (Time-To-Live) value, after which they expire and must be refreshed.  
-
-Adversaries Abusing the DNS (Domain Name System) Look-up Processes 
-
+		- Recursive Query: The client requests the resolver to handle the entire lookup process and return the final IP address.  
+		- Iterative Query: The resolver queries each DNS server in the hierarchy step-by-step, recieving referrals until the IP address is found.  
+		- Caching: Is critical in improving DNS performance. DNs server and client temporarily store resolved queries to reduce lookup times for subsequent requests. Cached records have a TTL (Time-To-Live) value, after which they expire and must be refreshed.
+ 
+**Adversaries Abusing the DNS (Domain Name System) Look-up Processes** 
 1. DNS Spoofing and Cache Poisoning (ARP Spoofing/MitM Attacks) 
 	- Can introduce fraudulent DNS information into a resolver’s cache. When a user attempts to visit a website, the DNS resolver provides a malicious IP address, which redirects the use tot the site controlled by the adversary  
     
@@ -109,137 +101,71 @@ Adversaries Abusing the DNS (Domain Name System) Look-up Processes 
 3. DNS Amplification (DOS (Denial of Service)/DDOS (Distributed denial of Service)) 
 	- When an adversary sends small DNS queries with a spoofed source IP address (target address) to open the DNS resolver. The resolver responds with large packets to the target IP, causing overwhelming traffic to the target networks.  
     
-Types of DDOS/DOS Attacks 
+**Types of DDOS/DOS Attacks **
 
 1. Application Layer attacks (Layer 7)  
 	- It is the very front of your infrastructure.  
     
 2. DNS Server targeting Attacks  
-    
-
 	- Attackers send spoofed, high-volume DNS requests, sometimes levergaing amplifications techniques. 
-    
-
 	- Small queries can trigger a much larger response, overwhelming the DNS resolver. 
-    
-
 	- Floods may appear legitimate, making the filtering difficult.  
     
-
 3. HTTP(S) Encrypted Flood  (Layer 3)
-    
-
 	- Botnets generate a high frequency of HTTP requests (GET, POST, DELET, PUT, etc.) to target webservers. 
-    
-
 	- Harder to inspect since they are encrypted data and resource intensive for the server to process 
-    
-
 	- The goal is to saturate the server’s ability to handle simultaneous connections, leading to denial of service for real targets.  
     
-
 4. Protocol Attacks (Layer 3 and Layer 4) 
-    
-
 	- Aim to exploit weaknesses in communication protocols. These attacks usual target network infrastructure to exhaust the server and network equipment 
     
-
 5. Ping of Deth  
-    
-
 	- Adversaries would send malformed ping packets that exceed permissible size. 
-    
-
 	- Can cause crashes or reboot systems  
-    
-
 	- Even though outdates, it remains a risk in poor patched systems  
     
-
 6. Synchronous Flood  
-    
-
 	- Abuses the TCP (Transmission Control Protocol) three-way-handshake  
-    
-
 	- Sends numerous SYN packets with spoofed IPs to the server  
-    
-
 	- The target responds with SYN-ACK and waits for final ACK but since the source is fake, the ack never replies.  
-    
-
 	- Ties up Opens connection until the server connection table is exhausted.  
-    
 
 7. Tsunami SYN Flood 
-    
-
 	- A more aggressive version of SYN flood 
-    
-
 	- Packets are larger (1,000 bytes) increasing the load per connections 
-    
-
 	- Strains on the bandwidth and connection-handling capacity 
-    
 
 8.  Connection Exhaustion (State-Exhaustion) 
-    
-
 	- Adversary target devices like firewalls, load balancers, or stateful routers, exhausting their capacity to track connection states.  
-    
-
 	- Targeting SSL/TTL by continuously renegotiating handshakes or sending invalid packets, which can tie up stateful resources of SSL servers. 
     
-
 9. Volumetric Attacks 
+	-  Aims to consume bandwidth and saturate the network. The measure here is in bit per second(bps) which can cause attackes to scale to hundreds of gigabits or terabits per second. 
     
+	      1. DNS Amplification 
+			- Adversaries send DNS queries with a spoofed source IP address to open DNS resolvers. 
+	      2.  UDP Flood 
+			- These resolvers reply to the target with large “ANY” response packets.
+          3. ICMP (Internet Control Message Protocol) 
+   			- Adversary Bombard the target wit ICMP echo-request to (“ping”) packets  
+			- The target attempts to reply with echo-reply, tying up resources.  
+			- This type can overwhelm both bandwidth and processing capacity. 
+ 10. RST-FIN Flood 
+	- This is a TCP-based volumetric attack using RST (reset) and FIN (finish) packets  
+	-  Since FIN and RST packets are used to gracefully and forcefully shutdown connections, flooding of them can confuse TCP stacks on targeted system.   
 
-	-  Aims to consume bandwidth and saturate teh network. The measure here is in bit per second(bps) which can cause attackes to scale to hundreds of gigabits or terabits per second. 
-    
-
-	      VII. DNS Amplification 
-
-	-    Adversaries send DNS queries with a spoofed source IP address to       open DNS resolvers. 
-
-	      VIII. UDP Flood 
-
-	-     These resolvers reply to the target with large “ANY” response         packets. 
-
-	        IX.  ICMP (Internet Control Message Protocol) 
-
-	-      Adversary Bombard the target wit ICMP echo-request to (“ping”)                                 packets  
-
-	-      The target attempts to reply with echo-reply, tying up resources.  
-
--      This type can overwhelm both bandwidth and processing                 capacity. 
-
-		X. RST-FIN Flood 
-
--       This is a TCP-based volumetric attack using RST (reset) and FIN         (finish) packets  
-
-		-       Since FIN and RST packets are used to gracefully and forcefully shut          down connections, flooding of them can confuse TCP stacks on          targeted system.   
-
-		XI. Smurf Attack 
-
-		-        Targets IP broadcast networks by sending spoofed ICMP echo            requests.  
-
-		-        Source IP is forged to be that of the target, so all broadcast devices           reply to the victim 
-
+11. Smurf Attack 
+		- Targets IP broadcast networks by sending spoofed ICMP echo requests.  
+		- Source IP is forged to be that of the target, so all broadcast devices reply to the victim 
 		- The reply flood can overwhelm the victim’s bandwidth and processing   
 
-Cryptography 
-
-- The practice of securing communication by converting plain text into ciphertext, ensuring that only authorized parties can access the information.   derive from Greek word “kryptos” meaning hidden 
-
+**Cryptography **
+	- The practice of securing communication by converting plain text into ciphertext, ensuring that only authorized parties can access the information.   derive from Greek word “kryptos” meaning hidden 
 	- Confidentiality – Ensure that information can only be accessed by the intended recipient. 
-
 	 - Integrity – Guarantees that information cannot be altered during storage or transmission without detection. 
-
 	- Authentication – Confirms the identity of the sender and receiver, as well as the origin and destination of the information.  
 
-Symmetric Encryption and Asymmetric Encryption  
-
+**Symmetric Encryption and Asymmetric Encryption**  
 1. Symmetric Encryption Algorithm (Shared-key or private-key encryption) 
 	- It is a method where the same key is used for both encryption and decryption of data.  
 	- Substitution method: replace element of the plaintext with other elements 
@@ -253,24 +179,24 @@ Symmetric Encryption and Asymmetric Encryption  
 	- AES (Advanced Encryption Standard): support key sizes of 128, 192,  and 256 bits and is widely used for secure communication. 
 	- DES (Data Encryption Standard):  Uses a 56-bit key and now  considered insecure due to its small bits  
 	- Triple DES: Applies DES three times to each data block, enhancing  security. 
-	![[432.png]] 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/959b48439de5b291054466ef07c941673268cf3a/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/432.png) 
+
 4. Asymmetric Encryption Algorithm (public-key cryptography) 
 	- Uses pairs of keys: a public key and a private key.  
 	- The public-key is shared openly, the private-key is kept secret by the owner. 
 	- Addresses key distribution and digital signatures.  
     
-5. RSA (Rivest-Shamir-Adleman) - leverages mathematical properties of prime numbers and modular arithmetic  
+5. RSA (Rivest-Shamir-Adleman)
+   - leverages mathematical properties of prime numbers and modular arithmetic  
 	
-	![[433.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/959b48439de5b291054466ef07c941673268cf3a/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/433.png)
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/959b48439de5b291054466ef07c941673268cf3a/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/434.png)
 	 
-	![[434.png]]
-	 
-
-Hash Values for Files and Attachments  
-- It is a unique alphanumeric string that is generated by a cryptographic hash function based on the file’s content.  
-- Serves as a foot digital footprint that allows users to verify file integrity, detect corruption, and ensure authenticity. 
+**Hash Values for Files and Attachments**  
+	- It is a unique alphanumeric string that is generated by a cryptographic hash function based on the file’s content.  
+	- Serves as a foot digital footprint that allows users to verify file integrity, detect corruption, and ensure authenticity. 
     
-1. MD5 (Message Digest Algorithm 5): is a 128-bit hash value from any input message. 
+1. **MD5 (Message Digest Algorithm 5)**: is a 128-bit hash value from any input message. 
 	- Data Integrity: Verifying that data has not been altered during transmission by comparing hash values before and after transit
 	- Digital Signatures: Creating digital signatures to verify the integrity of messages or documents. 
 	- Certificate Generation and Verification: Used in Public-key Infrastructure systems to generate and verify digital certificates. 
@@ -279,78 +205,54 @@ Hash Values for Files and Attachments  
 	MD5 Vulnerabilities 
 	- Insecure cryptographic due to collision and preimage attacks. (Integrity) 
 	- Allow attackers to generate the same hash for different input (Confidentiality) 
-2. SHA-160 (Secure Hash Algorithm 1): is a 160-bit (20byte) hash value, commonly renders as a 40-digit hexadecimal 
+2. **SHA-160 (Secure Hash Algorithm 1)**: is a 160-bit (20byte) hash value, commonly renders as a 40-digit hexadecimal 
 	- It was widely used for various security applications and protocols, including TLS, SSL, PGP, SSH, S/MIME, and IPsec. 
-3. SHA-256 (Secure Hash Algorithm 2): is a 256-bit that produces a fixed-size output known as hash value or hash digest. NO matter the size, the resulting hash will be 256bits (32bytes)  
-- Secure against collision and preimage attacks, making it suitable for cryptographic applications  
-    
-	![[435.png]]
+3. **SHA-256 (Secure Hash Algorithm 2)**: is a 256-bit that produces a fixed-size output known as hash value or hash digest. NO matter the size, the resulting hash will be 256bits (32bytes)  
+- Secure against collision and preimage attacks, making it suitable for cryptographic applications
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/959b48439de5b291054466ef07c941673268cf3a/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/435.png)
 	 
-
-Web Servers 
-1. Nginx Web Server 
+**Web Servers **
+1. **Nginx Web Server** 
 	- High-Performance web server that functions as a reverse proxy, load balancer, and HTTP cache  
 	- Known for stability rich feature set, simple configuration, and low source consumption.  
     
 	1. High Performance and Scalability: designed to handle many simultaneous connections with minimal resource usage. Use an asynchronous event-driven architecture that allows it to handle thousands of connections efficiently.  
-    
 	2. Reserve Proxy and Load Balancing: act as a reverse proxy, forwarding client requests to backend servers and returning the response to the clients. Supports load balancing, distributing incoming traffic across multiple servers to ensure no single server is overwhelmed. 
-    
 	3. Caching: Nginx can cache responses from backend servers, reducing the load on these servers and improving response time for clients.  
-    
 	4. Supporting Various Protocols: Supports HTTP, HTTPS, SMTP, POP3, and IMAP, making it versatile for different types of applications.  
-    
-	5. Security Features: provides robust security features, including SSL/TLS support, HTTP/2, and HTTP/3 protocols.  
-    
-	![[436.png]] 
+	5. Security Features: provides robust security features, including SSL/TLS support, HTTP/2, and HTTP/3 protocols.
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/959b48439de5b291054466ef07c941673268cf3a/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/436.png) 
 
-1. Apache HTTP Web Sever 
+2. **Apache HTTP Web Sever** 
 	- Commonly referred to as httpd open-source web server developed and maintained by the Apache Software Foundation. 
 	- Designed to provide a secure, efficient, and extensible server that complies with current http standards. 
+		1. Security and Efficiency: robust security features and efficient performance. It supports various authentication mechanisms, SSL/TLS encryption, and access control. Designed to handle high traffic loads.  
+		2. Extensibility: Supports a wide range of modules that can be added to extend functionality. The modular architecture allows users to customize the server to meet their specific needs.  
+		3. Cross-Platform Support: Apache HTTP server is compatible with multiple operating systems, including Unix, Linux and windows.   
     
-	1. Security and Efficiency: robust security features and efficient performance. It supports various authentication mechanisms, SSL/TLS encryption, and access control. Designed to handle high traffic loads.  
-    
-	2. Extensibility: Supports a wide range of modules that can be added to extend functionality. The modular architecture allows users to customize the server to meet their specific needs.  
-    
-	3. Cross-Platform Support: Apache HTTP server is compatible with multiple operating systems, including Unix, Linux and windows.   
-    
-	![[437.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/959b48439de5b291054466ef07c941673268cf3a/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/437.png)
 	 
-
-2. Caddy Web Server 2015 
-    
+3. **Caddy Web Server 2015** 
 	- Open Source, cross-platform web server written in Go, IT is known for it simplicity extensibility and automatic HTTPS features.  
+		1. Designed to be extensible platform for deploying long running services using a unified configuration that can be updated online with REST and API  
+		2. Ships with a set of standard modules, including http server, TLS, PKI, 
+		3. HTTP server module is primarily used for static file server and load-balancing reverse proxy 
     
-	
-	1. Designed to be extensible platform for deploying long running services using a unified configuration that can be updated online with REST and API  
-    
-	
-	2. Ships with a set of standard modules, including http server, TLS, PKI, 
-    
-	
-	3. HTTP server module is primarily used for static file server and load-balancing reverse proxy 
-    
-	![[438.png]]
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/959b48439de5b291054466ef07c941673268cf3a/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/438.png)
 	 
-
-2. Lighttpd Web Server 
+4. **Lighttpd Web Serve**r 
 	- Designed to be secure, fast, and standard-compliant.  
 	- Optimized for environments where speed and low resource usage are critical. 
-    
-	1. Low Memory Footprint: Uses less memory, making it ideal for servers with limited resources. 
-	2. Fast CGI, SCGI, CGI Support: allow web applications written in various programming languages to be used with lighttpd.
-	3. Load Balancing and Proxy Support: Lightlpd can distribute incoming requests across mulitple backend servers, improving performance and reliability. 
-	4. TLS/SSL Support: Supports secure connection using various TLS/SSL libraries. 
-	5. Conditional URL Rewriting: The mod_rewrite module allows for flexible URL manipulation, useful for SEO and other purposes. 
-	6. Virtual Heading: Supports flexible virtual hosting configurations.  
-    
-	![[439.png]]
+		1. Low Memory Footprint: Uses less memory, making it ideal for servers with limited resources. 
+		2. Fast CGI, SCGI, CGI Support: allow web applications written in various programming languages to be used with lighttpd.
+		3. Load Balancing and Proxy Support: Lightlpd can distribute incoming requests across mulitple backend servers, improving performance and reliability. 
+		4. TLS/SSL Support: Supports secure connection using various TLS/SSL libraries. 
+		5. Conditional URL Rewriting: The mod_rewrite module allows for flexible URL manipulation, useful for SEO and other purposes. 
+		6. Virtual Heading: Supports flexible virtual hosting configurations.  
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/959b48439de5b291054466ef07c941673268cf3a/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/439.png)
 	 
-
-Security Concepts and Frameworks  
-
+******Security Concepts and Frameworks******  
 EDR (Endpoint Detection and Response) 
-
 - EDR is a cybersecurity technology designed to continuously monitor endpoints (computers IoT (Internet of Things)) 
 - Help organizations protect against serious cyber threats by providing visibility into malicious activities and enable automated responses to mitigate the risk. 
     
