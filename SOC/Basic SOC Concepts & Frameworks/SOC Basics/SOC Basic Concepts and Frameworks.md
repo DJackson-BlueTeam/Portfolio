@@ -62,8 +62,8 @@
 
 - Application Protocols – Define rules for communication between applications
   - _File Transfer_: FTP, TFTP
-  - _Web Communication_: HTTP, HTTPS 
-  - _Domain Name Resolution_: DNS converts domain names to IP addresses.
+  - _Web Communication_: HTTP, HTTPS
+  - _Domain Name Resolution_: DNS converts domain names to IP addresses.
   - _Messaging_: XMPP "Extensible and Message Presence Protocol": Port 80/443 is good for supporting a wide range of applications including instant messaging and presence information and multipart chats. 
 
 - Session Management – Manages and synchronizes communication sessions.
