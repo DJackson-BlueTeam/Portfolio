@@ -74,19 +74,19 @@
 **DNS (Domain Name System) Look-up Processes** 
 	- The DNS lookup process translates human-readable domain names into IP addresses within the network for communication.
  - Steps
-   a. Local Cache Check 
+   - Local Cache Check 
 				- The system first checks its local DNS cache, or the host file for IP addresses. If found, the process ends.
-   b. Query to Recursive Resolver 
+   - Query to Recursive Resolver 
 				- If the IP is not cached locally, the query is sent to a Recursive DNS Resolver, which is provided by the user’s ISP (Internet Service Provider). This resolver i responsible for performing the full DNS resolution process.
-   c. Root Name Server 
+   - Root Name Server 
 				- The recursive resolver queries one of the 13 globally Root Name Servers. These Servers do not store the IP address but direct the resolver to the appropriate TLD (Top-Level-Domain) based on the domain extension (.com, .org etc.) 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/959b48439de5b291054466ef07c941673268cf3a/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/431.png)
-		
-	d. TLD (Top-Level-Domain) Name Servers 
-		- Provides the address of the Authoritative Name Server for the domain  
-		5. Authoritative Name Server  
-		- The Resolver queries the Authoritative Name Server, which holds the actual IP address of the domain. This server responds with the IP address.  
-	e. aching and Response 
+
+  - TLD (Top-Level-Domain) Name Servers 
+	- Provides the address of the Authoritative Name Server for the domain
+  - Authoritative Name Server  
+	- The Resolver queries the Authoritative Name Server, which holds the actual IP address of the domain. This server responds with the IP address.
+  - Caching and Response 
 		- The recursive resolve caches the IP address for future queries and sends it back to the user’s device. The browser then uses this IP to establish a connection with the target server.   
 		- Recursive Query: The client requests the resolver to handle the entire lookup process and return the final IP address.  
 		- Iterative Query: The resolver queries each DNS server in the hierarchy step-by-step, recieving referrals until the IP address is found.  
@@ -142,14 +142,14 @@
     
 9. Volumetric Attacks 
 	-  Aims to consume bandwidth and saturate the network. The measure here is in bit per second(bps) which can cause attackes to scale to hundreds of gigabits or terabits per second.
-	a. DNS Amplification
-		- Adversaries send DNS queries with a spoofed source IP address to open DNS resolvers.
-	b. UDP Flood
-		- These resolvers reply to the target with large “ANY” response packets
-   	c. ICMP (Internet Control Message Protocol)
-   		- Adversary Bombard the target wit ICMP echo-request to (“ping”) packets
-       	- The target attempts to reply with echo-reply, tying up resources.
-      	- This type can overwhelm both bandwidth and processing capacity.
+ 		- DNS Amplification
+			- Adversaries send DNS queries with a spoofed source IP address to open DNS resolvers.
+		- UDP Flood
+			- These resolvers reply to the target with large “ANY” response packets
+    	- ICMP (Internet Control Message Protocol)
+   			- Adversary Bombard the target wit ICMP echo-request to (“ping”) packets
+       		- The target attempts to reply with echo-reply, tying up resources.
+      		- This type can overwhelm both bandwidth and processing capacity.
 11. RST-FIN Flood 
 		- This is a TCP-based volumetric attack using RST (reset) and FIN (finish) packets  
 		-  Since FIN and RST packets are used to gracefully and forcefully shutdown connections, flooding of them can confuse TCP stacks on targeted system.   
@@ -159,9 +159,9 @@
 		- The reply flood can overwhelm the victim’s bandwidth and processing   
 
 **Cryptography**
-	- The practice of securing communication by converting plain text into ciphertext, ensuring that only authorized parties can access the information.   derive from Greek word “kryptos” meaning hidden 
+	- The practice of securing communication by converting plain text into ciphertext, ensuring that only authorized parties can access the information. Derive from Greek word “kryptos” meaning hidden 
 	- Confidentiality – Ensure that information can only be accessed by the intended recipient. 
-	 - Integrity – Guarantees that information cannot be altered during storage or transmission without detection. 
+	- Integrity – Guarantees that information cannot be altered during storage or transmission without detection. 
 	- Authentication – Confirms the identity of the sender and receiver, as well as the origin and destination of the information.  
 
 **Symmetric Encryption and Asymmetric Encryption**  
@@ -215,11 +215,11 @@
 	- High-Performance web server that functions as a reverse proxy, load balancer, and HTTP cache  
 	- Known for stability rich feature set, simple configuration, and low source consumption.  
     
-	1. High Performance and Scalability: designed to handle many simultaneous connections with minimal resource usage. Use an asynchronous event-driven architecture that allows it to handle thousands of connections efficiently.  
-	2. Reserve Proxy and Load Balancing: act as a reverse proxy, forwarding client requests to backend servers and returning the response to the clients. Supports load balancing, distributing incoming traffic across multiple servers to ensure no single server is overwhelmed. 
-	3. Caching: Nginx can cache responses from backend servers, reducing the load on these servers and improving response time for clients.  
-	4. Supporting Various Protocols: Supports HTTP, HTTPS, SMTP, POP3, and IMAP, making it versatile for different types of applications.  
-	5. Security Features: provides robust security features, including SSL/TLS support, HTTP/2, and HTTP/3 protocols.
+		1. High Performance and Scalability: designed to handle many simultaneous connections with minimal resource usage. Use an asynchronous event-driven architecture that allows it to handle thousands of connections efficiently.  
+		2. Reserve Proxy and Load Balancing: act as a reverse proxy, forwarding client requests to backend servers and returning the response to the clients. Supports load balancing, distributing incoming traffic across multiple servers to ensure no single server is overwhelmed. 
+		3. Caching: Nginx can cache responses from backend servers, reducing the load on these servers and improving response time for clients.  
+		4. Supporting Various Protocols: Supports HTTP, HTTPS, SMTP, POP3, and IMAP, making it versatile for different types of applications.  
+		5. Security Features: provides robust security features, including SSL/TLS support, HTTP/2, and HTTP/3 protocols.
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/959b48439de5b291054466ef07c941673268cf3a/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/436.png) 
 
 2. **Apache HTTP Web Sever** 
@@ -257,7 +257,8 @@ EDR (Endpoint Detection and Response) 
     
 XDR (Extended Detection and Response)  
 - Unified security incident platform that enhances threat detection and responses across various security tools and environments.
-- Collects threat data from previously security tools, allowing easier and faster investigation and response to advance cyber-attacks. 
+- Collects threat data from previously security tools, allowing easier and faster investigation and response to advance cyber-attacks.
+ 
 MDR (Managed Detection Response) 
 - Proactive cyber security solution designed to protect organizations from a wide range of cyber threats, including ransomware, phishing and APT (Advanced Persistent Threats) 
 - Continuous Monitoring and rapid incident response, helping organization to identify and mitigate threats before that cause damage.  
@@ -266,7 +267,7 @@ AV (Anti-Virus)Software  
 - It is a security program that is designed to prevent, detect, and remove malicious software from the computer or network.  
 - Modern AV protects against a wide range of threats.  
 
-Why are EDR, XDR, and MDR better than AVS? 
+**Why are EDR, XDR, and MDR better than AVS?** 
 - AVS is primarily a reactive software, meaning that it relies on signature base detections and does not protect against new malware or Zero-Day exploitations.  
     
 Alert Triage 
