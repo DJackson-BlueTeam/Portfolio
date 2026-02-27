@@ -39,7 +39,7 @@
   	- _Complete_: Both parties send a message to verify that the handshake  was successful, and the connection is secure.  
 
 2. SSL (Secure Socket Layer) provides privacy, authentication, and data integrit for internet communication. Designed to encrypt data transmitted between a web server and browser to protect attacks from adversaries.
-   - Steps: 
+- Steps: 
 				1. Encryption: SSL encrypt data to ensure privacy. If someone intercepts  the data, they will see only the jumble characters.  
 				2.  Authentication: SSL initiates an authentication process called a handshake between two devices to confirm their identities.  
 				3. Data Integrity: SSL digitally signs data to ensure it hasn’t been tampered with, verifying that the data received is exactly what was sent by  the sender. 
