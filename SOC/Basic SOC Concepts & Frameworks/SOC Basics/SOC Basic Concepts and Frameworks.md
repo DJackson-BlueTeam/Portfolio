@@ -102,7 +102,7 @@
 3. DNS Amplification (DOS (Denial of Service)/DDOS (Distributed denial of Service)) 
 	- When an adversary sends small DNS queries with a spoofed source IP address (target address) to open the DNS resolver. The resolver responds with large packets to the target IP, causing overwhelming traffic to the target networks.  
     
-**Types of DDOS/DOS Attacks **
+**Types of DDOS/DOS Attacks**
 
 1. Application Layer attacks (Layer 7)  
 	- It is the very front of your infrastructure.  
