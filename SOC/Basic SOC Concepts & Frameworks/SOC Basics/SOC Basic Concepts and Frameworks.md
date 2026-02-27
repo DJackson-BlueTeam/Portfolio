@@ -38,13 +38,13 @@
   	- _Change Cipher Spec_: Both the client and server send a message  indicating that future messages will be encrypted.
   	- _Complete_: Both parties send a message to verify that the handshake  was successful, and the connection is secure.  
 
-2. SSL (Secure Socket Layer) provides privacy, authentication, and data integrit for internet communication. Designed to encrypt data transmitted between a web server and browser to protect attacks from adversaries.
-- Steps: 
-				1. Encryption: SSL encrypt data to ensure privacy. If someone intercepts  the data, they will see only the jumble characters.  
-				2.  Authentication: SSL initiates an authentication process called a handshake between two devices to confirm their identities.  
-				3. Data Integrity: SSL digitally signs data to ensure it hasn’t been tampered with, verifying that the data received is exactly what was sent by  the sender. 
-				4. JPEG (Joint Photographic Experts Group): a committee that develops and maintains various digital images standards, including the widely used JPEG image compress format.  
-				5. MPEG (Moving Pictures Experts Group): an international organization that developed standards for compression, decompression and digital representation of audio and video data.  
+- SSL (Secure Socket Layer) - provides privacy, authentication, and data integrit for internet communication. Designed to encrypt data transmitted between a web server and browser to protect attacks from adversaries.
+- Steps:
+	- Encryption: SSL encrypt data to ensure privacy. If someone intercepts  the data, they will see only the jumble characters.
+ 	- Authentication: SSL initiates an authentication process called a handshake between two devices to confirm their identities.
+  	- Data Integrity: SSL digitally signs data to ensure it hasn’t been tampered with, verifying that the data received is exactly what was sent by  the sender.
+  		- JPEG (Joint Photographic Experts Group): a committee that develops and maintains various digital images standards, including the widely used JPEG image compress format.
+  	 	- MPEG (Moving Pictures Experts Group): an international organization that developed standards for compression, decompression and digital representation of audio and video data.  
 
 7. **Application Layer**  
 	- Top layer of the OSI model that directly interacts with the end-user applications. This layer provides interface protocol that enables software to communicate over the networks, making sure the data is presented in a useable way while also handling compression, encryption and error control.  
