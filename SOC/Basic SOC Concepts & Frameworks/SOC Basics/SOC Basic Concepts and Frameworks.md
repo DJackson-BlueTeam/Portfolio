@@ -72,8 +72,8 @@
  - Token Management: Prevents data collisions in half-duplex systems.
  - Real-Time Communication: SIP (Session Setup), RTP (real-time media delivery) 
 **DNS (Domain Name System) Look-up Processes** 
-	- The DNS lookup process translates human-readable domain names into IP addresses within the network for communication.  
-Steps
+	- The DNS lookup process translates human-readable domain names into IP addresses within the network for communication.
+ - Steps
    1. Local Cache Check 
 				- The system first checks its local DNS cache, or the host file for IP addresses. If found, the process ends.
    2. Query to Recursive Resolver 
