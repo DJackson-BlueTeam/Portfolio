@@ -67,18 +67,18 @@
   - _Messaging_: XMPP "Extensible and Message Presence Protocol": Port 80/443 is good for supporting a wide range of applications including instant messaging and presence information and multipart chats. 
 
 - Session Management – Manages and synchronizes communication sessions.
- - _Session Establishment and Termination_: Handles login/logout processes
- - _Synchronization_: Uses checkpoints for recovery in large transfers.
- - _Token Management_: Prevents data collisions in half-duplex systems.
- - _Real-Time Communication_: SIP (Session Setup), RTP (real-time media delivery) 
+ - Session Establishment and Termination: Handles login/logout processes
+ - Synchronization: Uses checkpoints for recovery in large transfers.
+ - Token Management: Prevents data collisions in half-duplex systems.
+ - Real-Time Communication: SIP (Session Setup), RTP (real-time media delivery) 
 **DNS (Domain Name System) Look-up Processes** 
 	- The DNS lookup process translates human-readable domain names into IP addresses within the network for communication.  
-Steps: 
-	1. Local Cache Check 
-				- The system first checks its local DNS cache, or the host file for IP addresses. If found, the process ends. 
-	2. Query to Recursive Resolver 
-				- If the IP is not cached locally, the query is sent to a Recursive DNS Resolver, which is provided by the user’s ISP (Internet Service Provider). This resolver i responsible for performing the full DNS resolution process.  
-	3. Root Name Server 
+Steps
+   1. Local Cache Check 
+				- The system first checks its local DNS cache, or the host file for IP addresses. If found, the process ends.
+   2. Query to Recursive Resolver 
+				- If the IP is not cached locally, the query is sent to a Recursive DNS Resolver, which is provided by the user’s ISP (Internet Service Provider). This resolver i responsible for performing the full DNS resolution process.
+   3. Root Name Server 
 				- The recursive resolver queries one of the 13 globally Root Name Servers. These Servers do not store the IP address but direct the resolver to the appropriate TLD (Top-Level-Domain) based on the domain extension (.com, .org etc.) 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/959b48439de5b291054466ef07c941673268cf3a/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/431.png)
 		
