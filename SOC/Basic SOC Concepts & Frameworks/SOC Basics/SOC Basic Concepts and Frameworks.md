@@ -215,39 +215,39 @@
 	- High-Performance web server that functions as a reverse proxy, load balancer, and HTTP cache  
 	- Known for stability rich feature set, simple configuration, and low source consumption.  
     
-		1. High Performance and Scalability: designed to handle many simultaneous connections with minimal resource usage. Use an asynchronous event-driven architecture that allows it to handle thousands of connections efficiently.  
-		2. Reserve Proxy and Load Balancing: act as a reverse proxy, forwarding client requests to backend servers and returning the response to the clients. Supports load balancing, distributing incoming traffic across multiple servers to ensure no single server is overwhelmed. 
-		3. Caching: Nginx can cache responses from backend servers, reducing the load on these servers and improving response time for clients.  
-		4. Supporting Various Protocols: Supports HTTP, HTTPS, SMTP, POP3, and IMAP, making it versatile for different types of applications.  
-		5. Security Features: provides robust security features, including SSL/TLS support, HTTP/2, and HTTP/3 protocols.
+	1. High Performance and Scalability: designed to handle many simultaneous connections with minimal resource usage. Use an asynchronous event-driven architecture that allows it to handle thousands of connections efficiently.  
+	2. Reserve Proxy and Load Balancing: act as a reverse proxy, forwarding client requests to backend servers and returning the response to the clients. Supports load balancing, distributing incoming traffic across multiple servers to ensure no single server is overwhelmed. 
+	3. Caching: Nginx can cache responses from backend servers, reducing the load on these servers and improving response time for clients.  
+	4. Supporting Various Protocols: Supports HTTP, HTTPS, SMTP, POP3, and IMAP, making it versatile for different types of applications.  
+	5. Security Features: provides robust security features, including SSL/TLS support, HTTP/2, and HTTP/3 protocols.
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/959b48439de5b291054466ef07c941673268cf3a/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/436.png) 
 
 2. **Apache HTTP Web Sever** 
 	- Commonly referred to as httpd open-source web server developed and maintained by the Apache Software Foundation. 
 	- Designed to provide a secure, efficient, and extensible server that complies with current http standards. 
-		1. Security and Efficiency: robust security features and efficient performance. It supports various authentication mechanisms, SSL/TLS encryption, and access control. Designed to handle high traffic loads.  
-		2. Extensibility: Supports a wide range of modules that can be added to extend functionality. The modular architecture allows users to customize the server to meet their specific needs.  
-		3. Cross-Platform Support: Apache HTTP server is compatible with multiple operating systems, including Unix, Linux and windows.   
+	1. Security and Efficiency: robust security features and efficient performance. It supports various authentication mechanisms, SSL/TLS encryption, and access control. Designed to handle high traffic loads.  
+	2. Extensibility: Supports a wide range of modules that can be added to extend functionality. The modular architecture allows users to customize the server to meet their specific needs.  
+	3. Cross-Platform Support: Apache HTTP server is compatible with multiple operating systems, including Unix, Linux and windows.   
     
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/959b48439de5b291054466ef07c941673268cf3a/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/437.png)
 	 
 3. **Caddy Web Server 2015** 
 - Open Source, cross-platform web server written in Go, IT is known for it simplicity extensibility and automatic HTTPS features.  
-		1. Designed to be extensible platform for deploying long running services using a unified configuration that can be updated online with REST and API  
-		2. Ships with a set of standard modules, including http server, TLS, PKI, 
-		3. HTTP server module is primarily used for static file server and load-balancing reverse proxy 
+	1. Designed to be extensible platform for deploying long running services using a unified configuration that can be updated online with REST and API  
+	2. Ships with a set of standard modules, including http server, TLS, PKI, 
+	3. HTTP server module is primarily used for static file server and load-balancing reverse proxy 
     
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/959b48439de5b291054466ef07c941673268cf3a/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/438.png)
 	 
 4. **Lighttpd Web Serve**r 
 - Designed to be secure, fast, and standard-compliant.  
 - Optimized for environments where speed and low resource usage are critical. 
-		1. Low Memory Footprint: Uses less memory, making it ideal for servers with limited resources. 
-		2. Fast CGI, SCGI, CGI Support: allow web applications written in various programming languages to be used with lighttpd.
-		3. Load Balancing and Proxy Support: Lightlpd can distribute incoming requests across mulitple backend servers, improving performance and reliability. 
-		4. TLS/SSL Support: Supports secure connection using various TLS/SSL libraries. 
-		5. Conditional URL Rewriting: The mod_rewrite module allows for flexible URL manipulation, useful for SEO and other purposes. 
-		6. Virtual Heading: Supports flexible virtual hosting configurations.  
+	1. Low Memory Footprint: Uses less memory, making it ideal for servers with limited resources. 
+	2. Fast CGI, SCGI, CGI Support: allow web applications written in various programming languages to be used with lighttpd.
+	3. Load Balancing and Proxy Support: Lightlpd can distribute incoming requests across mulitple backend servers, improving performance and reliability. 
+	4. TLS/SSL Support: Supports secure connection using various TLS/SSL libraries. 
+	5. Conditional URL Rewriting: The mod_rewrite module allows for flexible URL manipulation, useful for SEO and other purposes. 
+	6. Virtual Heading: Supports flexible virtual hosting configurations.  
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/959b48439de5b291054466ef07c941673268cf3a/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/439.png)
 	 
 **Security Concepts and Frameworks**  
