@@ -8,12 +8,12 @@ Network OSI Model (Open System Interconnection) 7 Layers 
 	1. MAC (Media Access Control) Address (1A:2B:3C:4D:5E:6F) is a 48 bit that is in a group of 6 of 2 hexadecimal identifiers assigned to a NIC (Network Interface Controller) for network connection on a network. Can be used for ARP (Address Resolution Protocol) spoofing or MitM attacks by adversaries. 
 3. Network Layer  
 	- Manages routing and logical IP addresses (Internet Protocol Address) to deliver packets across the network.  
-	1. IPv4 (123.456.7.8) – is a 32bit address space that provides 4.3 billion unique addresses that is divided into 3 parts of the IPv4.  
-	I. Network: identifies the network 
-	II. Host: Identifies the machine on the network 
-	III. Subnet Number: optional part of the IPv4 to divide large network into  smaller sub-networks.  
-	2. IPv6 (2001:0db8:0000:0000:0000:8a2e:0370:7334) or (2001:db8::8a2e:370:7334) omitting zeros – is a 128-bit address that simplifies the headers address to reduce the process by routers.  
-		I. Support SLAAC (Stateless Address Autoconfiguration Configuration) -  allows devices to configure their own IP address automatically without the  need of a DHCP (Domain Host Configuration Protocol) - Automate the  process of configuring devices on IP networks. It allows devices to receive IP  addresses and other network configurations dynamically. 
+		- IPv4 (123.456.7.8): is a 32bit address space that provides 4.3 billion unique addresses that is divided into 3 parts of the IPv4.  
+			- Network: identifies the network 
+			- Host: Identifies the machine on the network 
+			- Subnet Number: optional part of the IPv4 to divide large network into  smaller sub-networks.  
+		- IPv6 (2001:0db8:0000:0000:0000:8a2e:0370:7334) or (2001:db8::8a2e:370:7334) omitting zeros: is a 128-bit address that simplifies the headers address to reduce the process by routers.  
+		  	- Support SLAAC (Stateless Address Autoconfiguration Configuration) -  allows devices to configure their own IP address automatically without the  need of a DHCP (Domain Host Configuration Protocol): Automate the  process of configuring devices on IP networks. It allows devices to receive IP  addresses and other network configurations dynamically. 
 4. Transport Layer  
 	- Provides end-to-end delivery protocols utilizing TCP and UDP. 
     
