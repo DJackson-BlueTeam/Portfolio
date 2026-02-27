@@ -13,8 +13,8 @@ Network OSI Model (Open System Interconnection) 7 Layers 
 			- Host: Identifies the machine on the network 
 			- Subnet Number: optional part of the IPv4 to divide large network into  smaller sub-networks.  
 		- IPv6 (2001:0db8:0000:0000:0000:8a2e:0370:7334) or (2001:db8::8a2e:370:7334) omitting zeros: is a 128-bit address that simplifies the headers address to reduce the process by routers.  
-		- Support SLAAC (Stateless Address Autoconfiguration Configuration) -  allows devices to configure their own IP address automatically without the  need of a DHCP.
-  		- Domain Host Configuration Protocol: Automate the  process of configuring devices on IP networks. It allows devices to receive IP addresses and other network configurations dynamically. 
+			- Support SLAAC (Stateless Address Autoconfiguration Configuration) -  allows devices to configure their own IP address automatically without the  need of a DHCP.
+  			- Domain Host Configuration Protocol: Automate the  process of configuring devices on IP networks. It allows devices to receive IP addresses and other network configurations dynamically. 
 4. Transport Layer  
 	- Provides end-to-end delivery protocols utilizing TCP and UDP. 
     
