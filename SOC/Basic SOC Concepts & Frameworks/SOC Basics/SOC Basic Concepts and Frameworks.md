@@ -26,8 +26,8 @@
 	- Establishes, manages, and terminates sessions between end-user applications. Ensures that data streams are properly synchronized and managed to prevent data loss and ensure seamless communication. 
 
 6.**Presentation Layer**  
-	- Translates, encrypts, and compresses data for the application layer. 
-	TLS (Transport Layer Security) - a cryptographic protocol, to provide secure communication over a computer network. Ensure privacy, data integrity, and authentication between two applications that are communicating. 
+- Translates, encrypts, and compresses data for the application layer.
+- TLS (Transport Layer Security) - a cryptographic protocol, to provide secure communication over a computer network. Ensure privacy, data integrity, and authentication between two applications that are communicating. 
 	
 - Steps: TLS Handshake: establishes a secure connection between the client and  the server.
 	- _Client Hello_: Client sends a message to the server with its supported  TLS versions, cipher suites with random numbers.
