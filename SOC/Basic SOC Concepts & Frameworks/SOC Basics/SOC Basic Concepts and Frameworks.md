@@ -251,26 +251,26 @@
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/959b48439de5b291054466ef07c941673268cf3a/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/439.png)
 	 
 **Security Concepts and Frameworks**  
-EDR (Endpoint Detection and Response) 
+**EDR (Endpoint Detection and Response)** 
 - EDR is a cybersecurity technology designed to continuously monitor endpoints (computers IoT (Internet of Things)) 
 - Help organizations protect against serious cyber threats by providing visibility into malicious activities and enable automated responses to mitigate the risk. 
     
-XDR (Extended Detection and Response)  
+**XDR (Extended Detection and Response)**  
 - Unified security incident platform that enhances threat detection and responses across various security tools and environments.
 - Collects threat data from previously security tools, allowing easier and faster investigation and response to advance cyber-attacks.
  
-MDR (Managed Detection Response) 
+**MDR (Managed Detection Response)** 
 - Proactive cyber security solution designed to protect organizations from a wide range of cyber threats, including ransomware, phishing and APT (Advanced Persistent Threats) 
 - Continuous Monitoring and rapid incident response, helping organization to identify and mitigate threats before that cause damage.  
 
-AV (Anti-Virus)Software  
+**AV (Anti-Virus)Software**  
 - It is a security program that is designed to prevent, detect, and remove malicious software from the computer or network.  
 - Modern AV protects against a wide range of threats.  
 
 **Why are EDR, XDR, and MDR better than AVS?** 
 - AVS is primarily a reactive software, meaning that it relies on signature base detections and does not protect against new malware or Zero-Day exploitations.  
     
-Alert Triage 
+**Alert Triage** 
 	
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/d9fbe5941622bec1620594395511d90ac3248b10/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/440.png) 
 	
@@ -340,7 +340,7 @@ index=<log-file> Source_ip=<IPv4 ip address> 
 4. Kibana – a web–based data tool that works with Elastic Search to analyze, investigate and visualize data streams in real-time. 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/d9fbe5941622bec1620594395511d90ac3248b10/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/448.png) 
 
-SOAR (Security Orchestration, Automation, and Response) 
+**SOAR (Security Orchestration, Automation, and Response)** 
 
 Unifies all tools that are used in a SOC (SIEM, EDR, and Firewall). Can operate all tools within a single SOAR environment. 
 
@@ -352,16 +352,7 @@ Unifies all tools that are used in a SOC (SIEM, EDR, and Firewall). Can operate
 
 3. Response – the ability to take actions based on the playbook the Detection Engineer placed to reduce the hassle on manually analyzing every bit of information from the malicious links, attachments, payload.exe and more.  
     
-
-Example: Phishing Playbook 
-
-
-
-Example: CVE (Common Vulnerability Exposers) Playbook 
-
-
-
-Pyramid of Pain 
+**Pyramid of Pain** 
 
 These are the initial steps an adversary may take to attempt to get a foot hold in a victim's machines whether it is a host or network based malicious operation. 
 
