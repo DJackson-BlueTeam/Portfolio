@@ -57,8 +57,8 @@
 - Network Services Access – Provides applications with access to network-based functions.
   - _Email Services_: SMTP (Simple Mail Transfer Protocol) /Port 587 sends  emails. POP3 (Post Office Protocol) /Port 995 or non-secure Port 110 and IMAP (Internet Message Access Protocol)/Port 993 incoming mails and  143 outgoing mails.
   - _File Transfer_: FTP (File Transfer Protocol) Port 21(sending commands/managing between client and server)/20(data transfer port for transferring files in active mode) TFTP (lightweight of FTP).
-  - _Web Servers_: HTTP (HyperTextTransferProtocol) port 80, HTTPS(HyperTextTransferProtocolSecure) port 443.
-  - _Remote Access_: Telnet(basic) SSH (Secure Shell) port 22. 
+  -  _Web Servers_: HTTP (HyperTextTransferProtocol) port 80, HTTPS(HyperTextTransferProtocolSecure) port 443.
+  -   Remote Access_: Telnet(basic) SSH (Secure Shell) port 22. 
 
 - Application Protocols – Define rules for communication between applications
   - _File Transfer_: FTP, TFTP
