@@ -31,17 +31,12 @@
 	
 - Steps: TLS Handshake: establishes a secure connection between the client and  the server.
 	- Client Hello: Client sends a message to the server with its supported  TLS versions, cipher suites with random numbers.
- 	- Server Hello: Server responds with it chosen TLS version, cipher suites  with randoms numbers
-   
-  	- Certificate: The server sends it digital certificate to the client for  authentication.
-     
-  	- Server Key Exchange: The server sends it public key or other key  exchange information
-  
-  	- Client Key Exchange: The client generates a pre-master secret key,  encrypts it with the server's public key, and then sends it to the server.
-   
-  	- Change Cipher Spec: Both the client and server send a message  indicating that future messages will be encrypted.
-     
-  	- Complete: Both parties send a message to verify that the handshake  was successful, and the connection is secure.  
+ 	- Server Hello: Server responds with it chosen TLS version, cipher suites  with randoms numbers.
+  	- Certificate: The server sends it digital certificate to the client for  authentication.
+  	- Server Key Exchange: The server sends it public key or other key  exchange information.
+  	- Client Key Exchange: The client generates a pre-master secret key,  encrypts it with the server's public key, and then sends it to the server.
+  	- Change Cipher Spec: Both the client and server send a message  indicating that future messages will be encrypted.
+  	- Complete: Both parties send a message to verify that the handshake  was successful, and the connection is secure.  
 
 2. SSL (Secure Socket Layer) provides privacy, authentication, and data integrit for internet communication. Designed to encrypt data transmitted between a web server and browser to protect attacks from adversaries.      
 			- Steps: 
