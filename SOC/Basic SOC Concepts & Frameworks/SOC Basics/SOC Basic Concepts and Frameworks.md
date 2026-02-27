@@ -40,15 +40,16 @@
 
 - SSL (Secure Socket Layer) - provides privacy, authentication, and data integrit for internet communication. Designed to encrypt data transmitted between a web server and browser to protect attacks from adversaries.
 - Steps:
-	- Encryption: SSL encrypt data to ensure privacy. If someone intercepts  the data, they will see only the jumble characters.
- 	- Authentication: SSL initiates an authentication process called a handshake between two devices to confirm their identities.
-  	- Data Integrity: SSL digitally signs data to ensure it hasn’t been tampered with, verifying that the data received is exactly what was sent by  the sender.
+	- _Encryption_: SSL encrypt data to ensure privacy. If someone intercepts  the data, they will see only the jumble characters.
+ 	- _Authentication_: SSL initiates an authentication process called a handshake between two devices to confirm their identities.
+  	- _Data Integrity_: SSL digitally signs data to ensure it hasn’t been tampered with, verifying that the data received is exactly what was sent by  the sender.
   		- JPEG (Joint Photographic Experts Group): a committee that develops and maintains various digital images standards, including the widely used JPEG image compress format.
   	 	- MPEG (Moving Pictures Experts Group): an international organization that developed standards for compression, decompression and digital representation of audio and video data.  
 
-7. **Application Layer**  
-	- Top layer of the OSI model that directly interacts with the end-user applications. This layer provides interface protocol that enables software to communicate over the networks, making sure the data is presented in a useable way while also handling compression, encryption and error control.  
-		- Data Representation: Ensure that transmitted data is in a format the receiving application can understand. 
+7. **Application Layer**
+   - Top layer of the OSI model that directly interacts with the end-user applications.
+   - This layer provides interface protocol that enables software to communicate over the networks, making sure the data is presented in a useable way while also handling compression, encryption and error control.
+   	- Data Representation: Ensure that transmitted data is in a format the receiving application can understand. 
 		 	1. Data Translation: Converts between formats (ASCII (American Standard Code for Information Interchange) - EBCDIC (Extended Binary Coded Decimal Interchange Code)) 
 			2. Character Encoding/Decoding: Uses standards UTF-8 bits (Unicode  Transfer Format) or Unicode
 			3. Data Compression: Reduces file size for faster transfer 
