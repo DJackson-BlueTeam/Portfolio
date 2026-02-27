@@ -160,7 +160,7 @@
 		- Source IP is forged to be that of the target, so all broadcast devices reply to the victim 
 		- The reply flood can overwhelm the victim’s bandwidth and processing   
 
-**Cryptography **
+**Cryptography**
 	- The practice of securing communication by converting plain text into ciphertext, ensuring that only authorized parties can access the information.   derive from Greek word “kryptos” meaning hidden 
 	- Confidentiality – Ensure that information can only be accessed by the intended recipient. 
 	 - Integrity – Guarantees that information cannot be altered during storage or transmission without detection. 
