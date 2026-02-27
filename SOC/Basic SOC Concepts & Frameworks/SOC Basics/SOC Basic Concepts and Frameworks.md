@@ -23,9 +23,9 @@
 		- UDP (User Datagram Protocol) - use for time sensitive transmission (video playback or DNS lookup). This protocol is connectionless and does not guarantee delivery, order, or error checking. This is classified as a light-weight protocol.  
     
 5. **Session Layer**  
-	- Establishes, manages, and terminates sessions between end-user applications. Ensures that data streams are properly synchronized and managed to prevent data loss and ensure seamless communication. 
+	- Establishes, manages, and terminates sessions between end-user applications. Ensures that data streams are properly synchronized and managed to prevent data loss and ensure seamless communication.
 
-6.**Presentation Layer**  
+6. **Presentation Layer**  
 - Translates, encrypts, and compresses data for the application layer.
 - TLS (Transport Layer Security) - a cryptographic protocol, to provide secure communication over a computer network. Ensure privacy, data integrity, and authentication between two applications that are communicating. 
 	
