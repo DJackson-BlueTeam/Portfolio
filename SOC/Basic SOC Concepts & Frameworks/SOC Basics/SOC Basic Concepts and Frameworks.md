@@ -1,5 +1,5 @@
 
-******Technical Fundamentals ******
+**Technical Fundamentals**
 **Network OSI Model (Open System Interconnection) 7 Layers** 
 1. **Physical Layer**  
 	- handles physical connections and transmissions of raw bit data. (cables, fiber wires, wireless) 
