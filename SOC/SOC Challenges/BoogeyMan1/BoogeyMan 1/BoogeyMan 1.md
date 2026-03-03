@@ -16,7 +16,7 @@ Questions 
 Answer: agriffin@bpakcaging.xyz 
 
 2. What is the email address of the victim?  
-Answer: julianne.westcott@hotmail.com 
+- Answer: julianne.westcott@hotmail.com 
 - We can see the receiver email in the screenshot above.  
     
 3. What is the name of the third-party mail relay service by the attacker based on the DKIM-Signature and List-Unsubscribe headers?  
