@@ -2,7 +2,7 @@
 
 **What is Splunk?** 
 
-- One of the leading SIEM (System Information Event Management System) that allows use to collect, analyze and correlate network/machine logs in real time.  
+- One of the leading SIEM (System Information Event Management System) that allows user to collect, analyze and correlate network/machine logs in real-time.  
     
 
 **Splunk Forward** 
