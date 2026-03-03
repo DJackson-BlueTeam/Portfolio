@@ -5,9 +5,11 @@
 **Nmap Scans** 
 - Industrial tool for mapping networks. 
 - It identifies hosts and discovering services
-- Some adversaries may use nmap in the  reconnaissance stage for network discovery to find vulnerabilities in the target network. 
+- Some adversaries may use nmap in the reconnaissance stage for network discovery to find vulnerabilities in the target network. 
 - FIN13 (financially motivated cyber threat group) that had use Nmap to scan for internal MS-SQL servers within the network ([Network Service Discovery, Technique T1046 - Enterprise | MITRE ATT&CK®](https://attack.mitre.org/techniques/T1046/))
-**Types of Nmap Scans**:  
+
+**Types of Nmap Scans**
+
 1. TCP Connect Scans 
 - Relies on a three-way handshake (needs to finish the handshake process). 
 - Usually conducted with nmap –sT <--- initiating a TCP Connect Scan; which is a default TCP scan type. Completing the full TCP three-way handshake. 
@@ -15,7 +17,7 @@
 - Usually has a windows size larger than 1024 bytes as the request expects some data due to the nature of the protocol.  
 - BADHATCH had used Nmap to scan for open ports on computers by establishing a TCP connection MITRE ATT&CK ID T1046 ([BADHATCH, Software S1081 | MITRE ATT&CK®](https://attack.mitre.org/software/S1081/)).
 
-**TCP flags:**
+**TCP flags**
 
 |   |   |
 |---|---|
@@ -54,7 +56,7 @@
 1. The window size indicates how many bytes the sender is willing to receive before requiring an acknowledgment. This part of the filter excludes packets with very small buffers, which might be used to identify specific types of traffic, operating systems, or to filter out certain types of automated scanning tools that use minimal window sizes.  
     
 
-TCP SYN Scans  
+**TCP SYN Scans**  
 
 - Doesn’t rely on the three-way handshake 
 - Usually conducted with nmap –sS  <--- this performs a TCP SYN Scan, often called “stealth” or “half-open” scan. This Never completes the handshake.  
