@@ -44,7 +44,7 @@ Answer: James 
     ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/6093d5c5d235a70a67aa35deada67cb17b68725e/SOC/ELK/Elastic%20Stack%20Images/Emanda1.png)] 
 
 Answer: 107.14.1.247
-- We can see that IP 107.14.1.247 had 53.6% of traffic compared to Ip 107.14.4.82.  
+- We can see that IP 107.14.1.247 had 53.6% of traffic compared to IP 107.14.4.82.  
     
 **5. On the 11th of Jan. Which IP caused the spike observed in the time chart?**  
     ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/6093d5c5d235a70a67aa35deada67cb17b68725e/SOC/ELK/Elastic%20Stack%20Images/Jan%2011th.png)
