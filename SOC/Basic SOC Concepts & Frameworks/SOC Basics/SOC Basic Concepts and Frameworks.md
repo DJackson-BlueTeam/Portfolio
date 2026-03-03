@@ -38,11 +38,11 @@
   		- _Change Cipher Spec_: Both the client and server send a message  indicating that future messages will be encrypted.
   		- _Complete_: Both parties send a message to verify that the handshake  was successful, and the connection is secure.  
 
-	- SSL (Secure Socket Layer) - provides privacy, authentication, and data integrit for internet communication. Designed to encrypt data transmitted between a web server and browser to protect attacks from adversaries.
+	- SSL (Secure Socket Layer) - provides privacy, authentication, and data integrity for internet communication. Designed to encrypt data transmitted between a web server and browser to protect attacks from adversaries.
 		- Steps:
-			- _Encryption_: SSL encrypt data to ensure privacy. If someone intercepts  the data, they will see only the jumble characters.
+			- _Encryption_: SSL encrypt data to ensure privacy. If someone intercepts the data, they will see only the jumble characters.
  			- _Authentication_: SSL initiates an authentication process called a handshake between two devices to confirm their identities.
-  			- _Data Integrity_: SSL digitally signs data to ensure it hasn’t been tampered with, verifying that the data received is exactly what was sent by  the sender.
+  			- _Data Integrity_: SSL digitally signs data to ensure it hasn’t been tampered with, verifying that the data received is exactly what was sent by the sender.
   			- JPEG (Joint Photographic Experts Group): a committee that develops and maintains various digital images standards, including the widely used JPEG image compress format.
   	 		- MPEG (Moving Pictures Experts Group): an international organization that developed standards for compression, decompression and digital representation of audio and video data.  
 
@@ -51,12 +51,12 @@
 - This layer provides interface protocol that enables software to communicate over the networks, making sure the data is presented in a useable way while also handling compression, encryption and error control.
   - _Data Representation_: Ensure that transmitted data is in a format the receiving application can understand.
   - _Data Translation_: Converts between formats (ASCII (American Standard Code for Information Interchange) - EBCDIC (Extended Binary Coded Decimal Interchange Code))
-  - _Character Encoding/Decoding_: Uses standards UTF-8 bits (Unicode  Transfer Format) or Unicode
+  - _Character Encoding/Decoding_: Uses standards UTF-8 bits (Unicode Transfer Format) or Unicode
   - _Data Compression_: Reduces file size for faster transfer.
   - _Encryption/Decryption_: Secure data.
 - Network Services Access – Provides applications with access to network-based functions.
-  - _Email Services_: SMTP (Simple Mail Transfer Protocol) /Port 587 sends  emails. POP3 (Post Office Protocol) /Port 995 or non-secure Port 110 and IMAP (Internet Message Access Protocol)/Port 993 incoming mails and  143 outgoing mails.
-  - _File Transfer_: FTP (File Transfer Protocol) Port 21(sending commands/managing between client and server)/20(data transfer port for transferring files in active mode) TFTP (lightweight of FTP).
+  - _Email Services_: SMTP (Simple Mail Transfer Protocol) /Port 587 sends emails. POP3 (Post Office Protocol) /Port 995 or non-secure Port 110 and IMAP (Internet Message Access Protocol)/Port 993 incoming mails and 143 outgoing mails.
+  - _File Transfer_: FTP (File Transfer Protocol) Port 21(sending commands/managing between client and server)/20 (data transfer port for transferring files in active mode) TFTP (lightweight of FTP).
   -  _Web Servers_: HTTP (HyperTextTransferProtocol) port 80, HTTPS(HyperTextTransferProtocolSecure) port 443.
   -   Remote Access_: Telnet(basic) SSH (Secure Shell) port 22. 
 
@@ -77,7 +77,7 @@
    - Local Cache Check 
 				- The system first checks its local DNS cache, or the host file for IP addresses. If found, the process ends.
    - Query to Recursive Resolver 
-				- If the IP is not cached locally, the query is sent to a Recursive DNS Resolver, which is provided by the user’s ISP (Internet Service Provider). This resolver i responsible for performing the full DNS resolution process.
+				- If the IP is not cached locally, the query is sent to a Recursive DNS Resolver, which is provided by the user’s ISP (Internet Service Provider). This resolver is responsible for performing the full DNS resolution process.
    - Root Name Server 
 				- The recursive resolver queries one of the 13 globally Root Name Servers. These Servers do not store the IP address but direct the resolver to the appropriate TLD (Top-Level-Domain) based on the domain extension (.com, .org etc.) 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/959b48439de5b291054466ef07c941673268cf3a/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/431.png)
@@ -90,24 +90,24 @@
 	- The recursive resolve caches the IP address for future queries and sends it back to the user’s device. The browser then uses this IP to establish a connection with the target server.   
 	- Recursive Query: The client requests the resolver to handle the entire lookup process and return the final IP address.  
 	- Iterative Query: The resolver queries each DNS server in the hierarchy step-by-step, recieving referrals until the IP address is found.  
-	- Caching: Is critical in improving DNS performance. DNs server and client temporarily store resolved queries to reduce lookup times for subsequent requests. Cached records have a TTL (Time-To-Live) value, after which they expire and must be refreshed.
+	- Caching: Is critical in improving DNS performance. DNS server and client temporarily store resolved queries to reduce lookup times for subsequent requests. Cached records have a TTL (Time-To-Live) value, after which they expire and must be refreshed.
  
 **Adversaries Abusing the DNS (Domain Name System) Look-up Processes** 
 1. DNS Spoofing and Cache Poisoning (ARP Spoofing/MitM Attacks) 
-	- Can introduce fraudulent DNS information into a resolver’s cache. When a user attempts to visit a website, the DNS resolver provides a malicious IP address, which redirects the use tot the site controlled by the adversary  
+	- Can introduce fraudulent DNS information into a resolver’s cache. When a user attempts to visit a website, the DNS resolver provides a malicious IP address, which redirects the user to the site controlled by the adversary  
     
 2. DNS Tunneling (nslookups/dnsteal.git/mimikatz (stealing credentials or dumping credentials) for windows systems) 
-	- Use DNS protocol to bypass network security measures such as firewalls. By encoding data in DNS queries and responses, adversaries can establishe a communication channel to exfiltrate sensitive data or provide remote (C2) command-control instructions tp infect machines. DNS traffic is usually left unmonitored if the right tools are not set in place (SIEM, EDR, MDR). 
+	- Use DNS protocol to bypass network security measures such as firewalls. By encoding data in DNS queries and responses, adversaries can establishe a communication channel to exfiltrate sensitive data or provide remote (C2) command-control instructions to infect machines. DNS traffic is usually left unmonitored if the right tools are not set in place (SIEM, EDR, MDR). 
     
 3. DNS Amplification (DOS (Denial of Service)/DDOS (Distributed denial of Service)) 
 	- When an adversary sends small DNS queries with a spoofed source IP address (target address) to open the DNS resolver. The resolver responds with large packets to the target IP, causing overwhelming traffic to the target networks.  
     
 **Types of DDOS/DOS Attacks**
 
-1. Application Layer attacks (Layer 7)  
+1. Application Layer Attacks (Layer 7)  
 	- It is the very front of your infrastructure.  
     
-2. DNS Server targeting Attacks  
+2. DNS Server Targeting Attacks  
 	- Attackers send spoofed, high-volume DNS requests, sometimes levergaing amplifications techniques. 
 	- Small queries can trigger a much larger response, overwhelming the DNS resolver. 
 	- Floods may appear legitimate, making the filtering difficult.  
@@ -120,12 +120,12 @@
 4. Protocol Attacks (Layer 3 and Layer 4) 
 	- Aim to exploit weaknesses in communication protocols. These attacks usual target network infrastructure to exhaust the server and network equipment 
     
-5. Ping of Deth  
+5. Ping of Death  
 	- Adversaries would send malformed ping packets that exceed permissible size. 
 	- Can cause crashes or reboot systems  
 	- Even though outdates, it remains a risk in poor patched systems  
     
-6. Synchronous Flood  
+6. Synchronous Floods  
 	- Abuses the TCP (Transmission Control Protocol) three-way-handshake  
 	- Sends numerous SYN packets with spoofed IPs to the server  
 	- The target responds with SYN-ACK and waits for final ACK but since the source is fake, the ack never replies.  
@@ -147,7 +147,7 @@
 		- UDP Flood
 			- These resolvers reply to the target with large “ANY” response packets
     	- ICMP (Internet Control Message Protocol)
-   			- Adversary Bombard the target wit ICMP echo-request to (“ping”) packets
+   			- Adversary Bombard the target with ICMP echo-request to (“ping”) packets
        		- The target attempts to reply with echo-reply, tying up resources.
       		- This type can overwhelm both bandwidth and processing capacity.
 11. RST-FIN Flood 
@@ -159,7 +159,7 @@
 		- The reply flood can overwhelm the victim’s bandwidth and processing   
 
 **Cryptography**
-- The practice of securing communication by converting plain text into ciphertext, ensuring that only authorized parties can access the information. Derive from Greek word “kryptos” meaning hidden 
+- The practice of securing communication by converting plain-text into ciphertext, ensuring that only authorized parties can access the information. Derive from Greek word “kryptos” meaning hidden 
 	- Confidentiality: Ensure that information can only be accessed by the intended recipient. 
 	- Integrity: Guarantees that information cannot be altered during storage or transmission without detection. 
 	- Authentication: Confirms the identity of the sender and receiver, as well as the origin and destination of the information.  
@@ -173,7 +173,8 @@
 2. Stream Ciphers 
 	- RC4: known for its simplicity and speed but now considered insecure  
 	- SAlasa20: Offers robust security and efficiency  
-	- Grain-128: Ideal for resource-limited environment  
+	- Grain-128: Ideal for resource-limited environment
+ 
 3. Block Ciphers  
 	- AES (Advanced Encryption Standard): support key sizes of 128, 192,  and 256 bits and is widely used for secure communication. 
 	- DES (Data Encryption Standard):  Uses a 56-bit key and now  considered insecure due to its small bits  
@@ -210,7 +211,7 @@
 - Secure against collision and preimage attacks, making it suitable for cryptographic applications
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/959b48439de5b291054466ef07c941673268cf3a/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/435.png)
 	 
-**Web Servers **
+**Web Servers**
 1. **Nginx Web Server** 
 	- High-Performance web server that functions as a reverse proxy, load balancer, and HTTP cache  
 	- Known for stability rich feature set, simple configuration, and low source consumption.  
@@ -261,7 +262,7 @@
  
 **MDR (Managed Detection Response)** 
 - Proactive cyber security solution designed to protect organizations from a wide range of cyber threats, including ransomware, phishing and APT (Advanced Persistent Threats) 
-- Continuous Monitoring and rapid incident response, helping organization to identify and mitigate threats before that cause damage.  
+- Continuous Monitoring and rapid incident response, helping organization to identify and mitigate threats before causing damage.  
 
 **AV (Anti-Virus)Software**  
 - It is a security program that is designed to prevent, detect, and remove malicious software from the computer or network.  
@@ -281,7 +282,7 @@
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/d9fbe5941622bec1620594395511d90ac3248b10/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/441.png)
 	 
 
-4. Alert Status – Inform if somebody is working on the alert or i the triage is done. 
+4. Alert Status – Inform if somebody is working on the alert or if the triage is done. 
     
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/d9fbe5941622bec1620594395511d90ac3248b10/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/442.png)
 	 
@@ -349,14 +350,12 @@ Unifies all tools that are used in a SOC (SIEM, EDR, and Firewall). Can operate
 
 2. Automation – can run tools based on the playbook the Detection Engineer place to triage potential malicious activity.  
     
-
 3. Response – the ability to take actions based on the playbook the Detection Engineer placed to reduce the hassle on manually analyzing every bit of information from the malicious links, attachments, payload.exe and more.  
     
 **Pyramid of Pain** 
+- These are the initial steps an adversary may take to attempt to get a foot hold in a victim's machines whether it is a host or network based malicious operation. 
 
-These are the initial steps an adversary may take to attempt to get a foot hold in a victim's machines whether it is a host or network based malicious operation. 
-
-1. Hash-Values – it's critical to identify hashes to interpret rather is it a malicious activity or not.  The main hash values that can be identified are MD5 or a SHA256 using online tools – such as Virus Total.  
+1. Hash-Values – it's critical to identify hashes to interpret rather is it a malicious activity or not. The main hash values that can be identified are MD5 or a SHA256 using online tools – such as Virus Total.  
     
 How to find hash values? There are online tools that can be used to interpret what the hash values are, or you can manually interpret the hash values through Windows PowerShell or Ubuntu/Linux terminal.   
 
@@ -376,20 +375,15 @@ MD5sum<space>/working/directory/path/file.doc SHA256sum <space>/working/direct
 
 2. IP Address (IPv4) – Used to identify any devices on the network rather it's a desktop, server or a remote machine  
     
-
 3. Domain Names – Can be used to map and ip address. Domains can have a sub-domain that houses an executable link to a payload that can or maybe in the background of a html format “href” 
-    
 
-4. Network – Can be a user agent string, C2-INformation or a URL pattern followed by a HTTP.GET or HTTP.POST request that can be analyzed deeper with Wireshark or brim or manually in the Ubuntu/Linux Command Lines in Terminal.  
-    
+4. Network – Can be a user agent string, C2-Information or a URL pattern followed by a HTTP.GET or HTTP.POST request that can be analyzed deeper with Wireshark or brim or manually in the Ubuntu/Linux command lines in the terminal.  
 
 5. Tools – Attackers can use utilities to implement macro malicious documents for spear phishing or backdoor using C2 infrastructures.  
-    
 
 6. TTP (Tactic, Technique, Procedures) - includes an entire MITRE ATT&CK MATRIX. This is the rigorous phase an attacker may use.  
     
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/d9fbe5941622bec1620594395511d90ac3248b10/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/450.png)
-
 
 Kill Chain  
 
@@ -420,7 +414,7 @@ A military concept that was adopted to use to implement a Cyber Kill Chains by 
 
 Unified Kill Chain – Theat Modeling  
 
-A Unified Kill Chain is a more thorough, high-level overview of the attacker procedure of attack. It encourages threat modeling and helps interpret potential attack methodologies. There is a total of 18 steps in the Unified Kill Chain. The screenshot from TryHackMe briefly explains below.  
+A Unified Kill Chain is a more thorough, high-level overview of the attacker procedure of attacks. It encourages threat modeling and helps interpret potential attack methodologies. There is a total of 18 steps in the Unified Kill Chain.  
 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/d9fbe5941622bec1620594395511d90ac3248b10/SOC/Basic%20SOC%20Concepts%20%26%20Frameworks/SOC%20Basics/SOC%20Basic%20Img/452.png)
 
