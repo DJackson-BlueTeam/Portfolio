@@ -1,6 +1,6 @@
 Boogey Man 1  
 
-Julianna, a finance employee working for Quick LLC, received a follow-up email regarding an unpaid invoice from their business partner, B Packaging Inc.  However, not knowing that the email was sent by an attacker, she opened the malicious attachment and them her workstation was compromised.  
+Julianna, a finance employee working for Quick LLC, received a follow-up email regarding an unpaid invoice from their business partner, B Packaging Inc.  However, not knowing that the email was sent by an attacker, she opened the malicious attachment and then her workstation was compromised.  
 
 The security team was able to flag the suspicious execution of the attachment, in addition to the phishing reports received from the other finance department employees, making it seem to be a targeted attack on the finance team. Upon checking the latest trends, the initial TTP used for the malicious attachment is attributed to the new threat group Boogeyman, known for targeting the logistics sector.  
 
