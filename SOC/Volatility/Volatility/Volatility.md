@@ -4,17 +4,17 @@
 - Volatility is build off multiple plug-ins that are synchronous to obtain information from the memory dump. 
 - Volatility was built off python 2 and python 3. This makes the installation of volatility easy for MAC, Linux and Windows Operating systems [volatilityfoundation/volatility3: Volatility 3.0 development](https://github.com/volatilityfoundation/volatility3)
 
-Installation Windows
+**Installation Windows**
 - When downloading volatility, you can used the pre-package executable (.whl file), however, only work on Windows since there is no dependencies. 
 - To obtain the pre-package executables, you can download the zip file containing the application from their released page. [Release Volatility 3 1.0.1 · volatilityfoundation/volatility3](https://github.com/volatilityfoundation/volatility3/releases/tag/v1.0.1)
 - To begin running the project from source, download the dependencies (python 3.5.3 or later) or "Prefile 2017.8.1 or later".
 
-Installation Linux 
+**Installation Linux** 
 - to install Volatility for Linux machine you can simply execute a command with the link that is directed to the volatility program. (*git clone https://github.com/volatilityfoundation/volatility3.git*)
 - To test the installation, run the vol.py file with the help parameter (*python3 vol.py -h*)
 - For any Linux or MAC memory file, you will need to download the symbol files from the Volatility GitHub (https://github.com/volatilityfoundation/volatility3#symbol-tables). 
 
-Memory Extraction (Metal)
+**Memory Extraction (Metal)**
 - Performing memory extraction can be done in numerous ways based on the requirements of the investigation. 
 - Some techniques used to perform memory dump are listed below:
 	- FTK Imager
@@ -26,7 +26,7 @@ Memory Extraction (Metal)
 - The tools above are for memory extraction with an output .raw file with some exceptions like REdline that can use its own agent and session structure.
 - NOTE: when using extraxting tools on a bare-metal host, it can take a extensive amount of time. 
 
-Virtual Machine
+**Virtual Machine**
 - Gathering memory file can easily be done with collecting the virtual memory file from the host machine drives. 
 - The file can be change based on the hypervisor used, which are listed below:
 	- VMWare: .vmem
@@ -34,7 +34,7 @@ Virtual Machine
 	- Parallels: .men
 	- VirtualBox: .sav (partial memory file extraction)
 
-Plug-ins
+**Plug-ins**
 - Converting to pyhton3, the plugin structure is more accessible. 
 - You just have to specify the operating system prior to specifying the plugin to be used (windows.info vs linux.info).
 - Operating Systems Listed Below:
@@ -48,7 +48,7 @@ Plug-ins
 		- linux.info
 		- mac.info
 
-Listing Processes and Connections 
+**Listing Processes and Connections** 
 - There are 5 plugins that allows the user to dump processes and network connections, each with varying techniques used:
 	- **pslist** (Process List)
 		- list of processes from the doubly-linked list that keeps track of processes in memory.
