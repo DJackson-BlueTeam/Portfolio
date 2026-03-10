@@ -29,7 +29,7 @@
  ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ebff688b781d8c77cc7e776dcf8ef2c52babfc24/SOC/Splunk/Splunk%20Images/source.png)
 
 Answer: 2,862 
-- By uploading the .json file into the Splunk indexer and accessing the log file by typing source=”VPNlogs.json” or source=”VPNlogs.json” | stats count.  
+- By uploading the .json file into the Splunk indexer and accessing the log file by typing `source=”VPNlogs.json”` or `source=”VPNlogs.json” | stats count`.  
 - Once the search query is completed, the results will be displayed.  
 
  **2. How many log events are captured by the user Maleena?**  
