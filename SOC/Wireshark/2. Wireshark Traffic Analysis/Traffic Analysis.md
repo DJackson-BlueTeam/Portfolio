@@ -42,7 +42,7 @@ Types of Nmap Scans
 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/de1237b52bca628aea09247e4b821f2565e2db0a/SOC/Wireshark/2.%20Wireshark%20Traffic%20Analysis/Traffic%20Analysis%20Img/Closed%20TCP.png)
 
-- the image above shows a pattern is an isolated traffic. It is not always easy to spot these patterns in a big capture file.  
+- The image above shows a pattern is an isolated traffic. It is not always easy to spot these patterns in a big capture file.  
 
 - Therefore, an analyst needs to use filters to view the initial anomaly patterns. 
 - `tcp.flags.syn== 1 && tcp.flags.ack== 0 && tcp.window_size > 1024` 
@@ -110,7 +110,7 @@ This filter below shows TCP SYN patterns in a capture file.  
 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c6548c780d629def6f78e92550cd732b8a35e1d0/SOC/Wireshark/2.%20Wireshark%20Traffic%20Analysis/Traffic%20Analysis%20Img/4..png)
 
-- this is showing a close port returns an ICMP error packet. The ICMP error message uses the original request as enacapulated data to show the source/reason of the packet. 
+- This is showing a close port returns an ICMP error packet. The ICMP error message uses the original request as enacapulated data to show the source/reason of the packet. 
 
 - By expanding the the ICMP packet in the pane, we will see the encapsulated data and the original requests.  
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c6548c780d629def6f78e92550cd732b8a35e1d0/SOC/Wireshark/2.%20Wireshark%20Traffic%20Analysis/Traffic%20Analysis%20Img/5.-1.png)
@@ -119,14 +119,14 @@ This filter below shows TCP SYN patterns in a capture file.  
 	- `icmp.type== 3 && icmp.code == 3` <--- this is identifying ICMP Port Unreachable Message (one of the most important ICMP filter to monitor) 
 	 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/8f63586b52566a3693c53eba94809a4a842443a3/SOC/Wireshark/2.%20Wireshark%20Traffic%20Analysis/Traffic%20Analysis%20Img/6.-1.png)
 
-- `icmp.type == 3` <--- Identifying the destination is unreachable 
+	- `icmp.type == 3` <--- Identifying the destination is unreachable 
 - This is indicating that packets could not be delivered to its final destination 
-- `icmp.code == 3` <--- Identifying the port is unreachable 
+	- `icmp.code == 3` <--- Identifying the port is unreachable 
 - This indicates that the destination was reached; however, there was no application or service listening on the specific port the sender tried to connect to. 
     
 1. **What is the total number of the “TCP Connect” scans?** 
 - To identify the total TCP connected, the following filter is needed to determine the number.  
-- `tcp.flags.syn == 1 && tcp.flags.ack == 0 && tcp.window_size > 1024` <--- this filter is identifying the initial TCP connection request that appears to come from standard operating systems.  
+	- `tcp.flags.syn == 1 && tcp.flags.ack == 0 && tcp.window_size > 1024` <--- this filter is identifying the initial TCP connection request that appears to come from standard operating systems.  
 - When a port scanner is used such as _nmap_ command, it automatically uses a windows default window size of exactly 1024 bytes when sending a SYN packet.  
 - By filtering out and looking for values greater than 1024, we are focusing on traffic that looks like it is coming from a real user or application 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/8f63586b52566a3693c53eba94809a4a842443a3/SOC/Wireshark/2.%20Wireshark%20Traffic%20Analysis/Traffic%20Analysis%20Img/7..png)
@@ -142,14 +142,14 @@ Answer: TCP Connect  
 
 3. How many “UDP close port” messages are there? 
 - Here we will use the icmp filter to determine the closed ports  
-- `icmp.type == 3 && icmp.code == 3` <---- this filter is searching for destination and port that are unreachable  
+	- `icmp.type == 3 && icmp.code == 3` <---- this filter is searching for destination and port that are unreachable  
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/8f63586b52566a3693c53eba94809a4a842443a3/SOC/Wireshark/2.%20Wireshark%20Traffic%20Analysis/Traffic%20Analysis%20Img/9..png)
 
 Answer: 1083 
 
 4. Which UDP port in the 55-70 port range is open?
 - Identify which port is open between the range above, we can use an input filter below:  
-- `udp.dstport  >= 50 && udp.port <= 75` <--- this is asking Wireshark to look for specific ports that are open with the range. We will see the results below:  
+	- `udp.dstport  >= 50 && udp.port <= 75` <--- this is asking Wireshark to look for specific ports that are open with the range. We will see the results below:  
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/8f63586b52566a3693c53eba94809a4a842443a3/SOC/Wireshark/2.%20Wireshark%20Traffic%20Analysis/Traffic%20Analysis%20Img/10..png)
 
 Answer: Destination Port 68 
