@@ -30,9 +30,9 @@
 
 Answer: 2,862 
 - By uploading the .json file into the Splunk indexer and accessing the log file by typing
-`source=VPNlogs.json`
-or
-`source=”VPNlogs.json” | stats count`.  
+	- `source=VPNlogs.json`
+	or
+	- `source=”VPNlogs.json” | stats count`.  
 - Once the search query is completed, the results will be displayed.  
 
  **2. How many log events are captured by the user Maleena?**  
