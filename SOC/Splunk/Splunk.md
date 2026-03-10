@@ -30,6 +30,7 @@
 
 Answer: 2,862 
 - By uploading the .json file into the Splunk indexer and accessing the log file by typing
+---
 	- `source=VPNlogs.json`
 	or
 	- `source=”VPNlogs.json” | stats count`.  
