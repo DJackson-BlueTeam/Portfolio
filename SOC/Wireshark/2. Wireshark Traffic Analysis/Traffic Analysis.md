@@ -1,14 +1,17 @@
  
 
-**Wireshark: Traffic Analysis** 
+Wireshark: Traffic Analysis
+------
 
-**Nmap Scans** 
+Nmap Scans
+--
 - Industrial tool for mapping networks. 
 - It identifies hosts and discovering services
 - Some adversaries may use nmap in the reconnaissance stage for network discovery to find vulnerabilities in the target network. 
 - FIN13 (financially motivated cyber threat group) that had use Nmap to scan for internal MS-SQL servers within the network ([Network Service Discovery, Technique T1046 - Enterprise | MITRE ATT&CK®](https://attack.mitre.org/techniques/T1046/))
 
-**Types of Nmap Scans**
+Types of Nmap Scans
+--
 
 1. TCP Connect Scans 
 - Relies on a three-way handshake (needs to finish the handshake process). 
