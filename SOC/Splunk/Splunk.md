@@ -58,11 +58,10 @@ Answer: Smith 
 - You can also input
 	- `country AND NOT France` 
 - This will display result of all events occurred from other countries except for France.
-
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ebff688b781d8c77cc7e776dcf8ef2c52babfc24/SOC/Splunk/Splunk%20Images/Not%20France.png)
 
 Answer: 2,814 
- 
+
 **5. How many VPN events were associated with the IP 107.3.206.58?** 
 - Similar to question 3 - identifying the username that had the IP address `107.14.182.38`, we can input the IP address into the search bar and it will populate the number of events that had occurred. 
 - To search for the number of events, you would input
