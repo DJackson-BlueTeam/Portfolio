@@ -10,11 +10,11 @@
     
 
 **1. Select the index vpn_connection and filter from `31st December to 2nd February 2022`. How many hits are returned?**  
-    ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/dab46127139b2662cad5cb3b86b3390972526722/SOC/ELK/Elastic%20Stack%20Images/Returned%20Hits.png)
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/dab46127139b2662cad5cb3b86b3390972526722/SOC/ELK/Elastic%20Stack%20Images/Returned%20Hits.png)
 
 - Before we can identify how many hits were returned, we must set the dates to determine the number of hits returned.
 - Once we updated the calendar, the results were returned as shown below.  
-    ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/6093d5c5d235a70a67aa35deada67cb17b68725e/SOC/ELK/Elastic%20Stack%20Images/Returned%20Hits1.png)
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/6093d5c5d235a70a67aa35deada67cb17b68725e/SOC/ELK/Elastic%20Stack%20Images/Returned%20Hits1.png)
 
 Answer: 2,861 
 
@@ -28,7 +28,7 @@ Answer: 238.163.231.224  
 
 **3. Which user is responsible for the overall maximum traffic?**  
 - By reviewing the information in the `UserName`, we can see that James had 4.0% of traffic compared to the rest of the users.
- ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/6093d5c5d235a70a67aa35deada67cb17b68725e/SOC/ELK/Elastic%20Stack%20Images/ELK%20User.png)
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/6093d5c5d235a70a67aa35deada67cb17b68725e/SOC/ELK/Elastic%20Stack%20Images/ELK%20User.png)
 
 Answer: James 
 
@@ -75,8 +75,8 @@ Answer: 161 
 - There's two ways to conduct this search.  
 - The 1st option is searching for the query in the search bar.  
 - The search would be
-	- `UserName:”Johny Brown”` this will return the number of connections the user attempted to make connection.  
-  ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/6093d5c5d235a70a67aa35deada67cb17b68725e/SOC/ELK/Elastic%20Stack%20Images/Johnny%20Brown.png)
+	- `UserName:”Johny Brown”` this will return the number of connections the user attempted to make connection.
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/6093d5c5d235a70a67aa35deada67cb17b68725e/SOC/ELK/Elastic%20Stack%20Images/Johnny%20Brown.png)
 
 Answer: 1  
 - The 2nd option is filtering the query to identify the user.  
@@ -104,7 +104,7 @@ Creating a Visualization
 - Before we add the information, we are looking for, we want to filter the failed attempts. 
 - Once we create the filter, click Save. 
 - Once we complete the filtering, we can then drag the `Source_ip` and `UserName` to the table. 
-    ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/6093d5c5d235a70a67aa35deada67cb17b68725e/SOC/ELK/Elastic%20Stack%20Images/Simon.png)
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/6093d5c5d235a70a67aa35deada67cb17b68725e/SOC/ELK/Elastic%20Stack%20Images/Simon.png)
 
 
 
