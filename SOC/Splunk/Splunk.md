@@ -52,17 +52,22 @@ Answer: 60 
 Answer: Smith 
 
 **4. What is the number of events that originated from all countries except France?** 
-	![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ebff688b781d8c77cc7e776dcf8ef2c52babfc24/SOC/Splunk/Splunk%20Images/Not%20France.png)
+- For this search, we want to identify the number of events of all countries except for France.   
+- In the search bar would input
+	- `source=”VPNLogs.json” country AND NOT France`  
+- You can also input
+	- `country AND NOT France` 
+- This will display result of all events occurred from other countries except for France.
+
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ebff688b781d8c77cc7e776dcf8ef2c52babfc24/SOC/Splunk/Splunk%20Images/Not%20France.png)
 
 Answer: 2,814 
-- For this search, you want to identify the number of events of all countries except for France.   
-- In the search bar you would input source=”VPNLogs.json” country AND NOT France  
-- You can also input country AND NOT France 
-- This will display result of all events occurred from other countries except for France.  
-    
+ 
 **5. How many VPN events were associated with the IP 107.3.206.58?** 
-    ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ebff688b781d8c77cc7e776dcf8ef2c52babfc24/SOC/Splunk/Splunk%20Images/VPNs.png)
+- Similar to question 3 - identifying the username that had the IP address `107.14.182.38`, we can input the IP address into the search bar and it will populate the number of events that had occurred. 
+- To search for the number of events, you would input
+	- `source=”VPNLogs.json” 107.3.206.58`
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ebff688b781d8c77cc7e776dcf8ef2c52babfc24/SOC/Splunk/Splunk%20Images/VPNs.png)
 
 Answer: 14 
-- Similar to question 3 - identifying the username that had the IP address 107.14.182.38, we can input the IP address into the search bar and it will populate the number of events that had occurred. 
-- To search for the number of events, you would input source=”VPNLogs.json” 107.3.206.58
+
