@@ -33,37 +33,36 @@ Answer: 238.163.231.224  
 Answer: James 
 
 **4. Apply Filter on UserName Emanda: Which SourceIP has max hits?** 
-- First, let's apply the filter to focus on Emanda to easily identify which IP had max hits under that specific “UserName” 
+- First, let's apply the filter to focus on Emanda to identify which IP had max hits under that specific `UserName` 
 - Click Save when Done. 
-     ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/6093d5c5d235a70a67aa35deada67cb17b68725e/SOC/ELK/Elastic%20Stack%20Images/Emanda.png)
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/6093d5c5d235a70a67aa35deada67cb17b68725e/SOC/ELK/Elastic%20Stack%20Images/Emanda.png)
 
-- After the filter is applied, we can then go to the Source_ip to see which IP had the most traffic.  
-    ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/6093d5c5d235a70a67aa35deada67cb17b68725e/SOC/ELK/Elastic%20Stack%20Images/Emanda1.png)] 
+- After the filter is applied, we can then go to the `Source_ip` to see which IP had the most traffic.
+- We can see that `Soure_ip 107.14.1.247` had 53.6% of traffic compared to `Source_ip 107.14.4.82`.
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/6093d5c5d235a70a67aa35deada67cb17b68725e/SOC/ELK/Elastic%20Stack%20Images/Emanda1.png)] 
 
 Answer: 107.14.1.247
-- We can see that IP 107.14.1.247 had 53.6% of traffic compared to IP 107.14.4.82.  
+ 
     
 **5. On the 11th of Jan. Which IP caused the spike observed in the time chart?**  
-    ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/6093d5c5d235a70a67aa35deada67cb17b68725e/SOC/ELK/Elastic%20Stack%20Images/Jan%2011th.png)
-- Here we can see a spike that occurred. Let's click on the spike bar and see which IP caused the spike.  
-	![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/6093d5c5d235a70a67aa35deada67cb17b68725e/SOC/ELK/Elastic%20Stack%20Images/Jan%2011th.1.png)
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/6093d5c5d235a70a67aa35deada67cb17b68725e/SOC/ELK/Elastic%20Stack%20Images/Jan%2011th.png)
+- Here we can see a spike that occurred. Let's click on the spiked bar and see which IP caused the spike.
+- We can see there is a repeated number of hits of the same IP address that caused the spike, which was `172.201.60.191`  
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/6093d5c5d235a70a67aa35deada67cb17b68725e/SOC/ELK/Elastic%20Stack%20Images/Jan%2011th.1.png)
 
 Answer: 172.201.60.191 
-- We can see there are repeated hits of the same IP address that caused the spike, which was 172.201.60.191 
-    
 
-**6. How many connections were observed from IP 238.163.231.224, excluding New York State?**  
-    ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/6093d5c5d235a70a67aa35deada67cb17b68725e/SOC/ELK/Elastic%20Stack%20Images/Not%20New%20York.png)
+**6. How many connections were observed from IP 238.163.231.224, excluding New York State?**
+- Here we can do a search query to identify the number of connections that are not associated with New York. 
+- The search input would be
+	- `Source_ip: 238.163.231.224 and not New York` 
+- The results are shown below
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/6093d5c5d235a70a67aa35deada67cb17b68725e/SOC/ELK/Elastic%20Stack%20Images/Not%20New%20York.png)
 
 Answer: 48 
 
-- Here we can do a search query to identify the number of connections that are not associated with New York. 
-- The search input would be Source_ip: 238.163.231.224 and not New York 
-- The results are shown above 
-    
-
 KQL (Kibana Query Language) 
-
+---
 **1. Create a search query to filter the logs where Source_Counrty is the United States and shows logs from UserNames: James or Albert. How many records were returned?**  
     ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/6093d5c5d235a70a67aa35deada67cb17b68725e/SOC/ELK/Elastic%20Stack%20Images/United%20States.png)
 
