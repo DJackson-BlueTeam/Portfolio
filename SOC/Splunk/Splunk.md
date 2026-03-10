@@ -29,8 +29,7 @@
  ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ebff688b781d8c77cc7e776dcf8ef2c52babfc24/SOC/Splunk/Splunk%20Images/source.png)
 
 Answer: 2,862 
-- Since the log file is loaded into splunk indexer, we can determine the number of event by using one of the following filters below. 
---
+- Since the log file is loaded into splunk indexer, we can determine the number of event by using one of the following filters below.
 	- `source=VPNlogs.json`
 	- `source=”VPNlogs.json” | stats count`.  
 - Once the search query is completed, the results will be displayed.  
