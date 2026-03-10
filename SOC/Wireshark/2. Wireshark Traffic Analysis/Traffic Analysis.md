@@ -59,7 +59,8 @@ Types of Nmap Scans
 - The window size indicates how many bytes the sender is willing to receive before requiring an acknowledgment. This part of the filter excludes packets with very small buffers, which might be used to identify specific types of traffic, operating systems, or to filter out certain types of automated scanning tools that use minimal window sizes.  
     
 
-**TCP SYN Scans**  
+TCP SYN Scans
+---
 
 - Doesn’t rely on the three-way handshake 
 - Usually conducted with `nmap –sS`  <--- this performs a TCP SYN Scan, often called “stealth” or “half-open” scan. This Never completes the handshake.  
