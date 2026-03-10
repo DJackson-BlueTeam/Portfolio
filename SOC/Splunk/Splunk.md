@@ -44,8 +44,9 @@ Answer: 2,862 
 Answer: 60 
 
 **3. What is the username associated with the IP Address 107.14.182.38?**
-- Since the files are fed into Splunk, some searches – such as Ip address `	107.14.182.38` – can be searched by inputting the content itself in the search bar. 
-- We are looking for a specific username, the IP address will display the user in the results, as shown below. 
+- Since the files are fed into Splunk, some searches, such as Ip address `	107.14.182.38`, can be searched by inputting the content itself in the search bar.
+- We are looking for a specific username, the IP address will display the user in the results, as shown below.
+  
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ebff688b781d8c77cc7e776dcf8ef2c52babfc24/SOC/Splunk/Splunk%20Images/IP%20Address.png)
 
 Answer: Smith 
