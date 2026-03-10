@@ -52,7 +52,7 @@ Types of Nmap Scans
 - `tcp.flags.ack== 0` <--- This filter packets where the ACK (Acknowledgment) flag is set.  
     
 
-- In a TCP three-way handshake, the FIRST packet sent is a “pure” SYN packet (SYN=1, ACK=0). The SECOND (the response) has both SYN and ACK set (SYN=1, ACK=1). By *specifying ack== 0*, we are filtering specifically for the initial connection request from the client to the server.  
+- In a TCP three-way handshake, the FIRST packet sent is a “pure” SYN packet `(SYN=1, ACK=0)`. The SECOND (the response) has both SYN and ACK set `(SYN=1, ACK=1)`. By specifying `ack== 0`, we are filtering specifically for the initial connection request from the client to the server.  
 
 - `tcp.window_size > 1024` <--- This filter for packets where the TCP Windows Size is greater than 1024 bytes.  
 
@@ -62,7 +62,7 @@ Types of Nmap Scans
 **TCP SYN Scans**  
 
 - Doesn’t rely on the three-way handshake 
-- Usually conducted with nmap –sS  <--- this performs a TCP SYN Scan, often called “stealth” or “half-open” scan. This Never completes the handshake.  
+- Usually conducted with `nmap –sS`  <--- this performs a TCP SYN Scan, often called “stealth” or “half-open” scan. This Never completes the handshake.  
 - Used by privileged users. 
 - Usually, this have a size less than 1024 bytes as the request is not finished, and it doesn’t expect to receive data. 
     
@@ -98,7 +98,7 @@ This filter below shows TCP SYN patterns in a capture file.  
 - Doesn’t require a handshake process 
 - No prompt for open ports 
 - ICMP error message for close ports 
-- Usually conducted with a nmap –sU  <--- this is used to prompt UDP scan. Services like DNS (port 53), SNMP (port161/162), and DHCP (port 67/68) rely on UDP 
+- Usually conducted with a `nmap –sU`  <--- this is used to prompt UDP scan. Services like DNS (port 53), SNMP (port161/162), and DHCP (port 67/68) rely on UDP 
 - Xbash  is a malware family that has targeted Linux and Microsoft Windows servers. This malware family is associated with the Iron Group that is known for ransomware attacks. This malware conducts network discovery through TCP and UDP ports MITRE ATT&CK ID: T1046 ([Xbash, Software S0341 | MITRE ATT&CK®](https://attack.mitre.org/software/S0341/))
     
 
@@ -116,40 +116,41 @@ This filter below shows TCP SYN patterns in a capture file.  
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c6548c780d629def6f78e92550cd732b8a35e1d0/SOC/Wireshark/2.%20Wireshark%20Traffic%20Analysis/Traffic%20Analysis%20Img/5.-1.png)
 
 - Let view the UDP scan patterns in the capture file using the filter below:  
-	- *icmp.type== 3 && icmp.code == 3* <--- this is identifying ICMP Port Unreachable Message (one of the most important ICMP filter to monitor) 
+	- `icmp.type== 3 && icmp.code == 3` <--- this is identifying ICMP Port Unreachable Message (one of the most important ICMP filter to monitor) 
 	 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/8f63586b52566a3693c53eba94809a4a842443a3/SOC/Wireshark/2.%20Wireshark%20Traffic%20Analysis/Traffic%20Analysis%20Img/6.-1.png)
 
-- *icmp.type == 3* <--- Identifying the destination is unreachable 
+- `icmp.type == 3` <--- Identifying the destination is unreachable 
 - This is indicating that packets could not be delivered to its final destination 
-- *icmp.code == 3* <--- Identifying the port is unreachable 
+- `icmp.code == 3` <--- Identifying the port is unreachable 
 - This indicates that the destination was reached; however, there was no application or service listening on the specific port the sender tried to connect to. 
     
 1. **What is the total number of the “TCP Connect” scans?** 
 - To identify the total TCP connected, the following filter is needed to determine the number.  
-- *tcp.flags.syn == 1 && tcp.flags.ack == 0 && tcp.window_size > 1024* <--- this filter is identifying the initial TCP connection request that appears to come from standard operating systems.  
-- When a port scanner is used such as nmap command, it automatically uses a windows default window size of exactly 1024 bytes when sending a SYN packet.  
+- `tcp.flags.syn == 1 && tcp.flags.ack == 0 && tcp.window_size > 1024` <--- this filter is identifying the initial TCP connection request that appears to come from standard operating systems.  
+- When a port scanner is used such as _nmap_ command, it automatically uses a windows default window size of exactly 1024 bytes when sending a SYN packet.  
 - By filtering out and looking for values greater than 1024, we are focusing on traffic that looks like it is coming from a real user or application 
-	![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/8f63586b52566a3693c53eba94809a4a842443a3/SOC/Wireshark/2.%20Wireshark%20Traffic%20Analysis/Traffic%20Analysis%20Img/7..png)
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/8f63586b52566a3693c53eba94809a4a842443a3/SOC/Wireshark/2.%20Wireshark%20Traffic%20Analysis/Traffic%20Analysis%20Img/7..png)
 
 Answer: 1000 
 
-2. **What scan type is used to scan TCP port 80?**  
-- We will simply put in the filter tcp.port == 80 and observe the results 
-    ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/8f63586b52566a3693c53eba94809a4a842443a3/SOC/Wireshark/2.%20Wireshark%20Traffic%20Analysis/Traffic%20Analysis%20Img/8..png)
+2. What scan type is used to scan TCP port 80?
+- We will filter `tcp.port == 80` and observe the results 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/8f63586b52566a3693c53eba94809a4a842443a3/SOC/Wireshark/2.%20Wireshark%20Traffic%20Analysis/Traffic%20Analysis%20Img/8..png)
 
-Looking at the info column, we can see that this is attempting a connection request Answer: TCP Connect  
+- Looking at the info column, we can see that this is attempting a connection request 
+Answer: TCP Connect  
 
-3. **How many “UDP close port” messages are there?** 
+3. How many “UDP close port” messages are there? 
 - Here we will use the icmp filter to determine the closed ports  
-- *icmp.type == 3 && icmp.code == 3* <---- this filter is searching for destination and port that are unreachable  
-    ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/8f63586b52566a3693c53eba94809a4a842443a3/SOC/Wireshark/2.%20Wireshark%20Traffic%20Analysis/Traffic%20Analysis%20Img/9..png)
+- `icmp.type == 3 && icmp.code == 3` <---- this filter is searching for destination and port that are unreachable  
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/8f63586b52566a3693c53eba94809a4a842443a3/SOC/Wireshark/2.%20Wireshark%20Traffic%20Analysis/Traffic%20Analysis%20Img/9..png)
 
 Answer: 1083 
 
-4. **Which UDP port in the 55-70 port range is open?** 
+4. Which UDP port in the 55-70 port range is open?
 - Identify which port is open between the range above, we can use an input filter below:  
-- *udp.dstport  >= 50* *&& udp.port <= 75* <--- this is asking Wireshark to look for specific ports that are open with the range. We will see the results below:  
-    ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/8f63586b52566a3693c53eba94809a4a842443a3/SOC/Wireshark/2.%20Wireshark%20Traffic%20Analysis/Traffic%20Analysis%20Img/10..png)
+- `udp.dstport  >= 50 && udp.port <= 75` <--- this is asking Wireshark to look for specific ports that are open with the range. We will see the results below:  
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/8f63586b52566a3693c53eba94809a4a842443a3/SOC/Wireshark/2.%20Wireshark%20Traffic%20Analysis/Traffic%20Analysis%20Img/10..png)
 
 Answer: Destination Port 68 
 - We notice we are getting multiple returns from port 68.
