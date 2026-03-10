@@ -9,22 +9,22 @@
     - Kibana – a web–based data tool that works with Elastic Search to analyze, investigate and visualize data streams in real-time. 
     
 
-**1. Select the index vpn_connection and filter from 31st December to 2nd February 2022. How many hits are returned?**  
+**1. Select the index vpn_connection and filter from `31st December to 2nd February 2022`. How many hits are returned?**  
     ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/dab46127139b2662cad5cb3b86b3390972526722/SOC/ELK/Elastic%20Stack%20Images/Returned%20Hits.png)
 
-- Before we can identify how many hits were returned, we must set the dates to determine the number of hits returned.  
+- Before we can identify how many hits were returned, we must set the dates to determine the number of hits returned.
+- Once we updated the calendar, the results were returned as shown below.  
     ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/6093d5c5d235a70a67aa35deada67cb17b68725e/SOC/ELK/Elastic%20Stack%20Images/Returned%20Hits1.png)
 
-
 Answer: 2,861 
-- Once we updated the calendar, the results were returned as shown above. 
+
     
-**2.Which IP address has the maximum number of connections?**  
-    ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/6093d5c5d235a70a67aa35deada67cb17b68725e/SOC/ELK/Elastic%20Stack%20Images/Max%20Connections.png)
+**2.Which IP address has the maximum number of connections?**
+- Elastic automatically filters events, we can simply go to `Source_ip` icon and click to view the IP addresses.  
+- We can see that IP address 238.163.231.224 has more events occurred within the network.  
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/6093d5c5d235a70a67aa35deada67cb17b68725e/SOC/ELK/Elastic%20Stack%20Images/Max%20Connections.png)
 
 Answer: 238.163.231.224  
-- Since Elastic automatically fine filters events, we can simply go to Source_ip icon and click to view the IP addresses.  
-- We can see that IP address 238.163.231.224 has more events occurred within the network.  
 
 **3. Which user is responsible for the overall maximum traffic?**  
 
