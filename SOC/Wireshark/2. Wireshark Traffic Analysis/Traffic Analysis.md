@@ -13,9 +13,9 @@ Nmap Scans
 Types of Nmap Scans
 --
 
-1. TCP Connect Scans 
+1. **TCP Connect Scans** 
 - Relies on a three-way handshake (needs to finish the handshake process). 
-- Usually conducted with nmap –sT <--- initiating a TCP Connect Scan; which is a default TCP scan type. Completing the full TCP three-way handshake. 
+- Usually conducted with `nmap –sT` <--- initiating a TCP Connect Scan; which is a default TCP scan type. Completing the full TCP three-way handshake. 
 - Used by non-privileged users (only option for a non-root user). 
 - Usually has a windows size larger than 1024 bytes as the request expects some data due to the nature of the protocol.  
 - BADHATCH had used Nmap to scan for open ports on computers by establishing a TCP connection MITRE ATT&CK ID T1046 ([BADHATCH, Software S1081 | MITRE ATT&CK®](https://attack.mitre.org/software/S1081/)).
@@ -26,12 +26,12 @@ Types of Nmap Scans
 |---|---|
 |Notes|Wireshark Filters|
 |Global search.|- tcp <br>    <br><br>- udp|
-|- Only SYN flag. <br>    <br><br>- SYN flag is set. The rest of the bits are not important.|- tcp.flags == 2 <br>    <br><br>- tcp.flags.syn == 1|
-|- Only ACK flag. <br>    <br><br>- ACK flag is set. The rest of the bits are not important.|- tcp.flags == 16 <br>    <br><br>- tcp.flags.ack == 1|
-|- Only SYN, ACK flags. <br>    <br><br>- SYN and ACK are set. The rest of the bits are not important.|- tcp.flags == 18 <br>    <br><br>- (tcp.flags.syn == 1) and (tcp.flags.ack == 1)|
-|- Only RST flag. <br>    <br><br>- RST flag is set. The rest of the bits are not important.|- tcp.flags == 4 <br>    <br><br>- tcp.flags.reset == 1|
-|- Only RST, ACK flags. <br>    <br><br>- RST and ACK are set. The rest of the bits are not important.|- tcp.flags == 20 <br>    <br><br>- (tcp.flags.reset == 1) and (tcp.flags.ack == 1)|
-|- Only FIN flag <br>    <br><br>- FIN flag is set. The rest of the bits are not important.|- tcp.flags == 1 <br>    <br><br>- tcp.flags.fin == 1|
+|- Only SYN flag. <br>    <br><br>- SYN flag is set. The rest of the bits are not important.|- `tcp.flags == 2` <br>    <br><br>- `tcp.flags.syn == 1`|
+|- Only ACK flag. <br>    <br><br>- ACK flag is set. The rest of the bits are not important.|- `tcp.flags == 16` <br>    <br><br>- `tcp.flags.ack == 1`|
+|- Only SYN, ACK flags. <br>    <br><br>- SYN and ACK are set. The rest of the bits are not important.|- `tcp.flags == 18` <br>    <br><br>- `(tcp.flags.syn == 1) and (tcp.flags.ack == 1)`|
+|- Only RST flag. <br>    <br><br>- RST flag is set. The rest of the bits are not important.|- `tcp.flags == 4` <br>    <br><br>- `tcp.flags.reset == 1`|
+|- Only RST, ACK flags. <br>    <br><br>- RST and ACK are set. The rest of the bits are not important.|- `tcp.flags == 20` <br>    <br><br>- `(tcp.flags.reset == 1) and (tcp.flags.ack == 1)`|
+|- Only FIN flag <br>    <br><br>- FIN flag is set. The rest of the bits are not important.|- `tcp.flags == 1` <br>    <br><br>- `tcp.flags.fin == 1`|
 
 |   |   |   |
 |---|---|---|
@@ -45,18 +45,18 @@ Types of Nmap Scans
 - the image above shows a pattern is an isolated traffic. It is not always easy to spot these patterns in a big capture file.  
 
 - Therefore, an analyst needs to use filters to view the initial anomaly patterns. 
-- *tcp.flags.syn== 1 && tcp.flags.ack== 0 && tcp.window_size > 1024* 
+- `tcp.flags.syn== 1 && tcp.flags.ack== 0 && tcp.window_size > 1024` 
 
 	![alt](https://github.com/DJackson-BlueTeam/Portfolio/blob/c6548c780d629def6f78e92550cd732b8a35e1d0/SOC/Wireshark/2.%20Wireshark%20Traffic%20Analysis/Traffic%20Analysis%20Img/1..png)
-- tcp.flags.syn== 1 <--- This filter for packets where the SYN (synchronize) flag is set. 
-- tcp.flags.ack== 0 <--- This filter packets where the ACK (Acknowledgment) flag is set.  
+- `tcp.flags.syn== 1` <--- This filter for packets where the SYN (synchronize) flag is set. 
+- `tcp.flags.ack== 0` <--- This filter packets where the ACK (Acknowledgment) flag is set.  
     
 
-1. In a TCP three-way handshake, the FIRST packet sent is a “pure” SYN packet (SYN=1, ACK=0). The SECOND (the response) has both SYN and ACK set (SYN=1, ACK=1). By *specifying ack== 0*, we are filtering specifically for the initial connection request from the client to the server.  
+- In a TCP three-way handshake, the FIRST packet sent is a “pure” SYN packet (SYN=1, ACK=0). The SECOND (the response) has both SYN and ACK set (SYN=1, ACK=1). By *specifying ack== 0*, we are filtering specifically for the initial connection request from the client to the server.  
 
-- *tcp.window_size > 1024* <--- This filter for packets where the TCP Windows Size is greater than 1024 bytes.  
-    
-1. The window size indicates how many bytes the sender is willing to receive before requiring an acknowledgment. This part of the filter excludes packets with very small buffers, which might be used to identify specific types of traffic, operating systems, or to filter out certain types of automated scanning tools that use minimal window sizes.  
+- `tcp.window_size > 1024` <--- This filter for packets where the TCP Windows Size is greater than 1024 bytes.  
+
+- The window size indicates how many bytes the sender is willing to receive before requiring an acknowledgment. This part of the filter excludes packets with very small buffers, which might be used to identify specific types of traffic, operating systems, or to filter out certain types of automated scanning tools that use minimal window sizes.  
     
 
 **TCP SYN Scans**  
@@ -75,18 +75,18 @@ Types of Nmap Scans
 
 This filter below shows TCP SYN patterns in a capture file.  
 
-tcp.flags.syn== 1 && tcp.flags.ack== 0 && tcp.window_size <=1024 <--- filters out suspicious or automated TCP connection attempts. 
+`tcp.flags.syn== 1 && tcp.flags.ack== 0 && tcp.window_size <=1024` <--- filters out suspicious or automated TCP connection attempts. 
 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c6548c780d629def6f78e92550cd732b8a35e1d0/SOC/Wireshark/2.%20Wireshark%20Traffic%20Analysis/Traffic%20Analysis%20Img/3..png)
 
-- *tcp.flags.syn== 1* and *tcp.flgs.ack== 0* <--- This is the initial handshake: Together, these two flags isolate “pure” SYN packets. The first packet sent by the client has the SYN flag set ”SYN== 1” and the ACK flag unset “ACK== 0”  
-- By filtering for *ack == 0*, we are excluding the “SYN/ACK” response from the server, focusing only on the initial connection request.   
-- *tcp.window_size <= 1024* <--- We are indicating the amount of data (in bytes) “window_size” that the sender willing to receive 
+- `tcp.flags.syn== 1` and `tcp.flgs.ack== 0` <--- This is the initial handshake: Together, these two flags isolate “pure” SYN packets. The first packet sent by the client has the SYN flag set ”SYN== 1” and the ACK flag unset “ACK== 0”  
+- By filtering for `ack == 0`, we are excluding the “SYN/ACK” response from the server, focusing only on the initial connection request.   
+- `tcp.window_size <= 1024` <--- We are indicating the amount of data (in bytes) “window_size” that the sender willing to receive 
 - Most operating systems (Windows, Linux macOS) typically have larger initial window size, often ranging from 8,192 to 65,535 bytes. 
 - A window size of 1024 or less is unusual for a standard user’s computer 
     
 
-WHY THIS FILTER IS USEFUL  
+**WHY THIS FILTER IS USEFUL**  
 
 - This is used by network security professionals to detect Reconnaissance and Port Scanning  
 1. Nmap Detection 
