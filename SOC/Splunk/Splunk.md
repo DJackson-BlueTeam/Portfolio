@@ -24,24 +24,24 @@
 
  ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ebff688b781d8c77cc7e776dcf8ef2c52babfc24/SOC/Splunk/Splunk%20Images/index.png)
 
-**1. How many events are presented in the log file?**  
+**1. How many events are presented in the log file?** 
+- Since the log file is loaded into splunk indexer, we can determine the number of event by using one of the following filters below.
+	- `source=VPNlogs.json`
+	- `source=”VPNlogs.json” | stats count`.  
+- Once the search query is completed, the results will be displayed.
     
  ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ebff688b781d8c77cc7e776dcf8ef2c52babfc24/SOC/Splunk/Splunk%20Images/source.png)
 
 Answer: 2,862 
-- Since the log file is loaded into splunk indexer, we can determine the number of event by using one of the following filters below.
-	- `source=VPNlogs.json`
-	- `source=”VPNlogs.json” | stats count`.  
-- Once the search query is completed, the results will be displayed.  
-
+  
  **2. How many log events are captured by the user Maleena?**  
-    
+- In the question, we are looking for a specific user that has generated events in the network or servers.  
+- We would make a search query using
+	- `source=”VPNlogs.json” UserName=”Maleena”` 
+- This filter identifies the specific user and the number of events that have accord in their machine.
  ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ebff688b781d8c77cc7e776dcf8ef2c52babfc24/SOC/Splunk/Splunk%20Images/Username.png)
 
 Answer: 60 
-- In the question, we are looking for a specific user that has generated events in the network or servers.  
-- You would simply make a search using source=”VPNlogs.json” UserName=”Maleena” 
-- This Manual filter identifies the specific user and the number of events that have accord in their machine.
 
 **3. What is the username associated with the IP Address 107.14.182.38?**  
     ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ebff688b781d8c77cc7e776dcf8ef2c52babfc24/SOC/Splunk/Splunk%20Images/IP%20Address.png)
