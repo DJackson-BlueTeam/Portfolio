@@ -25,16 +25,39 @@ HTTP Analysis
 			- Tactic: Application Layer Protocol: Web Protocol 
 				- Adversaries can utilize HTTP, HTTPS, or HTTP/2/3 to communicate with external servers, making exfiltration appear as standard web browsing.  
 
-**HTTP analysis:** 
+HTTP analysis
+---
 
 |   |   |
 |---|---|
-|Notes|Wireshark Filter|
-|Global search <br><br>Note: HTTP2 is a revision of the HTTP protocol for better performance and security. It supports binary data transfer and request&response multiplexing.|- http <br>    <br><br>- http2|
-|"HTTP Request Methods" for grabbing the low-hanging fruits: <br><br>- GET <br>    <br><br>- POST <br>    <br><br>- Request: Listing all requests|- http.request.method == "GET" <br>    <br><br>- http.request.method == "POST" <br>    <br><br>- http.request|
-|"HTTP Response Status Codes" for grabbing the low-hanging fruits: <br><br>- 200 OK: Request successful. <br>    <br><br>- 301 Moved Permanently: Resource is moved to a new URL/path (permanently). <br>    <br><br>- 302 Moved Temporarily: Resource is moved to a new URL/path (temporarily). <br>    <br><br>- 400 Bad Request: Server didn't understand the request. <br>    <br><br>- 401 Unauthorised: URL needs authorisation (login, etc.). <br>    <br><br>- 403 Forbidden: No access to the requested URL.  <br>    <br><br>- 404 Not Found: Server can't find the requested URL. <br>    <br><br>- 405 Method Not Allowed: Used method is not suitable or blocked. <br>    <br><br>- 408 Request Timeout:  Request look longer than server wait time. <br>    <br><br>- 500 Internal Server Error: Request not completed, unexpected error. <br>    <br><br>- 503 Service Unavailable: Request not completed server or service is down.|- http.response.code == 200 <br>    <br><br>- http.response.code == 401 <br>    <br><br>- http.response.code == 403 <br>    <br><br>- http.response.code == 404 <br>    <br><br>- http.response.code == 405 <br>    <br><br>- http.response.code == 503|
-|"HTTP Parameters" for grabbing the low-hanging fruits: <br><br>- User agent: Browser and operating system identification to a web server application. <br>    <br><br>- Request URI: Points the requested resource from the server. <br>    <br><br>- Full *URI: Complete URI information. <br>    <br><br>*URI: Uniform Resource Identifier.|- http.user_agent contains "nmap" <br>    <br><br>- http.request.uri contains "admin" <br>    <br><br>- http.request.full_uri contains "admin"|
-|"HTTP Parameters" for grabbing the low-hanging fruits: <br><br>- Server: Server service name. <br>    <br><br>- Host: Hostname of the server <br>    <br><br>- Connection: Connection status. <br>    <br><br>- Line-based text data: Cleartext data provided by the server. <br>    <br><br>- HTML Form URL Encoded: Web form information.|- http.server contains "apache" <br>    <br><br>- http.host contains "keyword" <br>    <br><br>- http.host == "keyword" <br>    <br><br>- http.connection == "Keep-Alive" <br>    <br><br>- data-text-lines contains "keyword"|
+|**Notes**|**Wireshark Filter**|
+|Global Search <br><br> NOTE: HTTP2 is a revision of the HTTP protocol for better performance and security. It supports binary data transfer and request & response multiplexing.|`http` <br><br> `http2` |
+|**HTTP Request Methods For Grabbing Low Hanging Fruits**||
+|GET|`http.request.method == "GET"`|
+|POST|`http.request.method == "POST"`|
+|Request: Listing all request|`http.request`|
+|**HTTP Response Status Codes For Grabbing Low-Hanging Fruits**||
+|200 OK: Request Successful|`http.response.code == 200`|
+|301 Moving Permanently: Resource is moved to a new URL/path(permanently)|`http.response.code == 301`|
+|302 Moved Temporarily: Resource is move to a new URL/path(temporarily)|`http.response.code == 302`|
+|400 Bad Request: Server did not understand the request|`http.response.code == 400`|
+|401 Unauthorised: URL needs authorization (login, etc)| `http.response.code == 401`|
+|403 Forbidden: No access to the request URL|`http.response.code == 403`|
+|404 Not Found: Server can't find the request URL|`http.response.code == 404`|
+|405 Method Not Allowed: Used method is not suitable or blocked|`http.response.code == 405`|
+|408 Request Timeout: Request look longer than server wait time|`http.response.code == 408`|
+|500 Internal Server Error: Request not completed, unexpected error|`http.response.code == 500`|
+|503 Service Unavailable: request not completed server or server is down |`http.response.code == 503`|
+|**HTTP Parameters For Grabbing Low-Hanging Fruits**||
+|User Agent: Browser and operating systems identification to a web server application|`http.user_agent contains "nmap"`|
+|Request URL: Points the requested resource from the server|`http.request.uri contains "admin"`|
+|Full URL: Complete URI information <br><br> URI: Uniform Resource Identifier.|`http.request.full_uri contains "admin"`|
+|**HTTP Parameters For grabbingLowHanging Fruits**||
+|Server: Server service name|`http.server contains "apache"`|
+|Host: Hostname of the server|`http.host contains "keyword"`|
+|Connection: Connection status|`http.host == "keyword"`|
+|Line-Based Text Data: Cleartext data provided by the server|`http.connection == Keep-Alive"`|
+|HTML Form URL Encoded: Web form information|`data-text-lines contains "keyword"`|
 
 **User Agent Analysis** 
 
