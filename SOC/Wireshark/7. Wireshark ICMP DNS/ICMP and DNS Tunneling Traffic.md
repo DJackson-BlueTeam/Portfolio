@@ -9,7 +9,7 @@ ICMP (Internet Control Message Protocol) Analysis 
 
 - Reports network communication issues.  
 - Can be used for DoS (Denial of Services)  
-- T1498.001: Network Denial of Service (https://attack.mitre.org/techniques/T1498/001/)
+- **T1498.001: Network Denial of Service** (https://attack.mitre.org/techniques/T1498/001/)
 	- Tactic: Impact: Direct Flood 
 		- An adversary may use ICMP echo requests (pings) to flood a target network bandwidth.(https://www.cloudflare.com/learning/ddos/ping-icmp-flood-ddos-attack/)
 		- This consumes resources and prevents legitimate traffic from reaching the system.
@@ -19,15 +19,15 @@ ICMP (Internet Control Message Protocol) Analysis 
 				- Ping with Maximum Packet Size: `ping -s 65507 (target_ip)` <---The maximum IPv4 packet size (-s) is 6535 bytes. By sending large packets can strain the target's ability to reassemble fragments.
 				- Rapid Interval Ping: `sudo ping -i 0.01 (target_ip)` <--- Sending requests at the subnet at the shortest possible interval (-i) 
 - Can be used for data exfiltration and C2 tunneling activities. 
-- T1071: Application Layer Protocol (https://attack.mitre.org/techniques/T1071/) 
+- **T1071: Application Layer Protocol** (https://attack.mitre.org/techniques/T1071/) 
 	- Tactic: Command and Control
 		- Adversaries may communicate with C2 server by hiding data within the payload field of ICMP echo request or reply packets. 
 		- This is used to bypass firewalls that allow ICMP traffic.
-- T1041: Exfiltration Over C2 channel (https://attack.mitre.org/techniques/T1041/)
+- **T1041: Exfiltration Over C2 channel** (https://attack.mitre.org/techniques/T1041/)
 	- Tactic: Exfiltration 
 		- Once an ICMP-based C2 channel is established, adversaries use itt exfiltrate sensitive data from the target network to their infrastructure.  
 - ICMP tunneling attacks can start after a malware execution or vulnerability exploitation.  
-	- T1204: Execution (https://attack.mitre.org/techniques/T1204/)
+	- **T1204: Execution** (https://attack.mitre.org/techniques/T1204/)
 		- Tactic: User Execution
 			- Malware is executed on the system, which then initiates the ICMP tunneling client to reach the external C2.
 			- There are different ways that an adversary can attempt to convince the target to perform a malicious execution 
@@ -60,7 +60,7 @@ DNS (Domain Name System) Analysis
 
 - Design to translate/convert IP domain addresses to IP addresses.  
 - Used for exfiltration and C2 activities.  
-	- T1071.004: Application Layer Protocol DNS (https://attack.mitre.org/techniques/T1071/004/) 
+	- **T1071.004: Application Layer Protocol DNS** (https://attack.mitre.org/techniques/T1071/004/) 
 		- Tactic: Command and Control
 			- Adversaries communicate with a C2 server by embedding data within DNS queries and responses. 
 			- This involve TXT, SRV or CNAME record to pass commands.
