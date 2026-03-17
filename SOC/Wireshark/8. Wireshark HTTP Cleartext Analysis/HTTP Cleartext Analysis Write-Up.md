@@ -25,7 +25,7 @@ HTTP Analysis
 			- Tactic: Application Layer Protocol: Web Protocol 
 				- Adversaries can utilize HTTP, HTTPS, or HTTP/2/3 to communicate with external servers, making exfiltration appear as standard web browsing.  
 
-HTTP analysis
+HTTP Analysis
 ---
 
 |   |   |
