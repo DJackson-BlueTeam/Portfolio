@@ -49,8 +49,10 @@ ICMP (Internet Control Message Protocol) Analysis 
 |   |   |
 |---|---|
 |**Notes**|**Wireshark filters**|
-|Global search|- `icmp`|
-|"ICMP" options for grabbing the low-hanging fruits: <br><br>- Packet length. <br>    <br><br>- ICMP destination addresses. <br>    <br><br>- Encapsulated protocol signs in ICMP payload.|- `data.len > 64 and icmp`|
+|Global search| `icmp`|
+|Packet Length|`data.len > 64 and icmp`|
+|ICMP Destination Addresses|`ip.dst == [IP_Address] and icmp`|
+|Encapsulated Protocol Signs in ICMP Payload|`icmp.date`|
 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/89f8f4d6320a43626bf6c94cc5ee1c4777a42c7d/SOC/Wireshark/7.%20Wireshark%20ICMP%20DNS/ICMP%20and%20DNS/80.png)
  
