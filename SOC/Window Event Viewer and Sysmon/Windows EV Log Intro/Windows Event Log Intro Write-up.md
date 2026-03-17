@@ -1,5 +1,5 @@
-
 Windows Event Log Intro Write-Up 
+---
 
 Every file that is creates, logging in or out, creating users, permissions etc, those events are logged in Windows Event Logs 
 
@@ -24,7 +24,8 @@ Structure of 4624/4625 
 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/115.png) 
 
-Detecting RDP (Remote Desktop Protocol) Brute Force 
+Detecting RDP (Remote Desktop Protocol) Brute Force
+---
 
 RDP: Remote Desktop Protocol is a Microsoft technical standard that allows you to connect and control a computer from a remote location over the network.  
 
@@ -36,7 +37,8 @@ RDP: Remote Desktop Protocol is a Microsoft technical standard that allows you
 4. Source IP is not expected 
     
 
-Analyze RDP logons 
+Analyze RDP logons
+---
 
 1. Search for Security logon with the filter 4624 (successful logon) 
 2. Look for event with logon type 10 (RDP logins) 
@@ -45,9 +47,9 @@ Analyze RDP logons 
 5. Windows assigns a logon ID for every successful login 
 6. Logon ID is a unique session identifier.  
 
-Questions 
+**Questions** 
 
-1. Which IP performed a brute force of the THM-PC? 
+**1. Which IP performed a brute force of the THM-PC?** 
 - To determine which IP conducted a brute force attack, we need to filter to the Event ID: 4625 (failed logon attempts) 
 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/116.png)
@@ -60,18 +62,19 @@ Questions 
 
 Answer: 10.10.53.248 
 
-2. Which user has been breached because of the attack? 
+**2. Which user has been breached because of the attack?** 
 - If the user was breached that indicates that the adversary successfully logon to the account (Event ID: 4624)
 - We will need to filter the logon ID 4624 and observe the output with the IP associated with the brute force attack.  
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/118.png)
 
 Answer: Administrator 
 
-3. What is the logon ID of the malicious RDP (Type 10) login? 
+**3. What is the logon ID of the malicious RDP (Type 10) login?** 
 - In the screenshot above we can see “TargetLogonID” 
 Answer: 0x183C36D 
 
-Security Log: User Management 
+Security Log: User Management
+---
 - Below are some additional Event IDs associated with user management logs.  
 - This allows an analyst to determine which user is conducting malicious attacks.  
 
@@ -89,7 +92,8 @@ Security Log: User Management 
 2. Object: Can be named different depending on an event ID 
 3. Details: target group for 4732/4733 events, or new users like full name or passwords expirations.  
     
-Hunt for Backdoored User 
+Hunt for Backdoored User
+---
 
 1. Filter to logs 4720 (user account created)/4723(user password changed) 
 2. RED FLAGS to look for when review the events: 
@@ -104,7 +108,7 @@ Hunt for Backdoored User 
     
 Questions  
 
-1. Which user was created by the attacker soon after the RDP login? 
+**1. Which user was created by the attacker soon after the RDP login?** 
 - We will use the Event ID 4720 to determine what user was created  
 - This should still be associated with the administrator account that was breached. 
     
@@ -113,7 +117,7 @@ Questions  
 
 Answer: svc_sysrestore 
 
-2. Which two privileged groups were the backdoor user added to? 
+**2. Which two privileged groups were the backdoor user added to?** 
 - To identify the privilege that was added to the breached user, we will use the Event ID: 4732 
 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/120.png)
@@ -125,7 +129,7 @@ Answer: svc_sysrestore 
 Answer: Backup Operators, Remote Desktop Users 
 - By groups are associated with the "Administrator” user that was breached  
     
-3. Does the Logon ID field match what you saw in the previous task?  
+**3. Does the Logon ID field match what you saw in the previous task?**  
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/122.png)
 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/123.png)
@@ -133,6 +137,7 @@ Answer: Backup Operators, Remote Desktop Users 
 Answer: Yes 
 
 Sysmon: Process Monitoring 
+---
 - Sysmon is a Microsoft Sysinternals that is equipped with advanced monitoring in addition to the default system logs.  
     
 
@@ -142,15 +147,14 @@ Sysmon: Process Monitoring 
 |4688 (Security Log: Process Creation)|Log an event every time a new process is launched, including its command line and parent process details|Disabled by default, you need to enable it by following the [official documentation](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/component-updates/command-line-process-auditing)|
 |1 (Sysmon: Process Creation)|Replace 4688 event code and provide more advanced fields like process hash and its signature|Sysmon is an external tool not installed by default. Check out the [Sysmon official page](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon)|
 
-Sysmon Event ID 1 in Action: 
+**Sysmon Event ID 1 in Action:** 
 
 1. Process Info: Context of launched process, including its PID (Process ID: unique identifier assigned to each running process in a system) and command line 
 2. Parent Info: Information regarding the parent process, useful to build a process tree or an attack chain 
 3. Binary Info: Process hash, signature, and PE metadata - file format for executables, object code, DLL. Encapsulates the information necessary for the Windows OS to manage the wrapped executable code. 
 4. User Context: User running the process and Logon ID, which is the same as in the security logs.  
 
-Analyze Process: 
-
+**Analyze Process:**
 1. Open Sysmon logs and filter for event ID 1 
 2. Review the fields from the process and binary info groups. RED FLAGS 
 3. Image is an uncommon directory “C:\Temp or C:|Users|Public 
@@ -167,7 +171,7 @@ Analyze Process: 
 
 Questions 
 
-1. Which web browser does Sarah use to browse the web? 
+**1. Which web browser does Sarah use to browse the web?** 
     
 
 - To determine which web browser Sarah uses, we will open the Sysmon Event Viewer and filter to Event ID 1 and filter the user to Sarah to reduce the amount of source information.  
@@ -183,7 +187,7 @@ Questions 
 
 Answer: Google Chrome 
 
-2. Which file did Sarah download from the browser? 
+**2. Which file did Sarah download from the browser?** 
 - Since we already in the filter from question 1, we can observe what file Sarah had downloaded.  
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/127.png)
 
@@ -191,7 +195,7 @@ Answer: Google Chrome 
 
 Answer: C:\Users\sarah.miller\Downloads\ckjg.exe 
 
-3. Which URL was the file downloaded from?  
+**3. Which URL was the file downloaded from?**  
 - To determine which URL was the file downloaded from, we will use Sysmon Event ID 15. 
 - Event ID 15 is associated with file stream creation [Sysmon - Sysinternals | Microsoft Learn](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon) 
 
@@ -207,7 +211,7 @@ Sysmon: Files and Network 
 |11 / 13 (File Create / Registry Value Set)|4656 for file changes and 4657 for registry changes, both disabled by default|Detect files dropped by malware or its changes to the registry (e.g. for persistence)|
 |3 / 22 (Network Connection / DNS Query)|No direct alternative, requires additional firewall and DNS configuration|Detect traffic from untrusted processes or to known malicious destinations|
 
-1. Which file was created by the downloaded malware to persist on the host?  
+**1. Which file was created by the downloaded malware to persist on the host?**  
 - To identify what file was created, we will use the file to create Event ID 11.  
 - First, let filter to Event ID 11 (File Create) 
 - We already know that the file was created by sarah.miller, so a file path will be associated with that user.  
@@ -220,7 +224,7 @@ Sysmon: Files and Network 
 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/130.png)
 
-2. What is the Command & Control server malware connected to?  
+**2. What is the Command & Control server malware connected to?**  
 - This is concerning a network connection when it is involving a C2, so we will filter to Event 3 
     
 
@@ -233,7 +237,7 @@ Sysmon: Files and Network 
 
 Answer: 193[.]46[.]217:7777 
 
-3. Which domain does the malicious IP correspond to?  
+**3. Which domain does the malicious IP correspond to?**  
 - This will consist of filter to Event ID 22 (DNS) 
     
 
@@ -241,15 +245,16 @@ Answer: 193[.]46[.]217:7777 
 
 Answer: hkfasfsafg.click 
 
-PowerShell: Logging Commands 
+PowerShell: Logging Commands
+---
 
-1. Which PowerShell command was executed first?  
+**1. Which PowerShell command was executed first?**  
 - Let's navigate to the PowerShell file history to review the commands that were executed.  
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/134.png)
 
   Answer: Get-ComputerInfo 
 
-1. When did the Administrator run the first PS command?  
+**2. When did the Administrator run the first PS command?**  
 - To see when the first command was executed, we can view the properties of the file Right-Click on the history files, select properties, and the answer should be available.  
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/135.png) 
 
@@ -257,7 +262,7 @@ PowerShell: Logging Commands 
 
 Answer: May 18, 2025 
 
-3. Find the flag that is stored in PowerShell history.  
+**3. Find the flag that is stored in PowerShell history.**  
 - To find the flag, we must go through the files of other users as well to review their PowerShell command line. 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/18221697bab6b9de22b2234f0ac3afb5f8dee2d3/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20EV%20Log%20Intro/Windows%20EV%20Log%20Img/137.png)
 
