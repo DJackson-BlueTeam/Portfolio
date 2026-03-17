@@ -21,7 +21,6 @@ My technical proficiency covers key areas essential for a SOC Analyst:
 *   DNS
 *   VPNs
 *   Firewalls
-*   Network Troubleshooting
 
 ### Tools & Platforms
 *   Wireshark
