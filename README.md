@@ -1,4 +1,4 @@
-##SOC Analyst Level 1 Portfolio
+SOC Analyst Level 1 Portfolio
 ---
 
 ## Overview
