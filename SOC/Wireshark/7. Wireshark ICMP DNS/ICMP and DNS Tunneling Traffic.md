@@ -78,7 +78,12 @@ DNS (Domain Name System) Analysis
 |---|---|
 |**Notes**|**Wireshark Filter**|
 |Global search|- `dns`|
-|"DNS" options for grabbing the low-hanging fruits: <br><br>- Query length. <br>    <br><br>- Anomalous and non-regular names in DNS addresses. <br>    <br><br>- Long DNS addresses with encoded subdomain addresses. <br>    <br><br>- Known patterns like dnscat and dns2tcp. <br>    <br><br>- Statistical analysis like the anomalous volume of DNS requests for a particular target. <br>    <br><br>!mdns: Disable local link device queries.|- `dns contains "dnscat"` <br>    <br><br>- `dns.qry.name.len > 15 and !mdns`|
+|Query Length|`dns.qry.name.len > 20`|
+|Anomalous and non-regular names in DNS addresses|`dns.qry.name.len > 15 and !mdns`|
+|Long DNS addresses with encoded subdomain addresses|`dns.qry.name.len > 50`|
+|Known Patterns Like DNSCAT and DNS2TCP|`dns contains "dnscat" or dns contains "dns2tcp"`|
+|Statistical Analysis (Anomalous Volume For Target)|`ip.addr == [Target_IP] and dns`|
+|Disable Local Link Device Queries|`!mdns`|
 
  ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/89f8f4d6320a43626bf6c94cc5ee1c4777a42c7d/SOC/Wireshark/7.%20Wireshark%20ICMP%20DNS/ICMP%20and%20DNS/81.png)
 
