@@ -1,4 +1,5 @@
-**Encrypted Protocol Analysis: Decrypting HTTPS Write Up** 
+Encrypted Protocol Analysis: Decrypting HTTPS Write Up
+---
 
 - Sometime, malicious activity is also done in HTTPS (Hypertext Transfer Protocol Secure) 
 - HTTPS encrypts the data while it is being transferred to the network. 
