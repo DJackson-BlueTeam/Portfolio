@@ -13,9 +13,9 @@
 		- This consumes resources and prevents legitimate traffic from reaching the system.
 		- Command Line Example: 
 			- Ping: uses the ICMP protocol. A DoS is achieved by flooding the target with request faster than it can process them by using oversized packets.
-				- Ping Flood (Linux/macOS): *sudo ping -f (target_ip)* <-- This sends packets a s fast as they are received or 100 times per second. This does require root/sudo privileges. 
-				- Ping with Maximum Packet Size: *ping -s 65507 (target_ip)* <---The maximum IPv4 packet size (-s) is 6535 bytes. By sending large packets can strain the target's ability to reassemble fragments.
-				- Rapid Interval Ping: *sudo ping -i 0.01 (target_ip)* <--- Sending requests at the subnet at the shortest possible interval (-i) 
+				- Ping Flood (Linux/macOS): `sudo ping -f (target_ip)` <-- This sends packets a s fast as they are received or 100 times per second. This does require root/sudo privileges. 
+				- Ping with Maximum Packet Size: `ping -s 65507 (target_ip)` <---The maximum IPv4 packet size (-s) is 6535 bytes. By sending large packets can strain the target's ability to reassemble fragments.
+				- Rapid Interval Ping: `sudo ping -i 0.01 (target_ip)` <--- Sending requests at the subnet at the shortest possible interval (-i) 
 - Can be used for data exfiltration and C2 tunneling activities. 
 - T1071: Application Layer Protocol (https://attack.mitre.org/techniques/T1071/) 
 	- Tactic: Command and Control
