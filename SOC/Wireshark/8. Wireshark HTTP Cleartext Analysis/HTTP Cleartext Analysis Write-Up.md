@@ -1,27 +1,27 @@
-**HTTP Analysis** 
-
+HTTP Analysis
+---
 - HTTP (Hypertext Transfer Protocol) is a cleartext-based, request-response and client-server protocol.  
 - Standard type of network activity for request/serve webpages.  
 - Attack Vectors: 
-	1. Phishing pages 
-		- T1589: Reconnaissance ([Gather Victim Identity Information, Technique T1589 - Enterprise | MITRE ATT&CK®](https://attack.mitre.org/techniques/T1589/))
+	1. **Phishing pages** 
+		- _T1589: Reconnaissance_ ([Gather Victim Identity Information, Technique T1589 - Enterprise | MITRE ATT&CK®](https://attack.mitre.org/techniques/T1589/))
 			- Tactic: Gather Victim Identity Information
 				- Adversaries gather email addresses or employee names to target phishing campaigns. 
-		- T1584: Resource Development ([Compromise Infrastructure, Technique T1584 - Enterprise | MITRE ATT&CK®](https://attack.mitre.org/techniques/T1584/))
+		- _T1584: Resource Development_ ([Compromise Infrastructure, Technique T1584 - Enterprise | MITRE ATT&CK®](https://attack.mitre.org/techniques/T1584/))
 			- Tactic: Acquire Infrastructure Domains
 				- Adversaries may registering deceptive domains (typosquatting) to host the phishing page.
-	2. Web Attacks
-		- T1190: Initial Access ([Exploit Public-Facing Application, Technique T1190 - Enterprise | MITRE ATT&CK®](https://attack.mitre.org/techniques/T1190/))
+	2. **Web Attacks**
+		- _T1190: Initial Access_ ([Exploit Public-Facing Application, Technique T1190 - Enterprise | MITRE ATT&CK®](https://attack.mitre.org/techniques/T1190/))
 			- Tactic: Exploit Public-Facing Application
 				- Adversaries will be motivated to leverage vulnerabilities in web servers or application to gain access
-		-  T1505.003: Persistence ([Server Software Component: Web Shell, Sub-technique T1505.003 - Enterprise | MITRE ATT&CK®](https://attack.mitre.org/techniques/T1505/003/))
+		-  _T1505.003: Persistence_ ([Server Software Component: Web Shell, Sub-technique T1505.003 - Enterprise | MITRE ATT&CK®](https://attack.mitre.org/techniques/T1505/003/))
 			- Tactic: Server Software Component: Web 
 				- Adversaries may deploy scripts (PHP, ASPX, JSP) on a web server to maintain persistent remote access
-	3. Data Exfiltration
-		- T1041: Exfiltration ([Exfiltration Over C2 Channel, Technique T1041 - Enterprise | MITRE ATT&CK®](https://attack.mitre.org/techniques/T1041/))
+	3. **Data Exfiltration**
+		- _T1041: Exfiltration_ ([Exfiltration Over C2 Channel, Technique T1041 - Enterprise | MITRE ATT&CK®](https://attack.mitre.org/techniques/T1041/))
 			- Tactic: Exfiltration Over C2 Channel
 				- Adversaries leveraging the existing HTTP/S command and control (C2) channel to steal data and blending it with C2 network traffic.
-		- T1071.001: Command and Control ([Application Layer Protocol, Technique T1071 - Enterprise | MITRE ATT&CK®](https://attack.mitre.org/techniques/T1071/))
+		- _T1071.001: Command and Control_ ([Application Layer Protocol, Technique T1071 - Enterprise | MITRE ATT&CK®](https://attack.mitre.org/techniques/T1071/))
 			- Tactic: Application Layer Protocol: Web Protocol 
 				- Adversaries can utilize HTTP, HTTPS, or HTTP/2/3 to communicate with external servers, making exfiltration appear as standard web browsing.  
 
