@@ -84,7 +84,7 @@ Resetting Passwords 
 
 Answer: 6 
 
-2. After Successful login, which backdoor user did the attacker create?  
+**2. After Successful login, which backdoor user did the attacker create?**  
 - Let filter to Event ID: 4720 Creating User 
     
 
@@ -92,33 +92,34 @@ Answer: 6 
 
 Answer: support 
 
-3. Which privileged group was the backdoor user added to?  
+**3. Which privileged group was the backdoor user added to?**  
 - Let's filter to Event ID 4732 Privilege Group  
     
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/e01ac022b89ddc94c9b95ecd931e46d004fd189a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%203%20Write%20Up/Windows%20Threat%20Detection%203%20Img/186.png)
 
 Answer: Administrators 
 
-Malware Persistence 
+Malware Persistence
+---
 - Maintaining persistence with malware requires an actively running malware that maintains a connection with their C2 server even after a system reboot.  
     
 
 |   |   |   |
 |---|---|---|
-|Persistence Method|Attack Example|Event ID Logging|
-|Create a Windows Service (Runs after OS startup)|sc create "BadService" binpath= "C:\malware.exe" start= auto|Launch of sc.exe: Sysmon / 1 Service creation: Security / 4697|
-|Create a Scheduled Task (Run after OS startup)|schtasks /create /tn "BadTask" /tr "C:\malware.exe" /sc onstart /ru System|Launch of schtasks.exe: Sysmon / 1 Scheduled task creation: Security / 4698|
+|**Persistence Method**|**Attack Example**|**Event ID Logging**|
+|Create a Windows Service (Runs after OS startup)|`sc create "BadService" binpath= "C:\malware.exe" start= auto`|Launch of sc.exe: Sysmon / 1 Service creation: Security / 4697|
+|Create a Scheduled Task (Run after OS startup)|`schtasks /create /tn "BadTask" /tr "C:\malware.exe" /sc onstart /ru System`|Launch of schtasks.exe: Sysmon / 1 Scheduled task creation: Security / 4698|
 
-Questions 
+**Questions** 
 
-1. Which Windows service was created to persist in the Nessie malware?  
+**1. Which Windows service was created to persist in the Nessie malware?**  
 - Looking at the chart above, we can use Event ID 4697 Service Creation 
     
 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/e01ac022b89ddc94c9b95ecd931e46d004fd189a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%203%20Write%20Up/Windows%20Threat%20Detection%203%20Img/187.png)
 Answer: Data Protection Service 
 
-2. Which Scheduled task was created to persist in the Troy malware?  
+**2. Which Scheduled task was created to persist in the Troy malware?**  
 - Let filter to Event ID 4698 Schedule Task Creation 
 - Below, we can see the command for troy.exe 
     
@@ -126,9 +127,9 @@ Answer: Data Protection Service 
 ![[188.png]](https://github.com/DJackson-BlueTeam/Portfolio/blob/e01ac022b89ddc94c9b95ecd931e46d004fd189a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%203%20Write%20Up/Windows%20Threat%20Detection%203%20Img/188.png)
 ![[189.png]](https://github.com/DJackson-BlueTeam/Portfolio/blob/e01ac022b89ddc94c9b95ecd931e46d004fd189a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%203%20Write%20Up/Windows%20Threat%20Detection%203%20Img/189.png)
 	
-	Answer: AmazonSync 
+Answer: AmazonSync 
 
-3. What flag do you get after finding and running the Troy malware?  
+**3. What flag do you get after finding and running the Troy malware?**  
 - This involves several steps. 
 - First, Let go to the Sysmon log and filter to Event ID 1 Process Creation.  
 - We want to find the Process Creation with troy.exe malware. You can filter CRTL+F troy 
@@ -149,13 +150,13 @@ Run Keys and Startup 
 
 |   |   |   |
 |---|---|---|
-|Persistence Method|Attack Example|Event ID Logging|
-|Add malware to Startup Folder (Runs upon user login)|copy C:\malware.exe "%AppData%\Microsoft\Windows\Start Menu\Programs\Startup\malware.exe"|New startup item: Sysmon Event ID 11|
-|Add malware to "Run" keys (Runs upon user login)|reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v BadKey /t REG_SZ /d "C:\malware.exe"|New registry value: Sysmon Event ID 13|
+|**Persistence Method**|**Attack Example**|**Event ID Logging**|
+|Add malware to Startup Folder (Runs upon user login)|`copy C:\malware.exe "%AppData%\Microsoft\Windows\Start Menu\Programs\Startup\malware.exe"`|New startup item: Sysmon Event ID 11|
+|Add malware to "Run" keys (Runs upon user login)|`reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v BadKey /t REG_SZ /d "C:\malware.exe"`|New registry value: Sysmon Event ID 13|
 
-Questions 
+**Questions** 
 
-1. What is the parent process image of the “Odin” malware?  
+**1. What is the parent process image of the “Odin” malware?**  
 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/e01ac022b89ddc94c9b95ecd931e46d004fd189a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%203%20Write%20Up/Windows%20Threat%20Detection%203%20Img/192.png) 
 
@@ -176,7 +177,7 @@ Answer: C:\Windows\explorer.exe 
 - Both Event ID 11 and Event ID 1 is associated with the same User  
 - Also look at the time frames. After Event ID 11 was executed, it immediately created a process moments after.  
 
-2. What is the last line that the “Odin” malware outputs?  
+**2. What is the last line that the “Odin” malware outputs?**  
 - Let's open the Sysmon.evtx after the execution file 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/e01ac022b89ddc94c9b95ecd931e46d004fd189a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%203%20Write%20Up/Windows%20Threat%20Detection%203%20Img/195.png) 
 - Filter to Event ID 1 Process Creation 
