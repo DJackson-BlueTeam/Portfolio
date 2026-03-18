@@ -190,7 +190,7 @@ Answer: C:\Windows\explorer.exe 
 
 Answer: Done doing bad stuff! 
 
-**3. What flag do you get after finding and running the Kitten malware** 
+**3. What flag do you get after finding and running the Kitten malware?** 
 - This will be in Event ID 1 Process Creation.  
 - Look for a Process with “Kitten” 
     
