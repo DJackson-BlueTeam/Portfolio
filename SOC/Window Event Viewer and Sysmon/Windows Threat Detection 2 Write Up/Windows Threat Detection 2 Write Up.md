@@ -1,24 +1,26 @@
 Windows Threat Detection 2 Write Up 
+---
 - When an adversary passes through the front door (Initial Access), most of the time they do not know where they are within the system.  
 - After gaining access to a system, the adversary then starts the discovery phase of their next phase of attack.  
-- TA007: Reconnaissance  ([Discovery, Tactic TA0007 - Enterprise | MITRE ATT&CK®](https://attack.mitre.org/tactics/TA0007/)). 
+- _TA007: Reconnaissance_  ([Discovery, Tactic TA0007 - Enterprise | MITRE ATT&CK®](https://attack.mitre.org/tactics/TA0007/)). 
 	- Tactic: Discovery
 		- Discovery is a tactic that consist of technique that gain knowledge about the system and internal network. This helps adversaries to observe the enviornment and determine how to act on based on the information about the target.    
 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/153.png) 
 
-Windows Discovery Commands 
+Windows Discovery Commands
+---
 
 |   |   |
 |---|---|
-|Discovery Purpose|Common CMD / PowerShell Commands|
-|Files and Folders (To find out the host purpose, victim's job, or their interests)|type <file>, Get-Content <file>, dir <folder>, Get-ChildItem <folder>|
-|Users and Groups (To find out who uses the host and with which privileges)|whoami, net user, net localgroup, query user, Get-LocalUser|
-|System and Apps (To find out vulnerabilities or apps to steal data from)|tasklist /v, systeminfo, wmic product get name,version, Get-Service|
-|Network Settings (To find out if the host belongs to a corporate network)|ipconfig /all, netstat -ano, netsh advfirewall show allprofiles|
-|Active Antivirus (To find out how risky it is to continue the attack without being blocked)|Get-WmiObject -Namespace "root\SecurityCenter2" -Query "SELECT * FROM AntivirusProduct"|
+|**Discovery Purpose**|**Common CMD / PowerShell Commands**|
+|Files and Folders (To find out the host purpose, victim's job, or their interests)|`type <file>`, `Get-Content <file>`, `dir <folder>`, `Get-ChildItem <folder>`|
+|Users and Groups (To find out who uses the host and with which privileges)|`whoami`, `net user`, `net localgroup`, `query user`, `Get-LocalUser`|
+|System and Apps (To find out vulnerabilities or apps to steal data from)|`tasklist /v`, `systeminfo`, `wmic product get name`,`version`, `Get-Service`|
+|Network Settings (To find out if the host belongs to a corporate network)|`ipconfig /all`, `netstat -ano`, `netsh advfirewall show allprofiles`|
+|Active Antivirus (To find out how risky it is to continue the attack without being blocked)|`Get-WmiObject -Namespace "root\SecurityCenter2" -Query "SELECT * FROM AntivirusProduct"`|
 
-1. Open CMD and type “net user Administrator”. Which privileged group does the user belong to?  
+**1. Open CMD and type “net user Administrator”. Which privileged group does the user belong to?**  
     
 
 - To determine the group, we must do the exact what is asked of us to do.  
@@ -26,7 +28,7 @@ Windows Discovery Commands 
 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/154.png)
 
-2. What is the Image field of the net command you ran in Sysmon log?   
+**2. What is the Image field of the net command you ran in Sysmon log?**   
     
 
 - First, let access Sysmon logs (Event viewer > Custom View > Microsoft > Windows > Sysmon > Operational)  
@@ -34,8 +36,7 @@ Windows Discovery Commands 
 
 - Once we have the logs we need, there are two ways we can find our “net command” 
     
-
-1. We can simply “CRTL+F” and put “net.exe” since we know that we executed a net command in the Command Prompt.  
+- We can `CRTL+F` and `put net.exe` since we know that we executed a net command in the Command Prompt.  
     
 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/155.png) 
