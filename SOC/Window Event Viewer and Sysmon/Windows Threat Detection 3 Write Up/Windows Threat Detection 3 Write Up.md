@@ -1,12 +1,14 @@
-Windows Threat Detection 3 Write Up 
+Windows Threat Detection 3
+---
 
-Attacks Without Command and Control 
+Attacks Without Command and Control
+---
 
 - When an adversary commits an RDP attack, a C2 isn’t necessary. Unless the adversary wants to regain access another time, then, they will set up a C2 immediately after the breach.  
 - An advance way of maintaining C2 is by downloading an additional C2 malware that can hide in a folder (C:\TEMP) and run as a new process. This method keeps the attack going if the victim decides to delete the original attachment ([Threat Spotlight: Ransomware, trojans, and loaders - Cisco Umbrella](https://umbrella.cisco.com/blog/cybersecurity-threat-spotlight-ransomware-trojans-loaders)).  
 - This is another clear descriptive case based on a APT29 Campaigns ([Tracking APT29 Phishing Campaigns | Atlassian Trello | Google Cloud Blog](https://cloud.google.com/blog/topics/threat-intelligence/tracking-apt29-phishing-campaigns)) 
 Questions 
-1. Which suspicious archive did the user download?  
+**1. Which suspicious archive did the user download?**  
 - Downloaded file in Sysmon log will be associated with Event ID 15 ([Sysmon - Sysinternals | Microsoft Learn](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon)) 
 - Let access Sysmon log through Event Viewer (Should be able to navigate to it from “Windows Threat Detection 2”) or open file explore and click on the “Sysmon.evtx” 
 - Also, with the File Explore, there is a downloaded file named “URGENT!.zip”. That could be the answer, however, let's make sure this is the case.  
@@ -20,7 +22,7 @@ Questions 
 
 Answer: URGENT!.zip 
 
-2. Where did the attacker hide the C2 malware file 
+**2. Where did the attacker hide the C2 malware file** 
 - This is consisting of Process Creation (Event ID 1) 
 - Notice in the screenshot below, there is a PowerShell execution being implemented in the ParentCommandLine 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/e01ac022b89ddc94c9b95ecd931e46d004fd189a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%203%20Write%20Up/Windows%20Threat%20Detection%203%20Img/180.png) 
@@ -31,7 +33,7 @@ Answer: URGENT!.zip 
 
 Answer:  C:\Users\Administrator\AppData\Roaming\update.exe 
 
-3. What is the domain of the Command-and-Control server?  
+**3. What is the domain of the Command-and-Control server?**  
 - To find the domain, filter to the Event ID: 22 ([Sysmon - Sysinternals | Microsoft Learn](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon)) DNS Query.  
     
 
@@ -40,18 +42,21 @@ Answer:  C:\Users\Administrator\AppData\Roaming\update.exe 
 Answer: route.m365officesync.workers.dev 
 
 Persistence Overview 
+---
 - The method of maintaining reliable, long-term access to a targets machine that can survive reboots and passwords changes.  
     
-Persisting with RDP  
+Persisting with RDP
+---
 - For adversaries to maintain persistence through RDP  they can create a hidden vulnerability in the breached service utilizing backdoor or web shell.
-- TA003: ([Persistence, Tactic TA0003 - Enterprise | MITRE ATT&CK®](https://attack.mitre.org/tactics/TA0003/))
+- _TA003: Persistence_ ([Persistence, Tactic TA0003 - Enterprise | MITRE ATT&CK®](https://attack.mitre.org/tactics/TA0003/))
 	- Tactic: Persistence
 		- The ability to maintain access to a system across restarts, change in credentials, and other interruption that could cut off the access. 
-- T1505.003: Server Software Component: Web Shell ([Server Software Component: Web Shell, Sub-technique T1505.003 - Enterprise | MITRE ATT&CK®](https://attack.mitre.org/techniques/T1505/003/)). 
+- _T1505.003: Server Software Component: Web Shell_ ([Server Software Component: Web Shell, Sub-technique T1505.003 - Enterprise | MITRE ATT&CK®](https://attack.mitre.org/techniques/T1505/003/)). 
 	- Tactic:  Persistence
 		- Adversaries may install web shells on a web server to maintain persistence to a system. A web shell is a web script that is place on an open-facing web server to allow an adversary to use the web server as a gateway into the network
     
-Detecting Backdoored Users 
+Detecting Backdoored Users
+---
 - With adversaries creating backdoors, they can do so by creating additional accounts on the targets machine. If this the case, we can filter and monitor users account through the Event Viewer by filtering for Event ID 4720 User Account Creation ([Appendix L - Events to Monitor | Microsoft Learn](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/appendix-l--events-to-monitor))  
 - Another method is that an adversary can create account to a privileged group, and this can be filter through Event ID 4732 Security Enabled Local Group ([Appendix L - Events to Monitor | Microsoft Learn](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/appendix-l--events-to-monitor)) 
     
