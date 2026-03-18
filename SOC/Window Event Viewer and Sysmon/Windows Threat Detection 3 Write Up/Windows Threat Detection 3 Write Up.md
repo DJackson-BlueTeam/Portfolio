@@ -7,7 +7,7 @@ Attacks Without Command and Control
 - When an adversary commits an RDP attack, a C2 isn’t necessary. Unless the adversary wants to regain access another time, then, they will set up a C2 immediately after the breach.  
 - An advance way of maintaining C2 is by downloading an additional C2 malware that can hide in a folder (C:\TEMP) and run as a new process. This method keeps the attack going if the victim decides to delete the original attachment ([Threat Spotlight: Ransomware, trojans, and loaders - Cisco Umbrella](https://umbrella.cisco.com/blog/cybersecurity-threat-spotlight-ransomware-trojans-loaders)).  
 - This is another clear descriptive case based on a APT29 Campaigns ([Tracking APT29 Phishing Campaigns | Atlassian Trello | Google Cloud Blog](https://cloud.google.com/blog/topics/threat-intelligence/tracking-apt29-phishing-campaigns))
-   
+
 **Questions**
 
 **1. Which suspicious archive did the user download?**  
