@@ -25,7 +25,7 @@ Attacks Without Command and Control
 
 Answer: URGENT!.zip 
 
-**2. Where did the attacker hide the C2 malware file** 
+**2. Where did the attacker hide the C2 malware file?** 
 - This is consisting of Process Creation (Event ID 1) 
 - Notice in the screenshot below, there is a PowerShell execution being implemented in the ParentCommandLine 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/e01ac022b89ddc94c9b95ecd931e46d004fd189a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%203%20Write%20Up/Windows%20Threat%20Detection%203%20Img/180.png) 
