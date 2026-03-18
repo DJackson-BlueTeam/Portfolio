@@ -144,7 +144,8 @@ Answer: AmazonSync 
 
 Answer: THM{c2_is_on_schedule!} 
 
-Run Keys and Startup 
+Run Keys and Startup
+---
 - Windows provides a few per-user persistence methods that are actively used by both legitimate tools and malware. 
     
 
@@ -171,11 +172,12 @@ Run Keys and Startup 
 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/e01ac022b89ddc94c9b95ecd931e46d004fd189a/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%203%20Write%20Up/Windows%20Threat%20Detection%203%20Img/194.png)
 
-Answer: C:\Windows\explorer.exe 
-
 - Here, we see the same User Administrator with the full Child CommandLine showing there was a download executed through chrome browser.  
 - Both Event ID 11 and Event ID 1 is associated with the same User  
-- Also look at the time frames. After Event ID 11 was executed, it immediately created a process moments after.  
+- Also look at the time frames. After Event ID 11 was executed, it immediately created a process moments after.
+  
+Answer: C:\Windows\explorer.exe 
+  
 
 **2. What is the last line that the “Odin” malware outputs?**  
 - Let's open the Sysmon.evtx after the execution file 
@@ -188,7 +190,7 @@ Answer: C:\Windows\explorer.exe 
 
 Answer: Done doing bad stuff! 
 
-3. What flag do you get after finding and running the Kitten malware 
+**3. What flag do you get after finding and running the Kitten malware** 
 - This will be in Event ID 1 Process Creation.  
 - Look for a Process with “Kitten” 
     
