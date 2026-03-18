@@ -64,13 +64,14 @@ Detecting Backdoored Users
 - Another method is that an adversary can create account to a privileged group, and this can be filter through Event ID 4732 Security Enabled Local Group ([Appendix L - Events to Monitor | Microsoft Learn](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/appendix-l--events-to-monitor)) 
     
 Resetting Passwords 
+---
 - If there’s an account on the target system that hasn’t been used or forgotten about, they may be motivated to change the password of that user.  
 - This can be filter through Event ID 4724 Reset Account Password ([Appendix L - Events to Monitor | Microsoft Learn](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/appendix-l--events-to-monitor)) 
     
 
-Questions 
+**Questions** 
 
-1. How many times did the threat actor fail to log into the Administrator?  
+**1. How many times did the threat actor fail to log into the Administrator?**  
 - We first must go to security saved logs.  
     
 
