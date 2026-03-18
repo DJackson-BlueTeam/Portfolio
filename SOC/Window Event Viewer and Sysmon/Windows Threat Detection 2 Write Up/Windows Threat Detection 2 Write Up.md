@@ -59,7 +59,7 @@ Answer: C:\Windows\System32\net.exe 
 Detecting Discovery 
 ---
 
-- When an adversary has access to a system, the commands that are used to identify where they are would be a command like “whoami”, or “ipconfig” that is available in windows machines.  
+- When an adversary has access to a system, the commands that are used to identify where they are would be a command like `whoami`, or `ipconfig` that is available in windows machines.  
 - When a command is executed in the command prompt, they are logged as new processes.  
     
 
@@ -72,7 +72,7 @@ Questions  
 
 - Now let's take a look at the Sysmon logs and review.  
 - Previously we discussed 2 options we can use to find the process (a. CTRL+f or b. filter to Event 1) 
-- Let's use the CTRL+F since we know what file was executed to create a process.  
+- Let's use the `CTRL+F` since we know what file was executed to create a process.  
     
 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/160.png) 
@@ -146,7 +146,7 @@ Answer: nsAghv51BBav90! 
 Answer: thm-access-database.key 
 
 **3. What is the secret PDF file explaining TryHackMe’s internal network?**  
-- .pdf files are usually stored in the Downloads folder, check there first.  
+- `.pdf` files are usually stored in the Downloads folder; lets check there first.  
     
 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/170.png)
@@ -161,7 +161,7 @@ Detecting Collection
 
 |   |   |
 |---|---|
-|Command Example|Description|
+|**Command Example**|**Description**|
 |notepad.exe C:\Users\<user>\Desktop\finances-2025.csv|Threat actors used Notepad to check content of the interesting file|
 |CMD: type debug-logs.txt \| findstr password > C:\Temp\passwords.txt|Threat actors searched for the "password" keyword in a specific file|
 |PowerShell: Get-ChildItem C:\Users\<user> -Recurse -Filter *.pdf|Threat actors searched for PDF files in the user's home folder|
