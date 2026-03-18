@@ -43,7 +43,7 @@ Windows Discovery Commands
 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/156.png) 
 
-2. We can filter out only Event ID 1 (Process Creation) 
+- We can filter out only Event ID 1 (Process Creation) 
 - By executing a net command, we are requesting information to determine which group the user Administrator is in.  
     
 
@@ -56,7 +56,8 @@ Windows Discovery Commands
 
 Answer: C:\Windows\System32\net.exe 
 
-Detecting Discovery  
+Detecting Discovery 
+---
 
 - When an adversary has access to a system, the commands that are used to identify where they are would be a command like “whoami”, or “ipconfig” that is available in windows machines.  
 - When a command is executed in the command prompt, they are logged as new processes.  
@@ -64,10 +65,9 @@ Detecting Discovery  
 
 Questions  
 
-1. Looking at Sysmon logs, what is the first command the invoice.pdf.exe executes?  
+**1. Looking at Sysmon logs, what is the first command the invoice.pdf.exe executes?**  
 - Let's execute the invoice.pdf.exe first so it can be logged in the Sysmon logs to review the commands.  
     
-
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/159.png) 
 
 - Now let's take a look at the Sysmon logs and review.  
@@ -81,7 +81,7 @@ Questions  
 
 Answer: whoami 
 
-2. Which command did the malware use to check the presence of MS Defender EDR? 
+**2. Which command did the malware use to check the presence of MS Defender EDR?** 
 - We are already in the area of the invoice.pdf.exe process creation. 
 - We just need to comb through the processes to find what command that was used to check the presence of MS Defender EDR.  
     
@@ -90,7 +90,7 @@ Answer: whoami 
 
 Answer: cmd /c "tasklist /v | findstr MsSense.exe || echo No MS Defender EDR" 
 
-3. To which domain did the malware send the discovered data?  
+**3. To which domain did the malware send the discovered data?**  
 - We must filter to Event ID: 22 to determine which domain the malware sends the information to.  
 - To be sure what the domain the malware is sending the information to, we want to be sure all command execution is still linked to the invoice.pdf.exe. 
     
@@ -101,17 +101,19 @@ Answer: cmd /c "tasklist /v | findstr MsSense.exe || echo No MS Defender ED
 
 Answer: exfil[.]beecz[.]cafe 
 
-Collection Overview  
+Collection Overview
+---
 - Target selecting all depends on the adversary objective. It may consist of hunting for personal information, crypto wallets, gaming, or bank accounts. 
 - Advanced groups just use the victim to access the corporate network. 
 - Some secret can be stored in the registry or in a process memory  
  
 
-Exfiltrating Data 
+Exfiltrating Data
+---
 
 - Data collection can be performed automatically using scripts or manually by adversaries. 
 - Exfiltrate stolen data to Dropbox, Mega, Amazon S3 or other trusted cloud storage services.
-	- T1567.002: Exfiltration Over Web Service: Exfiltration to Cloud Storage ([Exfiltration Over Web Service: Exfiltration to Cloud Storage, Sub-technique T1567.002 - Enterprise | MITRE ATT&CK®](https://attack.mitre.org/techniques/T1567/002/#:~:text=Procedure%20Examples))
+	- _T1567.002: Exfiltration Over Web Service: Exfiltration to Cloud Storage_ ([Exfiltration Over Web Service: Exfiltration to Cloud Storage, Sub-technique T1567.002 - Enterprise | MITRE ATT&CK®](https://attack.mitre.org/techniques/T1567/002/#:~:text=Procedure%20Examples))
 		- Tactic: Exfiltration
 			- Adversaries may exfiltrate data to a cloud storage. By exploiting a cloud storage, the adversary can hide their activity within legitimate encrypted web traffic and bypass security controls that might flag connections to the unknown domain 
 -  Exfiltrate stolen data to known code repositories like GitHub or messengers like Telegram ([The New InfoStealer in Town: The Continental Stealer](https://cyberint.com/blog/research/the-new-infostealer-in-town-the-continental-stealer/#:~:text=offers%20a%20Telegram%20bot%20notification%20feature%20that%20informs%20users)) 
@@ -119,7 +121,7 @@ Exfiltrating Data 
 
 Questions 
 
-1. What is the Facebook password that the user saved in Chrome?  
+**1. What is the Facebook password that the user saved in Chrome?**  
 - We can follow this method (Chrome menu > Passwords and autofill > Password Manager) to get the user Facebook password.  
     
 
@@ -135,7 +137,7 @@ Questions 
 
 Answer: nsAghv51BBav90! 
 
-2. Which interesting SSH key does the user store on the disk?  
+**2. Which interesting SSH key does the user store on the disk?**  
 - You can use PowerShell or navigate through “File Explore” 
     
 
@@ -143,13 +145,14 @@ Answer: nsAghv51BBav90! 
 
 Answer: thm-access-database.key 
 
-3. What is the secret PDF file explaining TryHackMe’s internal network?  
+**3. What is the secret PDF file explaining TryHackMe’s internal network?**  
 - .pdf files are usually stored in the Downloads folder, check there first.  
     
 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/bd4a369ad8ad33a2f4a57fdaf8cfbd95aa2c3fa0/SOC/Window%20Event%20Viewer%20and%20Sysmon/Windows%20Threat%20Detection%202%20Write%20Up/Windows%20Threat%20Detection%202%20Img/170.png)
 
-Detecting Collection 
+Detecting Collection
+---
 
 - Adversaries can use command lines and graphical interface option to review sensitive files  
 - In collecting, adversaries look for specific files and folders.  
