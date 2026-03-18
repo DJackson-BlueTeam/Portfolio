@@ -13,6 +13,7 @@ My technical proficiency covers key areas essential for a SOC Analyst:
 
 ### Security Operations
 *   Log Analysis
+*   Malware Analysis
 *   Incident Response
 *   Threat Hunting
 *   SIEM Fundamentals
