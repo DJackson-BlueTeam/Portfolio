@@ -162,14 +162,15 @@ Detecting Collection
 |   |   |
 |---|---|
 |**Command Example**|**Description**|
-|notepad.exe C:\Users\<user>\Desktop\finances-2025.csv|Threat actors used Notepad to check content of the interesting file|
-|CMD: type debug-logs.txt \| findstr password > C:\Temp\passwords.txt|Threat actors searched for the "password" keyword in a specific file|
-|PowerShell: Get-ChildItem C:\Users\<user> -Recurse -Filter *.pdf|Threat actors searched for PDF files in the user's home folder|
-|PowerShell: copy C:\Users\<user>\AppData\Roaming\Signal С:\Temp\|Threat actors copied Signal chat history to the Temp directory|
-|PowerShell: Compress-Archive С:\Temp\ С:\Temp\stolen_data.zip|Threat actors archived the stolen data, preparing for exfiltration|
-|7za.exe a -tzip C:\Temp\stolen_data.zip С:\\Temp\\*.*|Alternatively, threat actors can use the existing archiving software like 7-Zip|
+|`notepad.exe C:\Users\<user>\Desktop\finances-2025.csv`|Threat actors used Notepad to check content of the interesting file|
+|CMD: `type debug-logs.txt \| findstr password > C:\Temp\passwords.txt`|Threat actors searched for the "password" keyword in a specific file|
+|PowerShell: `Get-ChildItem C:\Users\<user> -Recurse -Filter *.pdf`|Threat actors searched for PDF files in the user's home folder|
+|PowerShell: `copy C:\Users\<user>\AppData\Roaming\Signal С:\Temp\`|Threat actors copied Signal chat history to the Temp directory|
+|PowerShell: `Compress-Archive С:\Temp\ С:\Temp\stolen_data.zip`|Threat actors archived the stolen data, preparing for exfiltration|
+|`7za.exe a -tzip C:\Temp\stolen_data.zip С:\\Temp\\*.*`|Alternatively, threat actors can use the existing archiving software like 7-Zip|
 
-Data Stealers 
+Data Stealers
+---
 
 - Attacks targeting simple personal workstations rarely involve an adversary's interaction. These simple actions are performed by data stealers -specialized malware to automate collection and exfiltration ([Gremlin Stealer: New Stealer on Sale in Underground Forum](https://unit42.paloaltonetworks.com/new-malware-gremlin-stealer-for-sale-on-telegram/)) 
     
