@@ -44,7 +44,23 @@ Focusing on sophicated adversary tactic and defense evasion.
 
 - **Powershell Analysis**: Decoding Base64 encoded commands and identifying obfuscated scripts designed to bypass tradtional AV.
 - **Event Log Clearing**: Detecting Event ID 1102 (The log Was cleared), a critical indicator or antiforensics activity.
-- **Sysmon Intergration**: Using System Monitoring (Sysmon) to gain visibility into process creations, network connections, and file version changes.  
+- **Sysmon Intergration**: Using System Monitoring (Sysmon) to gain visibility into process creations, network connections, and file version changes.
+
+---
+🛠️ Technical Toolkit
+---
+- **operation System**: Windows 10/11, Windows Server
+- **Security Tools**: Windows Event Viewer, Sysinternals Suits (Sysmon, Process Explorer), Powershell.
+- **Methodologies**: MITRE ATT&CK Mapping, Log Aggregation, Incident Response Life Cycle
+
+---
+📈 Professional Impact
+---
+The write-uos included in this portfolio showcase a proavtice approach to cybersecurity. By mastering these Windows internals, I will provide the organization with the ability to:
+
+1. Reduce "Time to DEtection" (TTD) by identifying anomalies in real-time.
+2. Maintain a hardened system posture through continous audit log review.
+3. Provide detailed forensic evidence during incident post-mortems. 
   
 
 
