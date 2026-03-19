@@ -22,6 +22,7 @@ A deep dive into the Windows logging system to monitor system events and securit
 ## 🔍 Intro to Threat Detection Series
 ---
 **Part 1: Foudations of Detection**
+---
 
 Focused on the baseline of security monitoring and identifying "low-hanging fruit" indicators or compromise.
 ---
@@ -33,6 +34,7 @@ Focused on the baseline of security monitoring and identifying "low-hanging frui
 - **User Account Changes**: Monitoring for unauthorized privilege escalation or the creation of new administration accounts.
 ----
 Part 2: Lateral Movement & Persistence
+---
 
 Advance analysis of how attacks move throuhg a network and maintain access. 
 ---
@@ -44,6 +46,7 @@ Advance analysis of how attacks move throuhg a network and maintain access.
 
 ---
 Part 3: Advance Hunting Obfuscation
+---
 
 Focusing on sophicated adversary tactic and defense evasion.
 ---
