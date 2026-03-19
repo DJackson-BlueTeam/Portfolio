@@ -1,4 +1,4 @@
-## Windows Security & Threat DEtection Porfolio
+## Windows Security & Threat Detection Porfolio
 
 Overview
 --
