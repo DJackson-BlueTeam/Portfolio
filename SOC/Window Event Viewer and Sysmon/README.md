@@ -3,7 +3,7 @@
 Overview
 --
 This repository documents my technical skills in WIndows environments, tailoring focus on log analysis through **Windows EventViewer/Sysmon** and systematic methods for **Threat Detection**. These projects demonstrate my ability to monitor health, identify security anomalies, and respsond to potential compromises within a Windows-based infrastructure.
------
+
 
 ## 🛡️ Windows Event Viewer: Core Log Analysis
 ---
