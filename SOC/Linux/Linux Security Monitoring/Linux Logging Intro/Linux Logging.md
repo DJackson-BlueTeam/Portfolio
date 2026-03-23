@@ -1,27 +1,30 @@
 Linux Logging Write Up 
-
+---
 - Contrarily to Windows logs, Linux logs most events into plain text files, meaning that logs can be read in text editors.  
 - Most Linux logs are located in the var/log folder shown below:     
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/54e9f28feb7278ba04ec12ca461c14f6f30e6756/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Logging%20Intro/Linux%20Logging%20Img/201.png) 
 
-- *cat* <-- reads the folder and file content of */var/log/syslog*  
-- | <-- this is a pipe. It takes the output of cat and passes it to the head (like tunneling). 
-- *head* <-- only display the first 10 lines of the logs. Without the head command, you may get a numerous generated logs.  
-Filtering Logs 
-- grep is used to filter logs if you are looking for something specific.     
+- `cat` <-- reads the folder and file content of */var/log/syslog*  
+- `|` <-- this is a pipe. It takes the output of cat and passes it to the head (like tunneling). 
+- `head` <-- only display the first 10 lines of the logs. Without the head command, you may get a numerous generated logs.
+
+Filtering Logs
+---
+- `grep`is used to filter logs if you are looking for something specific.     
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/54e9f28feb7278ba04ec12ca461c14f6f30e6756/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Logging%20Intro/Linux%20Logging%20Img/202.png) 
 
-Discovering Logs 
+Discovering Logs
+---
 - Let us interpret that we are looking for user logins.  
-- We can use _ls –l /var/log_ to list what s logs are in our system  
-- ls <-- list file and directories 
-- -l displays detailed information for each entry  
+- We can use `_ls –l /var/log_` to list what logs are in the system  
+- `ls` <-- list file and directories 
+- `-l` displays detailed information for each entry  
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/54e9f28feb7278ba04ec12ca461c14f6f30e6756/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Logging%20Intro/Linux%20Logging%20Img/203.png)  
 
-- We can also search for potential login across all logs as well using _grep  -R –E “auth|login|session” /var/log _
-- grep <-- search specific text patterns 
-- -R <-- is a recursive command telling the command to search through all files in the specified directory and all of it subdirectories 
-- -E is a extended regular expression that allows the use of special operators like pipe “|” that act as or in this case 
+- We can also search for potential login across all logs as well using `grep  -R –E “auth|login|session” /var/log` 
+- `grep` <-- search specific text patterns 
+- `-R` <-- is a recursive command telling the command to search through all files in the specified directory and all of it subdirectories 
+- `-E` is a extended regular expression that allows the use of special operators like pipe “|” that act as or in this case 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/54e9f28feb7278ba04ec12ca461c14f6f30e6756/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Logging%20Intro/Linux%20Logging%20Img/204.png) 
 
 Questions 
