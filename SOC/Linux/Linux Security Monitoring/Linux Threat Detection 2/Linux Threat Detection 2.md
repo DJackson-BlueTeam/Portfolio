@@ -202,7 +202,6 @@ Answer: nohup /tmp/.apt/kernupd/kernupd 
 	- Starting with `cat audit.log | grep nc`, there were numerous results that were displayed. 
 	- I had comb through to see if there was a nc command associated with an ip address and I found 1 shown below:  
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/251.png)
-	 
 	- I re-executed the command, but this time, I filtered for `a0=”nc”` to see if there was more nc executing on other ip addresses.  
 	- The results are shown below:  
  ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/252.png)
