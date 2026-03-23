@@ -62,7 +62,7 @@ Detecting Privilege Escalation
 ---
 
 - A universal approach to detect privilege escalation is to detect the surrounding events.
-  
+
 **1. Spike of Discovery Commands**  
 - `whoami` (Returns Data Users) 
 - `id`; `pwd`; `ls –ls`; `crontab –l` (Basic Initial Discovery)  
