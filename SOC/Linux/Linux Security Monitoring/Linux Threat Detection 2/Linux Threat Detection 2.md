@@ -151,35 +151,41 @@ Detecting the Attack
 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/243.png)
 
-1. Which IP address managed to brute-force the exposed SSH?  
-	- Even though it is directing us to the audit.logs, we are looking for the authorization of the brute force that breached the system.  
-	- Let's go to the directory and see what other files there are.  
-    - cd /home/ubuntu/scenario/ 
-![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/244.png)
+Questions
 
-	- We can see there also a auth.log, we can grep for Accepted login to see which ip address conducted the brute-force attack. 
-	- cat auth.log | grep Accepted 
+**1. Which IP address managed to brute-force the exposed SSH?**  
+- Even though it is directing us to the audit.logs, we are looking for the authorization of the brute force that breached the system.  
+- Let's go to the directory and see what other files are there.  
+- `cd /home/ubuntu/scenario/` 
+![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/244.png)
+	
+- We can see there also a `auth.log`, we can grep for Accepted login to see which ip address conducted the brute-force attack. 
+- `cat auth.log | grep Accepted`
+	
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/245.png)
 
 Answer: 45.9.148.125
 
-3. Which command did the attacker use to list the last logged-in users?  
-	- As I remember from Hack-The-Box challenges, we can use the *last* command to display results of login and logouts of users.  
-	- Let use *cat audit.log | grep last* to see if the adversary used that command to list the login users.   
+**3. Which command did the attacker use to list the last logged-in users?**  
+- As I remember from Hack-The-Box challenges, we can use the `last` command to display results of login and logouts of users.  
+- Let use `cat audit.log | grep last` to see if the adversary used that command to list the login users.   
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/246.png)
 	
-	- we can see there was an execution of usr/bin/last and the comm=”last” is stating that the command “last” was executed.  
-	Answer: last  
-4. Which three EDR processes did the attacker look for with “egrep” 
-	- Some EDR are associated with agent, so let look for an EDR with an agent as its name.  
-	- We are already in the directory of /home/ubuntu/scenario, and we see the file audit.log 
-	- We can cat audit.log | grep agent to see we grep can detect an agent somewhere in the file
+- we can see there was an execution of `usr/bin/last` and the `comm=”last”` is stating that the command `last` was executed.  
+	Answer: last
+ 
+**4. Which three EDR processes did the attacker look for with “egrep”** 
+	- Some EDR are associated with an agent, so let look for an EDR with an agent as its name.  
+	- We are already in the directory of `/home/ubuntu/scenario`, and we see the file `audit.log` 
+	- We can `cat audit.log | grep agent` to see if grep can fidn agents in the linux system. 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/247.png)
 	
-	Answer: ds_agent, falcon,sentinel 
-5. What is the name of the malicious archive that was transferred via SCP?  
+	Answer: ds_agent, falcon,sentinel
+
+**5. What is the name of the malicious archive that was transferred via SCP?**  
 	- Still in the same directory there is a md5 hash value of kernupd. 
-	- That may be the name of the malicious file. To be sure, let cat the audit.log and grep for kernupd to see what's the results are. 
+	- That may be the name of the malicious file. To be sure, let cat the audit.log and grep for kernupd to see what's the results are.
+	
  ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/248.png)
 	
 6. What is the full command line of the Cryptominer launch? 
