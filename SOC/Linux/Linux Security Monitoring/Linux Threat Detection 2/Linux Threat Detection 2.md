@@ -175,35 +175,36 @@ Answer: 45.9.148.125
 	Answer: last
  
 **3. Which three EDR processes did the attacker look for with “egrep”** 
-	- Some EDR are associated with an agent, so let look for an EDR with an agent as its name.  
-	- We are already in the directory of `/home/ubuntu/scenario`, and we see the file `audit.log` 
-	- We can `cat audit.log | grep agent` to see if grep can fidn agents in the linux system. 
+- Some EDR are associated with an agent, so let look for an EDR with an agent as its name.  
+- We are already in the directory of `/home/ubuntu/scenario`, and we see the file `audit.log` 
+- We can `cat audit.log | grep agent` to see if grep can fidn agents in the linux system. 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/247.png)
 	
 	Answer: ds_agent, falcon,sentinel
 
 **4. What is the name of the malicious archive that was transferred via SCP?**  
-	- Still in the same directory there is a md5 hash value of kernupd. 
-	- That may be the name of the malicious file. To be sure, let cat the audit.log and grep for kernupd to see what's the results are.
-	- `cat audit.log | grep kernupd`
+- Still in the same directory there is a md5 hash value of kernupd. 
+- That may be the name of the malicious file. To be sure, let cat the audit.log and grep for kernupd to see what's the results are.
+- `cat audit.log | grep kernupd`
  ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/248.png)
 	
 **5. What is the full command line of the Cryptominer launch?** 
-	- `Chmod` is to change privileges to an executable  
-	- `Nohup`  is a command that is used to run a command that will continue to execute even after a user logs out or closes the terminal.  
-	- We can see in the screenshot in question 4 there is a command line that uses `nohup` following the path of the kernupd executable.   
+- `Chmod` is to change privileges to an executable  
+- `Nohup`  is a command that is used to run a command that will continue to execute even after a user logs out or closes the terminal.  
+- We can see in the screenshot in question 4 there is a command line that uses `nohup` following the path of the kernupd executable.
+	
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/249.png)
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/250.png)
 	
 Answer: nohup /tmp/.apt/kernupd/kernupd 
 
 **6. Which Ip address range did the attacker scan for an exposed SSH?**  
-	- Here I had to filter out alot of noise as I analyze the log.  
-	- Starting with `cat audit.log | grep nc`, there were numerous results that were displayed. 
-	- I had comb through to see if there was a nc command associated with an ip address and I found 1 shown below:  
+- Here I had to filter out alot of noise as I analyze the log.  
+- Starting with `cat audit.log | grep nc`, there were numerous results that were displayed. 
+- I had comb through to see if there was a nc command associated with an ip address and I found 1 shown below:  
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/251.png)
-	- I re-executed the command, but this time, I filtered for `a0=”nc”` to see if there was more nc executing on other ip addresses.  
-	- The results are shown below:  
+- I re-executed the command, but this time, I filtered for `a0=”nc”` to see if there was more nc executing on other ip addresses.  
+- The results are shown below:  
  ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/252.png)
 
 Answer: 10.10.12.1-10.10.12.10
