@@ -155,21 +155,21 @@ Using Auditd
 - `-k proc_wget` (Key): search only show audit events that were tagged with the specific key proc_wget 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/54e9f28feb7278ba04ec12ca461c14f6f30e6756/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Logging%20Intro/Linux%20Logging%20Img/217.png) 
 
-**pid (Process ID) &  ppid (Parent Process ID)**
+**`pid` (Process ID) &  `ppid` (Parent Process ID)**
 - Helpful in linking events and building a process tree.
 
-**auid=ubuntu** **Audit user**
+**`auid=ubuntu`** **Audit user**
 - The account originally used to log in locally (keyboard) or remotely (ssh)
 
-**uid=root**
+**`uid=root`**
 - The user who ran the command.
 - The field can differ from auid if switching users with sudo or su.
 
-**tty=pts1**
+**`tty=pts1`**
 - Session identifier.
 - Helps distinguish events when multiple people work on the same linux server.
 
-**Exe=/usr/bin/wget**
+**`Exe=/usr/bin/wget`**
 - Optional tag specified by engineers in auditd rules that is useful to filter the events.  
     
 File Event  
