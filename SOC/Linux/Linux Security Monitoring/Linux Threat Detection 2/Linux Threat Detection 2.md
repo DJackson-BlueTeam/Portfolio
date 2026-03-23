@@ -27,9 +27,9 @@ First Actions 
 - Since this EDR/antivirus is in the binary, we can `grep` for `bin` or `scan` to find the full path  
 - `Ps aux | grep scan or ps aux | grep bin` 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/235.png)
- 
+
 Specialized Discovery
---- 
+---
 
 - After the initial discovery, the adversary might utilize focus commnads to achieve their goals.  
     
