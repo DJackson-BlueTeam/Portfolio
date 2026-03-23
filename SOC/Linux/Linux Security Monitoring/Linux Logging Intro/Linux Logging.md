@@ -123,8 +123,9 @@ Bash History
 - There are limitations with `.bash_history` such as it does not track non-interactive commands (initiated by the OS, CRON jobs, or web servers). 
 - It can, however, be configured ([Configuring BASH History](https://datawookie.dev/blog/2023/04/configuring-bash-history/)) 
 
-Question 
-1. According to the VM’s package manager logs, which version of unzip was installed on the system?  
+**Question**
+
+**1. According to the VM’s package manager logs, which version of unzip was installed on the system?**  
 - Let use the `/var/log/dpkg.log` (package log) to determine the version.
 - We can also `grep unzip` for any compressed file that was unzipped with in the system.  
 - `cat /var/log/dpkg.log | grep unzip` 
@@ -147,24 +148,38 @@ Audit Daemon
 
 Using Auditd
 ---
-- Analysts can view generated logs in real time in /var/log/audit/audit.log. 
-- Using *ausearch* command makes it easier to analyze logs by formatting them for readability and supports filtering options.  
-- *ausearch –i –k proc_wget*  <--- used to query the Linux Audit logs for specific events. 
-- *-i* (Interpreter): tells the tool to interpret numeric entities into text. 
-- *-k* *proc_wget* (Key): search only show audit events that were tagged with the specific key proc_wget 
+- Analysts can view generated logs in real time in `/var/log/audit/audit.log`. 
+- Using `ausearch` command makes it easier to analyze logs by formatting them for readability and supports filtering options.  
+- `ausearch –i –k proc_wget`  <--- used to query the Linux Audit logs for specific events. 
+- `-i` (Interpreter): tells the tool to interpret numeric entities into text. 
+- `-k proc_wget` (Key): search only show audit events that were tagged with the specific key proc_wget 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/54e9f28feb7278ba04ec12ca461c14f6f30e6756/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Logging%20Intro/Linux%20Logging%20Img/217.png) 
 
-- pid (Process ID) &  ppid (Parent Process ID): Helpful in linking events and building a process tree. 
-- auid=ubuntu: Audit user. The account originally used to log in locally (keyboard) or remotely (ssh) 
-- uid=root: The user who ran the command. The field can differ from auid if switching users with sudo or su 
-- tty=pts1: Session identifier. HElps distinguish events when multiple people work on the same linux server.  
-- Exe=/usr/bin/wget: Optional tag specified by engineers in auditd rules that is useful to filter the events.  
+**pid (Process ID) &  ppid (Parent Process ID)**
+- Helpful in linking events and building a process tree.
+ 
+**auid=ubuntu** **Audit user**
+- The account originally used to log in locally (keyboard) or remotely (ssh)
+ 
+**uid=root**
+- The user who ran the command.
+- The field can differ from auid if switching users with sudo or su.
+
+**tty=pts1**
+- Session identifier.
+- Helps distinguish events when multiple people work on the same linux server.
+  
+**Exe=/usr/bin/wget**
+- Optional tag specified by engineers in auditd rules that is useful to filter the events.  
     
 File Event  
-- Auditd tracked the change to the /etc/ssh/sshd_config file via the nano command.  
+---
+
+- Auditd tracked the change to the `/etc/ssh/sshd_config` file via the nano command.  
 - SOC teams set up rules to monitor changes in critical files and directories. 
 
-Questions  
+**Questions**
+
 1. When was the secret.thm file open for the first time? (MM/DD/YY HH:MM:SS) 
 - First, we will have to switch to a root user since some logs require the root user to access the files.  
 - sudo su <--- this will switch the user to root user 
