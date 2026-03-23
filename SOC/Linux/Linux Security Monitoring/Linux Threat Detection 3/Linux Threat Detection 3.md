@@ -176,10 +176,10 @@ Account Persistence
 
 	Answer: koichi 
 
-2. Which file was changed to allow SSH key persistence?  
-- We grep for type=Path to reduce the numerous outputs from just filter ssh.  
+**2. Which file was changed to allow SSH key persistence?**  
+- We grep for `type=Path` to reduce the numerous outputs from just filter ssh.  
 - This will allow us to only view the path of file and be able to determine the file that was changed to allow SSH key persistence.  
-- We can use command ausaerch –i | grep ‘type=PATH’ 
+- We can use command `ausaerch –i | grep "type=PATH"` 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/c6abfc34cfa2b4124e7961a2f071420a8087b89d/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%203/Linux%20Threat%20Detection%203%20Img/266.png) 
 
 - To change a file, there must be root privileges to perform such actions. 
