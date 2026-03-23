@@ -180,27 +180,27 @@ File Event  
 
 **Questions**
 
-1. When was the secret.thm file open for the first time? (MM/DD/YY HH:MM:SS) 
+**1. When was the secret.thm file open for the first time? (MM/DD/YY HH:MM:SS)**
 - First, we will have to switch to a root user since some logs require the root user to access the files.  
-- sudo su <--- this will switch the user to root user 
-- _ausearch –i –k file_thmsecret | grep secret.thm_  <--- we are using ausearch to retrieve the log file_thmsecret information and using grep to find the specific file we are looking for.  
+- `sudo su` <--- this will switch the user to root user 
+- `ausearch –i –k file_thmsecret | grep secret.thm`  <--- we are using ausearch to retrieve the log file_thmsecret information and using grep to find the specific file we are looking for.  
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/54e9f28feb7278ba04ec12ca461c14f6f30e6756/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Logging%20Intro/Linux%20Logging%20Img/218.png)
 	 
 Answer: 08/13/25 18:36:54 
 	
-2. What is the original file name downloaded from GitHub via wget? (Wget process creation is logged with the “proc_wget” key) 
-- The command to generate the general information is the same as question 1, however we are looking for proc_wget instead.  
+**2. What is the original file name downloaded from GitHub via wget? (Wget process creation is logged with the “proc_wget” key)** 
+- The command to generate the general information is the same as question 1, however we are looking for `proc_wget` instead.  
 - Since the file was downloaded from github, the protocol used for websites is usually https, so we can grep https to simplify the search.   
-- *ausearch –i –k proc_wget | grep https*  
+- `ausearch –i –k proc_wget | grep https`  
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/54e9f28feb7278ba04ec12ca461c14f6f30e6756/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Logging%20Intro/Linux%20Logging%20Img/219.png)
 
 Answer: naabu_2.3.5_linux_amd64.zip 
 
-3. Which network range was scanned using the downloaded tool?  
-- In linux logging, EXECVE record is generated whenever a process has started.  
-- We can see in the screenshot above type=EXECVE was logged, so we can ausearch it with –m (a message type). 
+**3. Which network range was scanned using the downloaded tool?**  
+- In linux logging, `EXECVE` record is generated whenever a process has started.  
+- We can see in the screenshot above `type=EXECVE` was logged, so we can `ausearch it with –m (a message type)`. 
 - Then we can grep for naabu to reduce the amount of information that will be provided.
-- *ausearch –m EXECVE | grep –i naabu*  
+- `ausearch –m EXECVE | grep –i naabu`  
   
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/b5831a3d625f2a74baf763f34a9c7b9da469ddbc/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Logging%20Intro/Linux%20Logging%20Img/220.png)
 
