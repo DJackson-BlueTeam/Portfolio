@@ -30,7 +30,7 @@ Discovering Logs
 **Questions** 
 
 **1. Which time server domain did the VM contact to sync its time?**  
-- I believe can use `grep` to filter “sync”.
+- We can use `grep` to filter “sync”.
 - Let's use `cat /var/log/syslog | grep sync` to find specific time sync.
 - Looking at the output `ntp.ubuntu.com` seems like the time server domain after seeing it repeatedly.
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/54e9f28feb7278ba04ec12ca461c14f6f30e6756/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Logging%20Intro/Linux%20Logging%20Img/205.png)
