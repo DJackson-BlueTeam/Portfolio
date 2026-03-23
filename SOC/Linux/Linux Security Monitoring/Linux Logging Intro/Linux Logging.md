@@ -24,7 +24,7 @@ Discovering Logs
 - We can also search for potential login across all logs as well using `grep  -R –E “auth|login|session” /var/log` 
 - `grep` <-- search specific text patterns 
 - `-R` <-- is a recursive command telling the command to search through all files in the specified directory and all of it subdirectories 
-- `-E` is a extended regular expression that allows the use of special operators like pipe “|” that act as or in this case 
+- `-E` is a extended regular expression that allows the use of special operators like pipe `|` that act as or in this case 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/54e9f28feb7278ba04ec12ca461c14f6f30e6756/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Logging%20Intro/Linux%20Logging%20Img/204.png) 
 
 **Questions** 
@@ -82,28 +82,29 @@ Example:  
 - We may come across command that was launch with sudo (root privilege) 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/54e9f28feb7278ba04ec12ca461c14f6f30e6756/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Logging%20Intro/Linux%20Logging%20Img/210.png) 
 
-Questions 
+**Questions** 
 
-1. Which IP address failed to login to multiple users via SSH?  
+**1. Which IP address failed to login to multiple users via SSH?** 
 - To determine the IP that made multiple failed attempts, we will use the command below. 
-- *cat /var/log/auth.log | grep “sshd” | grep Failed* 
+- `cat /var/log/auth.log | grep “sshd” | grep Failed` 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/54e9f28feb7278ba04ec12ca461c14f6f30e6756/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Logging%20Intro/Linux%20Logging%20Img/211.png)
 
 Answer: 10.14.94.82 
 
-2. Which user was created and added to the “sudo” group?  
-- We will use command _cat /var/log/auth.log | grep useradd_     
+**2. Which user was created and added to the “sudo” group?**  
+- We will use command `cat /var/log/auth.log | grep useradd`     
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/54e9f28feb7278ba04ec12ca461c14f6f30e6756/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Logging%20Intro/Linux%20Logging%20Img/212.png)
 
 Answer: xerxes 
 
-Common Linux Logs 
+Common Linux Logs
+---
 
 - There are many other logs in the /var/log directory.  
-- _/var/log/kern.log_: Kernel messages and errors, useful for more advance investigations ([Chapter 13. Getting started with kernel logging | Managing, monitoring, and updating the kernel | Red Hat Enterprise Linux | 8 | Red Hat Documentation](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html/managing_monitoring_and_updating_the_kernel/getting-started-with-kernel-logging_managing-monitoring-and-updating-the-kernel)) 
-- _/var/log/syslog_ (or /var/log/messages): A consolidated stream of various Linux events ([16 Best Syslog Servers for Linux and Windows (Free & Paid)](https://phoenixnap.com/kb/syslog-server)) 
-- _/var/log/dpkg.log_ (or _/var/log/apt_): Package manager logs on Debian-based systems ([How to find out when Debian or Ubuntu package installed or updated - nixCraft](https://www.cyberciti.biz/faq/debian-ubuntu-linux-find-package-installed-updated-date/)) ([Linux dpkg Log | Detection](https://insiderthreatmatrix.org/detections/DT044)) 
-- /var/log/dnf.log (or /var/log/yum.log): Package manager logs on RHEL-based systems ([How to Use 'Yum History' to Find Out Installed or Removed Packages Info](https://www.tecmint.com/view-yum-history-to-find-packages-info/)) 
+- `/var/log/kern.log`: Kernel messages and errors, useful for more advance investigations ([Chapter 13. Getting started with kernel logging | Managing, monitoring, and updating the kernel | Red Hat Enterprise Linux | 8 | Red Hat Documentation](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html/managing_monitoring_and_updating_the_kernel/getting-started-with-kernel-logging_managing-monitoring-and-updating-the-kernel)) 
+- `/var/log/syslog` (or `/var/log/messages`): A consolidated stream of various Linux events ([16 Best Syslog Servers for Linux and Windows (Free & Paid)](https://phoenixnap.com/kb/syslog-server)) 
+- `/var/log/dpkg.log` (or `/var/log/apt`): Package manager logs on Debian-based systems ([How to find out when Debian or Ubuntu package installed or updated - nixCraft](https://www.cyberciti.biz/faq/debian-ubuntu-linux-find-package-installed-updated-date/)) ([Linux dpkg Log | Detection](https://insiderthreatmatrix.org/detections/DT044)) 
+- `/var/log/dnf.log` (or `/var/log/yum.log`): Package manager logs on RHEL-based systems ([How to Use 'Yum History' to Find Out Installed or Removed Packages Info](https://www.tecmint.com/view-yum-history-to-find-packages-info/)) 
 
 App-Specific Logs  
 - In SOC monitoring programs may also be a part of the role and understanding logs is necessary.  
