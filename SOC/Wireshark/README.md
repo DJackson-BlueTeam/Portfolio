@@ -27,5 +27,20 @@ This filtering involved isolating relevant data points quickly. Key filtering ca
 - `ip.addr == [Targets_IP]` to track specific host communications.
   
 **Strings Searching**
-- Utlizing `contains` and `mathces` to find specific signatures or indicators of compromise (IOCs) within the packet payload. 
+- Utlizing `contains` and `mathces` to find specific signatures or indicators of compromise (IOCs) within the packet payload.
+
+Security Analysis Techniques
+---
+
+**Beaconing Detection**
+- Analyzing time intervals between pckets to identify potential Command and Control (C2) traffic.
+
+**Malware Analysis Support** 
+- Identifying the retreval of malicious files (EXEs, DLLs) over unencrypted channels.
+
+**Credential Harvesting** 
+- Detecting the transmission of cleartext credentials over insecure protocols like FTP, Telnet, or basic HTTP latency or service disruption.
+
+**Performing Troubleshooting**
+- Identifying TCP retransmissions, duplicate ACKs, and window size issues that indicate network latency or service disruption. 
 
