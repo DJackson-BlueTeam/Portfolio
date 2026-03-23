@@ -46,7 +46,7 @@ Red Flags
 - `find` and `grep`: IT members looking for secrets 
 - `Ping`: A network monitoring tool being used 
 
-Questions
+**Questions**
 
 **1. What is the path of the script that initiated the “hostname” command?** 
 - First we need to use ausearch to find the executed hostname command 
