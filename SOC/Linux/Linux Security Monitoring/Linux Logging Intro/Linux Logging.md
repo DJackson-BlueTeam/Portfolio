@@ -10,7 +10,7 @@ Linux Logging Write Up 
 
 Filtering Logs
 ---
-- `grep`is used to filter logs if you are looking for something specific.     
+- `grep` is used to filter logs if you are looking for something specific.     
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/54e9f28feb7278ba04ec12ca461c14f6f30e6756/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Logging%20Intro/Linux%20Logging%20Img/202.png) 
 
 Discovering Logs
@@ -111,36 +111,42 @@ App-Specific Logs  
 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/54e9f28feb7278ba04ec12ca461c14f6f30e6756/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Logging%20Intro/Linux%20Logging%20Img/213.png) 
 
-Bash History  
+Bash History
+--- 
+
 - Bash history records each command that run after pressing Enter.  
 - By default, commands are first stored in memory during a session and then 
--  written to the per-user ~/ .bash_history file when a user logs out.  
+-  written to the per-user `~/ .bash_history` file when a user logs out.  
     
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/54e9f28feb7278ba04ec12ca461c14f6f30e6756/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Logging%20Intro/Linux%20Logging%20Img/214.png) 
 
-- There are limitations with .bash_history such as it does not track non-interactive commands (initiated by the OS, CRON jobs, or web servers). 
-- It can. However, be configured ([Configuring BASH History](https://datawookie.dev/blog/2023/04/configuring-bash-history/)) 
+- There are limitations with `.bash_history` such as it does not track non-interactive commands (initiated by the OS, CRON jobs, or web servers). 
+- It can, however, be configured ([Configuring BASH History](https://datawookie.dev/blog/2023/04/configuring-bash-history/)) 
 
 Question 
 1. According to the VM’s package manager logs, which version of unzip was installed on the system?  
-- Let use the _/var/log/dpkg.log_ (package log) to determine the version.  
-- cat /var/log/dpkg.log | grep unzip 
+- Let use the `/var/log/dpkg.log` (package log) to determine the version.
+- We can also `grep unzip` for any compressed file that was unzipped with in the system.  
+- `cat /var/log/dpkg.log | grep unzip` 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/54e9f28feb7278ba04ec12ca461c14f6f30e6756/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Logging%20Intro/Linux%20Logging%20Img/215.png)
 
 Answer: 6.0-28ubuntu4.1 
-2. What is the flag you see in one of the users’ bash history? 
+
+**2. What is the flag you see in one of the users’ bash history?** 
 - There is only one other user beside ubuntu on this machine, which is root.  
 - We may have to use sudo su to run a root to read the .bash_history 
-- *cat /root/.bash_history* 
+- `cat /root/.bash_history`
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/54e9f28feb7278ba04ec12ca461c14f6f30e6756/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Logging%20Intro/Linux%20Logging%20Img/216.png)
 
 Answer: THM{note_to_remember} 
 
-Audit Daemon 
+Audit Daemon
+---
 - A built-in auditing solution often used for run time monitoring.  
 - ([auditd/audit.rules at master · Neo23x0/auditd](https://github.com/Neo23x0/auditd/blob/master/audit.rules)) 
 
-Using Auditd 
+Using Auditd
+---
 - Analysts can view generated logs in real time in /var/log/audit/audit.log. 
 - Using *ausearch* command makes it easier to analyze logs by formatting them for readability and supports filtering options.  
 - *ausearch –i –k proc_wget*  <--- used to query the Linux Audit logs for specific events. 
