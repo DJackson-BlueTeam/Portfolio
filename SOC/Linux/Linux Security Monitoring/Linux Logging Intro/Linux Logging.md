@@ -4,7 +4,7 @@ Linux Logging Write Up 
 - Most Linux logs are located in the var/log folder shown below:     
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/54e9f28feb7278ba04ec12ca461c14f6f30e6756/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Logging%20Intro/Linux%20Logging%20Img/201.png) 
 
-- `cat` <-- reads the folder and file content of */var/log/syslog*  
+- `cat` <-- reads the folder and file content of `/var/log/syslog`  
 - `|` <-- this is a pipe. It takes the output of cat and passes it to the head (like tunneling). 
 - `head` <-- only display the first 10 lines of the logs. Without the head command, you may get a numerous generated logs.
 
@@ -27,51 +27,56 @@ Discovering Logs
 - `-E` is a extended regular expression that allows the use of special operators like pipe “|” that act as or in this case 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/54e9f28feb7278ba04ec12ca461c14f6f30e6756/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Logging%20Intro/Linux%20Logging%20Img/204.png) 
 
-Questions 
+**Questions** 
 
-1. Which time server domain did the VM contact to sync its time?  
-- I believe can use grep to filter “sync” 
-- Let's use *cat /var/log/syslog | grep* sync to find specific time sync 
-- Looking at the output “*ntp.ubuntu.com*” seems like the time server domain after seeing it repeatedly
+**1. Which time server domain did the VM contact to sync its time?**  
+- I believe can use `grep` to filter “sync”.
+- Let's use `cat /var/log/syslog | grep sync` to find specific time sync.
+- Looking at the output `ntp.ubuntu.com` seems like the time server domain after seeing it repeatedly.
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/54e9f28feb7278ba04ec12ca461c14f6f30e6756/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Logging%20Intro/Linux%20Logging%20Img/205.png)
 
 Answer: ntp.ubuntu.com 
 
-2. What is the kernel message from Yama in var/log/syslog? 
-- We will use *cat /var/log/syslog | grep Yama*  
+**2. What is the kernel message from Yama in var/log/syslog?** 
+- We will use `cat /var/log/syslog | grep Yama` 
     
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/54e9f28feb7278ba04ec12ca461c14f6f30e6756/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Logging%20Intro/Linux%20Logging%20Img/206.png)
 	
 Answer: becoming mindful  
 
 Authentication Logs 
-- The most useful log file that should be monitored is the _/var/log/auth.log_ or _/var/log/secure_ on a RHEL-based system  
+--- 
+
+- The most useful log file that should be monitored is the `/var/log/auth.log` or `/var/log/secure` on a RHEL-based system  
 - RHEL (Red Hat Enterprise Linux) system: design for stability, security and enterprise—grade performance, sharing the same architecture and package management tools as the official Red Hat Product ([Red Hat Enterprise Linux operating system](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux)) 
 - Each successful logon and logoff is logged and can be seen by filtering the events containing “session opened” or “session closed” 
-- Example shown below using *cat /var/log/auth.log | grep –E ‘session opened|session closed’*
+- Example shown below using `cat /var/log/auth.log | grep –E ‘session opened|session closed’`
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/54e9f28feb7278ba04ec12ca461c14f6f30e6756/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Logging%20Intro/Linux%20Logging%20Img/207.png)
 
 SSH-Specific Events 
+---
+
 - SSH daemon store its own log of successful and failed ssh logins.  
 - These logs are sent to the same auth.log file but have a different format. 
-- *cat /var/log/auth.log | grep “sshd” | grep –E ‘Accepted|Failed’* 
+- `cat /var/log/auth.log | grep “sshd” | grep –E ‘Accepted|Failed’` 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/54e9f28feb7278ba04ec12ca461c14f6f30e6756/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Logging%20Intro/Linux%20Logging%20Img/208.png) 
 
-Miscellaneous Events  
+Miscellaneous Events
+---
 
 - The same log file can be used to detect user management events.  
 - Only common basic linux commands are needed.  
 
 Example:  
-- useradd is a command to add a new users ([useradd(8) - Linux manual page](https://www.man7.org/linux/man-pages/man8/useradd.8.html)).  
-- usermod is used to modify a user account ([usermod(8) - Linux manual page](https://man7.org/linux/man-pages/man8/usermod.8.html))  
-- userdel is used to delete a user account ([userdel(8) - Linux manual page](https://man7.org/linux/man-pages/man8/userdel.8.html)) 
-- *cat /var/log/auth.log | grep –E ‘(passwrd|useradd|usermod|userdel)\[‘* 
-- *cat* <-- read the files 
-- */var/log/auth.log* <-- the path to the file that cat will read  
-- *grep –E* <-- look for specific expression within the files 
-- *‘(passwrd|useradd|usermod|userdel)\[’* <-- this is the pattern that cat will read as the output if it is with the file using grep 
-- *\[* <-- looks for literal opening square brackets immediately following the pattern above 
+- `useradd` is a command to add a new users ([useradd(8) - Linux manual page](https://www.man7.org/linux/man-pages/man8/useradd.8.html)).  
+- `usermod` is used to modify a user account ([usermod(8) - Linux manual page](https://man7.org/linux/man-pages/man8/usermod.8.html))  
+- `userdel` is used to delete a user account ([userdel(8) - Linux manual page](https://man7.org/linux/man-pages/man8/userdel.8.html)) 
+- `cat /var/log/auth.log | grep –E ‘(passwrd|useradd|usermod|userdel)\[‘` 
+- `cat` <-- read the files 
+- `/var/log/auth.log` <-- the path to the file that cat will read  
+- `grep –E` <-- look for specific expression within the files 
+- `‘(passwrd|useradd|usermod|userdel)\[’` <-- this is the pattern that cat will read as the output if it is with the file using grep 
+- `\[` <-- looks for literal opening square brackets immediately following the pattern above 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/54e9f28feb7278ba04ec12ca461c14f6f30e6756/SOC/Linux/Linux%20Security%20Monitoring/Linux%20Logging%20Intro/Linux%20Logging%20Img/209.png) 
 
 - We may come across command that was launch with sudo (root privilege) 
