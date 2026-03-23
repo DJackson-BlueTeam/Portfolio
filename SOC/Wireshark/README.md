@@ -42,5 +42,6 @@ Security Analysis Techniques
 - Detecting the transmission of cleartext credentials over insecure protocols like FTP, Telnet, or basic HTTP latency or service disruption.
 
 **Performing Troubleshooting**
-- Identifying TCP retransmissions, duplicate ACKs, and window size issues that indicate network latency or service disruption. 
+- Identifying TCP retransmissions, duplicate ACKs, and window size issues that indicate network latency or service disruption.
+
 
