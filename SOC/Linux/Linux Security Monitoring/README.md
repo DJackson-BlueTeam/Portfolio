@@ -30,3 +30,27 @@ Command Examples
 - Using `grep` to filter through logs for  suspicious activities.
 - Analyzing timestamps of login events to establish attack vectors.
 
+
+## Linux Threat Detection 2
+Building on the first threat detection method, this section focuses on: 
+
+**Detection Techniques**
+- Advance filtering of logs to detect exploitations attempts.
+
+**Command Execution Tracking**
+- Monitoring processes initiated by unauthorized users.
+
+**Evidence Analysis**
+- Utilizing logs from various sources to confirm attack paths and impact.
+
+## Linux Threat Detection 3 
+This section emphasizes on:
+
+**Post-Exploitation Activities** 
+- Identifying actions taken by attackers after paining access.
+
+**Process Traa Analysis**
+- Understanding the linage of commands executed on the systems to trace back to the original malicious action.
+
+**Universal Detection Techniques**
+- Establishing best practices for analyzing logs across different scenarios. 
