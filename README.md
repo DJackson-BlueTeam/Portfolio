@@ -31,6 +31,7 @@ My technical proficiency covers key areas essential for a SOC Analyst:
 *   ELK (Elastic Stack: Elasticsearch, Logstash, Kibana)
 *   Windows Event Viewer
 *   Brim
+*   Volitility
 *   Sysmon
 *   Windows PowerShell
 *   Ubuntu/Linux
