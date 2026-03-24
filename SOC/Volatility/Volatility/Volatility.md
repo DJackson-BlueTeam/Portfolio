@@ -156,37 +156,39 @@ Answer: explorer.exe
 
 Answer: 1640
 
-7. What is the parent process PID in Case 001?
+**6. What is the parent process PID in Case 001?**
 Answer: 1484
 - we can observe from the pstree the parent process "explorer.exe" has a PID of 1484
 
-8. what user-agent was employed by the adversary in Case 001? 
+**7. what user-agent was employed by the adversary in Case 001?** 
 - To find out what is the user-agent of the malicious processor, we can string the results.
-- strings: is a command use to find specific printable characters from a binary file. It is essentially used for reverse engineering, debugging and analyzing files that are not human readable.  
-- commandline: strings Investigation-1.vmem | grep User-Agent <-- the string command will look for printable characters that are related to User-Agent and display the results. 
+- `strings`: is a command use to find specific printable characters from a binary file or low hanging fruits. It is essentially used for reverse engineering, debugging and analyzing files that are not human readable.  
+- commandline: `strings Investigation-1.vmem | grep User-agent` <-- the string command will look for printable characters that are related to User-Agent and display the results. 
 - strings does sensitive scanning, so correct spelling, lower-cases, uppercases etc. is necessary.  
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ba53ebfec29bf66ff7be74764e9758224d0bbaad/SOC/Volatility/Volatility/Volatility%20Img/421.png)
 
 Answer: Mozilla/5.0 (Windows; U; MSIE 7.0; Windows NT 6.0; en-US)
-9. Was Chase Bank one of the suspicious bank domains found in Case 001?
-- there are several was to grab the results, but we will use a command that give use the direct results of what we looking for.
-- commandline: strings Investigaiton-1.vmem | grep -i https | grep chase <--- while we are using strings to look for the particular character, we can also grep the results we are looking for. 
+
+**8. Was Chase Bank one of the suspicious bank domains found in Case 001?**
+- There are several was to grab the results, but we will use a command that give use the direct results of what we looking for.
+- commandline: `strings Investigaiton-1.vmem | grep -i https | grep chase` <--- while we are using strings to look for the particular character, we can also grep the results we are looking for. 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ba53ebfec29bf66ff7be74764e9758224d0bbaad/SOC/Volatility/Volatility/Volatility%20Img/422.png)
 		
 Answer: Yes
-10. What suspicious process is running at PID 740 in case 002?
-- To determine the process that was running at PID 740, we can use the plugin pslist and use grep to only grap the PID 740. 
+
+**9. What suspicious process is running at PID 740 in case 002?**
+- To determine the process that was running at PID 740, we can use the plugin `pslist` and use `grep` to only grab the PID 740. 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ba53ebfec29bf66ff7be74764e9758224d0bbaad/SOC/Volatility/Volatility/Volatility%20Img/423.png)
 		
 Answer: @WanaDecryptor@
-11. What is the full path of the suspicious binary in PID 740 in Case 002?
+10. What is the full path of the suspicious binary in PID 740 in Case 002?
 - To look up the full path of the binary, we acn use the cmdline plugin to review the executions, and maybe come across a path.
 - Since we know that @WanaDecryptor@ is the malicious binary, we can use the strings command and then grep for @WanaDecryptor@ to only get the results of that binary. 
 - commandline: strings Investigation-2.raw | grep @WanaDecryptor@
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ba53ebfec29bf66ff7be74764e9758224d0bbaad/SOC/Volatility/Volatility/Volatility%20Img/424.png)
 
 Answer: C:\Intel\ivecuqmanpnirkt615\@WanaDecryptor@.exe
-12. What is the parent process of PID 740 in Case 002?
+11. What is the parent process of PID 740 in Case 002?
 - From running the previous command, we can see that task.exe had started the execution of @WanaDecryptor@.
 - To be sure that tasksche.exe is the parent process of @WanaDecryptor@.exe, we can use the plugin pstree and grep for PID 740.
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ba53ebfec29bf66ff7be74764e9758224d0bbaad/SOC/Volatility/Volatility/Volatility%20Img/425.png)
@@ -195,15 +197,15 @@ Answer: C:\Intel\ivecuqmanpnirkt615\@WanaDecryptor@.exe
 - now lets use the plugin pstree, but this time, we grep for 1940 to is if the tasksche.exe is associated with the PID 1940
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ba53ebfec29bf66ff7be74764e9758224d0bbaad/SOC/Volatility/Volatility/Volatility%20Img/426.png)
 Answer: tasksche.exe
-13. What is the suspicious parent process PID connected to the decryptor in Case 002?
+12. What is the suspicious parent process PID connected to the decryptor in Case 002?
 Answer: 1940
 - Going back to the previous question, we can see the PID of the tasksche.exe
-14. From our current information, what malware is presented on the system in Case 002?
+13. From our current information, what malware is presented on the system in Case 002?
 - From my personal previous research about an adverarry group, that are also listed in the MITRE ATT&CK Framework. Wannacry is a known ransomeware that targets establishments for payments in bitcoin. Since the name @WanaDecryptor@ is somewhat in relation with the name, I would conclude that WannaCry is the malware. 
 - But to be sure. let research the binary executable @WanaDecryptor@
 [WannaCry Malware Profile | Mandiant | Google Cloud Blog](https://cloud.google.com/blog/topics/threat-intelligence/wannacry-malware-profile/)
 Answer: WannaCry
-15. What DLL is loaded by the decryptor used for socket creation in Case 002? 
+14. What DLL is loaded by the decryptor used for socket creation in Case 002? 
 - Windows Socket API is used for creating a socket which serves as the endpoint for communication. This is neede for network programming in Windows and allows developers to specify  teh transport protocol, address family and socket type. 
 - for the Dynamic Link Library socket it would be presented as WS2_32.dll [socket function (winsock2.h) - Win32 apps | Microsoft Learn](https://learn.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-socket)
 - we can use plugin windows.dlllist  and grep for PID 740 to filter out only the @WanaDecryptor@ processor. Then, we can look for the Window Socket DLL. 
