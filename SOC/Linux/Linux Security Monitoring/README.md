@@ -49,7 +49,7 @@ This section emphasizes on:
 **Post-Exploitation Activities** 
 - Identifying actions taken by attackers after paining access.
 
-**Process Traa Analysis**
+**Process Tree Analysis**
 - Understanding the linage of commands executed on the systems to trace back to the original malicious action.
 
 **Universal Detection Techniques**
