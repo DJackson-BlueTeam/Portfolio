@@ -163,7 +163,7 @@ Answer: 1484
 **7. what user-agent was employed by the adversary in Case 001?** 
 - To find out what is the user-agent of the malicious processor, we can string the results.
 - `strings`: is a command use to find specific printable characters from a binary file or low hanging fruits. It is essentially used for reverse engineering, debugging and analyzing files that are not human readable.  
-- commandline: `strings Investigation-1.vmem | grep User-agent` <-- the string command will look for printable characters that are related to User-Agent and display the results. 
+- commandline: `strings Investigation-1.vmem | grep User-Agent` <-- the string command will look for printable characters that are related to User-Agent and display the results. 
 - strings does sensitive scanning, so correct spelling, lower-cases, uppercases etc. is necessary.  
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ba53ebfec29bf66ff7be74764e9758224d0bbaad/SOC/Volatility/Volatility/Volatility%20Img/421.png)
 
