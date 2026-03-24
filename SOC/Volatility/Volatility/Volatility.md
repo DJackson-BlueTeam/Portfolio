@@ -45,9 +45,9 @@ Plug-ins
 - You just have to specify the operating system prior to specifying the plugin to be used (windows.info vs linux.info).
 
 **Operating Systems Listed Below**
-	- `.windows`
-	- `.linux`
-	- `.mac`
+- `.windows`
+- `.linux`
+- `.mac`
 
 **Identifying Image Info and Profiles**
 - Imageinfo plugin will take the memory dump and assign it a list of the best possible operating system profiles.
