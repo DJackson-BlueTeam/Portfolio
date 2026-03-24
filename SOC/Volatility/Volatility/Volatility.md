@@ -181,55 +181,64 @@ Answer: Yes
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ba53ebfec29bf66ff7be74764e9758224d0bbaad/SOC/Volatility/Volatility/Volatility%20Img/423.png)
 		
 Answer: @WanaDecryptor@
-10. What is the full path of the suspicious binary in PID 740 in Case 002?
+
+**10. What is the full path of the suspicious binary in PID 740 in Case 002?**
 - To look up the full path of the binary, we acn use the cmdline plugin to review the executions, and maybe come across a path.
 - Since we know that @WanaDecryptor@ is the malicious binary, we can use the strings command and then grep for @WanaDecryptor@ to only get the results of that binary. 
-- commandline: strings Investigation-2.raw | grep @WanaDecryptor@
+- commandline: `strings Investigation-2.raw | grep @WanaDecryptor@`
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ba53ebfec29bf66ff7be74764e9758224d0bbaad/SOC/Volatility/Volatility/Volatility%20Img/424.png)
 
 Answer: C:\Intel\ivecuqmanpnirkt615\@WanaDecryptor@.exe
-11. What is the parent process of PID 740 in Case 002?
+
+**11. What is the parent process of PID 740 in Case 002?**
 - From running the previous command, we can see that task.exe had started the execution of @WanaDecryptor@.
-- To be sure that tasksche.exe is the parent process of @WanaDecryptor@.exe, we can use the plugin pstree and grep for PID 740.
+- To be sure that tasksche.exe is the parent process of @WanaDecryptor@.exe, we can use the plugin `pstree` and `grep` for PID 740.
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ba53ebfec29bf66ff7be74764e9758224d0bbaad/SOC/Volatility/Volatility/Volatility%20Img/425.png)
 
 - we can see that there is a Parent PID 1940.
-- now lets use the plugin pstree, but this time, we grep for 1940 to is if the tasksche.exe is associated with the PID 1940
+- now lets use the plugin `pstree`, but this time, we `grep` for 1940 to see if the tasksche.exe is associated with the PID 1940
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ba53ebfec29bf66ff7be74764e9758224d0bbaad/SOC/Volatility/Volatility/Volatility%20Img/426.png)
+
 Answer: tasksche.exe
-12. What is the suspicious parent process PID connected to the decryptor in Case 002?
-Answer: 1940
+
+**12. What is the suspicious parent process PID connected to the decryptor in Case 002?**
 - Going back to the previous question, we can see the PID of the tasksche.exe
-13. From our current information, what malware is presented on the system in Case 002?
-- From my personal previous research about an adverarry group, that are also listed in the MITRE ATT&CK Framework. Wannacry is a known ransomeware that targets establishments for payments in bitcoin. Since the name @WanaDecryptor@ is somewhat in relation with the name, I would conclude that WannaCry is the malware. 
-- But to be sure. let research the binary executable @WanaDecryptor@
+
+  Answer: 1940
+  
+**13. From our current information, what malware is presented on the system in Case 002?**
+- From previous research about an ransomeware, that are also listed in the MITRE ATT&CK Framework. Wannacry is a known ransomeware that targets establishments for payments in bitcoin. Since the name @WanaDecryptor@ is somewhat in relation with the name, I would conclude that WannaCry is the malware. 
+- But to be sure, lets research the binary executable @WanaDecryptor@.
+
 [WannaCry Malware Profile | Mandiant | Google Cloud Blog](https://cloud.google.com/blog/topics/threat-intelligence/wannacry-malware-profile/)
+
 Answer: WannaCry
-14. What DLL is loaded by the decryptor used for socket creation in Case 002? 
-- Windows Socket API is used for creating a socket which serves as the endpoint for communication. This is neede for network programming in Windows and allows developers to specify  teh transport protocol, address family and socket type. 
-- for the Dynamic Link Library socket it would be presented as WS2_32.dll [socket function (winsock2.h) - Win32 apps | Microsoft Learn](https://learn.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-socket)
-- we can use plugin windows.dlllist  and grep for PID 740 to filter out only the @WanaDecryptor@ processor. Then, we can look for the Window Socket DLL. 
-	- commandline" vol -f Investigation-2.raw windows.dlllist | grep 740
+
+**14. What DLL is loaded by the decryptor used for socket creation in Case 002?** 
+- Windows Socket API is used for creating a socket which serves as the endpoint for communication. This is needed for network programming in Windows and allows developers to specify the transport protocol, address family and socket type. 
+- For the Dynamic Link Library socket it would be presented as WS2_32.dll [socket function (winsock2.h) - Win32 apps | Microsoft Learn](https://learn.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-socket)
+- We can use plugin `windows.dlllist`  and `grep` for PID 740 to filter out only the @WanaDecryptor@ processor. Then, we can look for the Window Socket DLL. 
+	- `commandline" vol -f Investigation-2.raw windows.dlllist | grep 740`
  
 	- or
 
-	- commandline: vol -f Investigaiton-2.raw windows.dlllist | grep Ws2_32.dll
+	- `commandline: vol -f Investigaiton-2.raw windows.dlllist | grep Ws2_32.dll`
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ba53ebfec29bf66ff7be74764e9758224d0bbaad/SOC/Volatility/Volatility/Volatility%20Img/427.png)
 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ba53ebfec29bf66ff7be74764e9758224d0bbaad/SOC/Volatility/Volatility/Volatility%20Img/428.png)
 
 Answer: WS2_32.dll
 
-16. What mutex can be found that is a known indicator of the malware in question in Case 002?
+**16. What mutex can be found that is a known indicator of the malware in question in Case 002?**
 - Mutex (Mutual Exclusion) ([What is mutual exclusion (mutex) in computer programming? | Definition from TechTarget](https://www.techtarget.com/searchnetworking/definition/mutex)): is  a program that prevents multiple threads from accessing the same shared resources at the same time. It prevent multiple threads to not execute the same code simultaneously.
 - we can use the plugin windows.handle to list open hadnles in the memory dump. WE can also grep for the PID 1940 since we know the parent process is the tasksche.exe with the PID 1940. 
-- commandline: vol -f Investigation-2.raw windows.handle | grep 1940
+- commandline: `vol -f Investigation-2.raw windows.handle | grep 1940`
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ba53ebfec29bf66ff7be74764e9758224d0bbaad/SOC/Volatility/Volatility/Volatility%20Img/429.png)
 
 Answer: MsWinZonesCacheCounterMutexA
 
-17. What plugin could be used to identify all files loaded from the malware working directory in Case 002? 
-- let use commandline vol -h and see what plugin is use to identify files loaded from malware working directory. 
+**17. What plugin could be used to identify all files loaded from the malware working directory in Case 002?** 
+- let use commandline `vol -h` and see what plugin is use to identify files loaded from malware working directory. 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ba53ebfec29bf66ff7be74764e9758224d0bbaad/SOC/Volatility/Volatility/Volatility%20Img/430.png)
 
 Answer: windows.filescan
