@@ -5,15 +5,19 @@ This portfolio provides an outline of Volatility, a powerful memory forensics to
 
 ## Key Features
 
-Memory Analysis
+**Memory Analysis**
 - Extracts information from memory dumps, allowing for detailed forensic investigations.
-Process Listing
+
+**Process Listing**
 - Identifies running and terminated processes, helping to trace malicious activities.
-Network Analysis
+
+**Network Analysis**
 - Reveals active and closed network connections to understand communication patterns.
-File Recovery
+
+**File Recovery**
 - Retrives files directly from memory, which can be crucia; in malware investigations.
-Registry Access
+
+**Registry Access**
 - Analyse Windows registry entries for sings of persistence and other suspicious activities.
 
 ## Installation
