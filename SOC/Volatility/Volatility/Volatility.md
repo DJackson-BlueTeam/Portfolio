@@ -1,20 +1,24 @@
-**Volatility**
+Volatility
+---
 
 - Volatility is the most used framework for extracting digital artifacts from volatile memory (RAM) samples.
 - Volatility is build off multiple plug-ins that are synchronous to obtain information from the memory dump. 
 - Volatility was built off python 2 and python 3. This makes the installation of volatility easy for MAC, Linux and Windows Operating systems [volatilityfoundation/volatility3: Volatility 3.0 development](https://github.com/volatilityfoundation/volatility3)
 
-**Installation Windows**
+Installation Windows
+---
 - When downloading volatility, you can used the pre-package executable (.whl file), however, only work on Windows since there is no dependencies. 
 - To obtain the pre-package executables, you can download the zip file containing the application from their released page. [Release Volatility 3 1.0.1 · volatilityfoundation/volatility3](https://github.com/volatilityfoundation/volatility3/releases/tag/v1.0.1)
 - To begin running the project from source, download the dependencies (python 3.5.3 or later) or "Prefile 2017.8.1 or later".
 
-**Installation Linux** 
-- to install Volatility for Linux machine you can simply execute a command with the link that is directed to the volatility program. (*git clone https://github.com/volatilityfoundation/volatility3.git*)
-- To test the installation, run the vol.py file with the help parameter (*python3 vol.py -h*)
-- For any Linux or MAC memory file, you will need to download the symbol files from the Volatility GitHub (https://github.com/volatilityfoundation/volatility3#symbol-tables). 
+Installation Linux
+---
+- to install Volatility for Linux machine you can simply execute a command with the link that is directed to the volatility program. `git clone https://github.com/volatilityfoundation/volatility3.git`
+- To test the installation, run the `vol.py` file with the help parameter `python3 vol.py -h`
+- For any Linux or MAC memory file, you will need to download the symbol files from the Volatility GitHub `https://github.com/volatilityfoundation/volatility3#symbol-tables`. 
 
-**Memory Extraction (Metal)**
+Memory Extraction (Metal)
+---
 - Performing memory extraction can be done in numerous ways based on the requirements of the investigation. 
 - Some techniques used to perform memory dump are listed below:
 	- FTK Imager
@@ -26,69 +30,78 @@
 - The tools above are for memory extraction with an output .raw file with some exceptions like REdline that can use its own agent and session structure.
 - NOTE: when using extraxting tools on a bare-metal host, it can take a extensive amount of time. 
 
-**Virtual Machine**
+Virtual Machine
+---
 - Gathering memory file can easily be done with collecting the virtual memory file from the host machine drives. 
 - The file can be change based on the hypervisor used, which are listed below:
-	- VMWare: .vmem
-	- Hyper-V: .bin
-	- Parallels: .men
-	- VirtualBox: .sav (partial memory file extraction)
+	- VMWare: `.vmem`
+	- Hyper-V: `.bin`
+	- Parallels: `.men`
+	- VirtualBox: `.sav` (partial memory file extraction)
 
-**Plug-ins**
+Plug-ins
+---
 - Converting to pyhton3, the plugin structure is more accessible. 
 - You just have to specify the operating system prior to specifying the plugin to be used (windows.info vs linux.info).
-- Operating Systems Listed Below:
-	- .windows
-	- .linux
-	- .mac
-	Identifying Image Info and Profiles
-	- Imageinfo plugin will take the memory dump and assign it a list of the best possible operating system profiles.
-	- When looking to get information about what the host is running from the memory dump, we can use the following plugins list below: 
-		- windows.info 
-		- linux.info
-		- mac.info
 
-**Listing Processes and Connections** 
+**Operating Systems Listed Below**
+	- `.windows`
+	- `.linux`
+	- `.mac`
+
+**Identifying Image Info and Profiles**
+- Imageinfo plugin will take the memory dump and assign it a list of the best possible operating system profiles.
+- When looking to get information about what the host is running from the memory dump, we can use the following plugins list below: 
+	- `windows.info` 
+	- `linux.info`
+	- `mac.info`
+
+Listing Processes and Connections
+---
 - There are 5 plugins that allows the user to dump processes and network connections, each with varying techniques used:
-	- **pslist** (Process List)
+	- `pslist` (Process List)
 		- list of processes from the doubly-linked list that keeps track of processes in memory.
 		- Includes all current processes and terminated processes with their exit times. 
-	- **psscan** (Process Scan)
+	- `psscan` (Process Scan)
 		- locate processes by finding data structures that match _ERPROCESS. This technique helps with evasion countermeasures, it can also generate false positive. 
 		- Analyst will use the plugins when a malware, mainly rootkits, attempts to hide their processes by unlinking itself from the list.
-	- **pstree** (Process Tree)
+	- `pstree` (Process Tree)
 		- lists all processes based on their parent process ID.
 		- using the same method as pslist, this can be useful for analysts to get the full story of the processes and what may have been occurring at the time of extraction.
-	- **netstat** (Network Statistics)
+	- `netstat` (Network Statistics)
 		- will identify all memory structures with a network connection.
-	- **dlllist** (Dynamic Link Library List)
+	- `dlllist` (Dynamic Link Library List)
 		- list all Dynamic-Link-Librarys (DLL) associated with the processes a the time of extraction. 
 		- can be useful once further analysis have been completed and can filter output to a certain dll that may be an indicator of the malware. 
 
 Volatility Hunting and Detection Capabilities
+---
 - The next two plugins are used to hunt for malware or other anomalies within a system memory.
-	- **malfind**
+	- `malfind`
 		- will attempt to identify injected processes and thier PIDs along with the offset address and the Hex, Ascii, and Disassembly view of the infected area. 
 		- This plugin scans the output of the data from the machine and identify processes that have executable bits set (RWE or RX)
-	- **yarascan**
+	- `yarascan`
 		- will search for strings, patterns and compound rules against a rule set. 
 		- can use YARA file as an argument or list rules within the commandline.
 
 Advanced Memory Forensics
+---
 - When dealing with  advance adversary, the analyst may encounter malware, maily rootkits, that will employs disrupting evasion measures that will require an analyst to dive into drivers, mutexes and hooked functions. The plugin that are used for advanced forensics are listed below.
-	- **ssdt** (System Service Descriptor Table)
+	- `ssdt` (System Service Descriptor Table)
 		- searched for hooking and output its results. 
 		- ssdt is used by the windows kernel to look up systems functions. An adversary can hook into this table and modify pointers to point to a location the rootkit controls 
-	- **modules**
+	- `modules`
 		- adversaries will use malicious drivers files as part of their evasion.
 		- will dump a list of loaded kernel modules; which can be useful in identifying active malware/ Contrarily, is the malware is idling and hidden, this plugin may miss the malware. 
-	- **driverscan**
+	- `driverscan`
 		- will scan drivers present on the system at the time of extraction.
 		- This plugin help identify driver files in the kernel that the modules plugin might have missed.
-		- most times, this plugin will have no output. If no results comes from the modules plugin, it may be useful to use the driverscan plugin. 
-Questions:
-1. What is the build version of the host machine in Case 001?
-- To determine the build version of the host machine, we can use the windows.info to get the general information about the machine.
+		- most times, this plugin will have no output. If no results comes from the modules plugin, it may be useful to use the driverscan plugin.
+  
+**Questions**
+
+**1. What is the build version of the host machine in Case 001?**
+- To determine the build version of the host machine, we can use the `windows.info` to get the general information about the machine.
 - first let navigate to the file where the machine output is stored. 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ba53ebfec29bf66ff7be74764e9758224d0bbaad/SOC/Volatility/Volatility/Volatility%20Img/412.png)
 
