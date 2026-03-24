@@ -108,34 +108,37 @@ Advanced Memory Forensics
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ba53ebfec29bf66ff7be74764e9758224d0bbaad/SOC/Volatility/Volatility/Volatility%20Img/413.png)
 
 - Now that we are in the directory where the output of the machine is store, we can use a command to grab the aspects of the machine. 
-- commandline: vol -f Investigation-1.vmem windows.info
+- commandline: `vol -f Investigation-1.vmem windows.info`
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ba53ebfec29bf66ff7be74764e9758224d0bbaad/SOC/Volatility/Volatility/Volatility%20Img/414%201.png)
 
+- We can observe the NTbuildLab shown in the screenshot above.
 Answer: 2600.xpsp.080413-2111
 
-- We can observe the NTbuildLab shown in the screenshot above.
 
-2. At what time was the memory files acquired in Case 001? 
+
+**2. At what time was the memory files acquired in Case 001?** 
 - We are still in the windows.info plugin. 
 - Looking at System Time, we can see the time the memory files were acquired. 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ba53ebfec29bf66ff7be74764e9758224d0bbaad/SOC/Volatility/Volatility/Volatility%20Img/415.png)
 
 Answer: 2012-07-22 02:45:08
    
-3. What process can be considered suspicious in Case 001?
-- To discover a unfamiliar process, within the system, we can use the plugin malfind to scan to entire file for  executable ".exe" processes and review the results. 
-- commandline: vol -f Investigation-1.vmem windows.malfind
+**3. What process can be considered suspicious in Case 001?**
+- To discover a unfamiliar process, within the system, we can use the plugin `windows.malfind` to scan to entire file for  executable `.exe` processes and review the results. 
+- commandline: `vol -f Investigation-1.vmem windows.malfind`
 - if the analyst is familiar with windows operating system processes, they will be able to point out the unusual processes within a system.
 - shown below is a malicious executable that is not a windows processor and should be reported and further investigated. 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ba53ebfec29bf66ff7be74764e9758224d0bbaad/SOC/Volatility/Volatility/Volatility%20Img/416.png)
 
-Answer: reader_sl.exe
-- also notice that the PID of the process is 1640. We should keep this in mind. 
+- also notice that the PID of the process is 1640. We should keep this in mind.
 
-4. What is the parent process of the suspicious process in Case 001? 
-- To find the parent process of reader_sl.exe it will be difficult to different the relations of the processes through malfind plugin. 
-- we must resort tot a different plugin that will display the relationship of the processes correlated to read_sl.exe
-- the plugin we will be using is pstree; this will display the relationship of the processes.
+Answer: reader_sl.exe
+ 
+
+**4. What is the parent process of the suspicious process in Case 001?** 
+- To find the parent process of reader_sl.exe it will be difficult to differentiate the relations of the processes through malfind plugin. 
+- We must resort to a different plugin that will display the relationship of the processes correlated to read_sl.exe
+- the plugin we will be using is `pstree`; this will display the relationship of the processes.
 - Remember the reader_sl.exe PID is 1640 (might come in handy with analyzing the results.)
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ba53ebfec29bf66ff7be74764e9758224d0bbaad/SOC/Volatility/Volatility/Volatility%20Img/417.png)
 
@@ -144,7 +147,7 @@ Answer: explorer.exe
 		
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ba53ebfec29bf66ff7be74764e9758224d0bbaad/SOC/Volatility/Volatility/Volatility%20Img/418.png)
 
-5. What is the PID of the suspicious process in Case 001
+**5. What is the PID of the suspicious process in Case 001**
 - Looking back at the pstree, and malfind, we can see the same PID 1640 from both results.
 
 ![alt text](https://github.com/DJackson-BlueTeam/Portfolio/blob/ba53ebfec29bf66ff7be74764e9758224d0bbaad/SOC/Volatility/Volatility/Volatility%20Img/419.png)
